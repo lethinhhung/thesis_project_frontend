@@ -173,12 +173,10 @@ export function RegisterForm({
                   )}
                 />
                 <div className="flex flex-row justify-between">
-                  <Button className="text-white" onClick={(e) => handleBack(e)}>
+                  <Button variant={"secondary"} onClick={(e) => handleBack(e)}>
                     {t("back")}
                   </Button>
-                  <Button className="text-white" type="submit">
-                    {t("submit")}
-                  </Button>
+                  <Button type="submit">{t("submit")}</Button>
                 </div>
               </div>
             </form>

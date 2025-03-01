@@ -6,15 +6,15 @@ import AppRoutes from "./route/routes";
 function App() {
   const { i18n } = useTranslation();
 
-  // useEffect(() => {
-  //   if (i18n.language === "vi") {
-  //     document.documentElement.classList.remove("font-[Geist]");
-  //     document.body.classList.remove("font-[Geist]");
-  //   } else {
-  //     document.documentElement.classList.add("font-[Geist]");
-  //     document.body.classList.add("font-[Geist]");
-  //   }
-  // }, [i18n.language]);
+  useEffect(() => {
+    if (i18n.language === "vi") {
+      document.documentElement.classList.remove("font-[Geist]");
+      document.body.classList.remove("font-[Geist]");
+    } else {
+      document.documentElement.classList.add("font-[Geist]");
+      document.body.classList.add("font-[Geist]");
+    }
+  }, [i18n.language]);
 
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
