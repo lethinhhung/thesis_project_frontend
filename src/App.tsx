@@ -1,18 +1,24 @@
 import { useTranslation } from "react-i18next";
-import { ModeToggle } from "./components/mode-toggle";
 import { ThemeProvider } from "./components/theme-provider";
-import { Button } from "./components/ui/button";
+import { useEffect } from "react";
+import AppRoutes from "./route/routes";
 
 function App() {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
+
+  // useEffect(() => {
+  //   if (i18n.language === "vi") {
+  //     document.documentElement.classList.remove("font-[Geist]");
+  //     document.body.classList.remove("font-[Geist]");
+  //   } else {
+  //     document.documentElement.classList.add("font-[Geist]");
+  //     document.body.classList.add("font-[Geist]");
+  //   }
+  // }, [i18n.language]);
 
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <ModeToggle></ModeToggle>
-      <Button onClick={() => i18n.changeLanguage("vi")}>
-        {t("vietnamese")}
-      </Button>
-      <Button onClick={() => i18n.changeLanguage("en")}>{t("english")}</Button>
+      <AppRoutes />
     </ThemeProvider>
   );
 }
