@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { useTheme } from "@/components/theme-provider";
 import { useNavigate } from "react-router-dom";
 import { Languages, LogIn, Moon, Sun, SunMoon } from "lucide-react";
+import { Upload } from "@/components/ui/upload";
 
 function Home() {
   const { setTheme } = useTheme();
@@ -20,6 +21,13 @@ function Home() {
 
   return (
     <div className="w-svw h-svh w-100 flex flex-col items-center justify-center py-2">
+      <Upload
+        label="File"
+        type="file"
+        accept=".pdf, .docx, .txt"
+        title="Drag and drop a file or click to browse"
+        description="Document files"
+      ></Upload>
       <Button className="m-5" onClick={handleLogin}>
         <LogIn />
         {t("login")}
