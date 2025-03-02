@@ -45,6 +45,8 @@ i18n.use(initReactI18next).init({
         confirm_password_required:
           "Confirm Password must be the same as Password.",
         password_not_match: "Passwords do not match.",
+        already_have_account: "Already have an account?",
+        sign_in: "Sign in",
       },
     },
     vi: {
@@ -86,6 +88,8 @@ i18n.use(initReactI18next).init({
           "Mật khẩu phải chứa ít nhất một chữ cái viết thường, một chữ cái viết hoa, một số và một ký tự đặc biệt.",
         confirm_password_required: "Phải giống với Mật khẩu trước đó.",
         password_not_match: "Mật khẩu không khớp.",
+        already_have_account: "Đã có tài khoản?",
+        sign_in: "Đăng nhập",
       },
     },
   },

@@ -77,9 +77,16 @@ export function RegisterForm({
     console.log(values);
   }
 
-  const handleBack = (e: ReactMouseEvent<HTMLButtonElement>) => {
+  const handleBack = (
+    e: ReactMouseEvent<HTMLButtonElement | HTMLAnchorElement>,
+    path?: string
+  ) => {
     e.preventDefault();
-    navigate(-1);
+    if (path) {
+      navigate(path);
+    } else {
+      navigate(-1);
+    }
   };
 
   return (
@@ -172,6 +179,16 @@ export function RegisterForm({
                     </FormItem>
                   )}
                 />
+                <div className="text-center text-sm">
+                  {t("already_have_account")}{" "}
+                  <a
+                    href="#"
+                    className="underline underline-offset-4"
+                    onClick={(e) => handleBack(e, "/login")}
+                  >
+                    {t("sign_in")}
+                  </a>
+                </div>
                 <div className="flex flex-row justify-between">
                   <Button variant={"secondary"} onClick={(e) => handleBack(e)}>
                     {t("back")}
