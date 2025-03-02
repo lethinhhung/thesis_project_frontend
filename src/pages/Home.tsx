@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/components/theme-provider";
 import { useNavigate } from "react-router-dom";
+import { Languages, LogIn, Moon, Sun, SunMoon } from "lucide-react";
 
 function Home() {
   const { setTheme } = useTheme();
@@ -20,21 +21,27 @@ function Home() {
   return (
     <div className="w-svw h-svh w-100 flex flex-col items-center justify-center py-2">
       <Button className="m-5" onClick={handleLogin}>
+        <LogIn />
         {t("login")}
       </Button>
       <Button className="m-5" onClick={() => setTheme("light")}>
+        <Sun />
         {t("lightMode")}
       </Button>
       <Button className="m-5" onClick={() => setTheme("dark")}>
+        <Moon />
         {t("darkMode")}
       </Button>
       <Button className="m-5" onClick={() => setTheme("system")}>
+        <SunMoon />
         {t("system")}
       </Button>
       <Button className="m-5" onClick={() => changeLanguage("en")}>
+        <Languages />
         {t("english")}
       </Button>
       <Button className="m-5" onClick={() => changeLanguage("vi")}>
+        <Languages />
         {t("vietnamese")}
       </Button>
     </div>
