@@ -20,6 +20,42 @@
   font-display: swap;
 }
 
+@layer utilities {
+  :root {
+    --scrollbar-thumb: #e4e4e7;
+    --scrollbar-track: #fafafa;
+  }
+
+  .dark {
+    --scrollbar-thumb: #27272a;
+    --scrollbar-track: #171717;
+  }
+
+  .scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+  }
+
+  /* Webkit (Chrome, Edge, Safari) */
+  .scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 8px;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    background: hsl(240, 5%, 56%);
+  }
+
+  .scrollbar::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+  }
+}
+
 :root {
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);

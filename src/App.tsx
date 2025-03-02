@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { ThemeProvider } from "./components/theme-provider";
 import { useEffect } from "react";
 import AppRoutes from "./route/routes";
+import "./App.css";
 
 function App() {
   const { i18n } = useTranslation();

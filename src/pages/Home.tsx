@@ -20,7 +20,7 @@ function Home() {
   };
 
   return (
-    <div className="w-svw h-svh w-100 flex flex-col items-center justify-center py-2">
+    <div className="flex flex-col items-center mx-auto h-full w-full max-w-3xl rounded-xl bg-muted/50">
       <Upload
         label="File"
         type="file"

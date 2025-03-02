@@ -7,6 +7,7 @@ import Register from "@/pages/Register";
 import { ReactNode } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
+import DefaultLayout from "@/layouts/DefaultLayout";
 
 const PrivateRoute = ({ children }: { children: ReactNode }) => {
   const isAuthenticated = localStorage.getItem("token"); // Kiểm tra đăng nhập
@@ -19,7 +20,9 @@ const AppRoutes = () => {
       <AnimatePresence mode="wait">
         <Routes>
           {/* Public Routes */}
-          <Route path="/" element={<Home />} />
+          <Route element={<DefaultLayout />}>
+            <Route path="/" element={<Home />} />
+          </Route>
           <Route element={<AuthLayout />}>
             <Route
               path="/login"
