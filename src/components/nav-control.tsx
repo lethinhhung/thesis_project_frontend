@@ -6,6 +6,12 @@ import { Button } from "./ui/button";
 import LanguageSwitcher from "./language-switcher";
 import { useEffect, useState } from "react";
 import { useTheme } from "./theme-provider";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 export function NavControl() {
   const [icon, setIcon] = useState(<Sun />);
@@ -25,9 +31,19 @@ export function NavControl() {
   return (
     <SidebarMenu>
       <SidebarMenuItem className="flex gap-3 items-center">
-        <Button onClick={handleSwitch} size={"icon"}>
-          {icon}
-        </Button>
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button onClick={handleSwitch} size={"icon"}>
+                {icon}
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Change appearance</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+
         <LanguageSwitcher />
       </SidebarMenuItem>
     </SidebarMenu>

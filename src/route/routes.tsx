@@ -10,6 +10,8 @@ import { AnimatePresence } from "framer-motion";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import Landing from "@/pages/Landing";
 import Courses from "@/pages/Courses";
+import Search from "@/pages/Search";
+import Library from "@/pages/Library";
 
 const PrivateRoute = ({ children }: { children: ReactNode }) => {
   const isAuthenticated = localStorage.getItem("token"); // Kiểm tra đăng nhập
@@ -24,8 +26,10 @@ const AppRoutes = () => {
           {/* Public Routes */}
           <Route path="/" element={<Landing />}></Route>
           <Route element={<DefaultLayout />}>
-            <Route path="/home" element={<Home />} />
+            <Route path="/search" element={<Search />} />
             <Route path="/courses" element={<Courses />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/library" element={<Library />} />
           </Route>
           <Route element={<AuthLayout />}>
             <Route

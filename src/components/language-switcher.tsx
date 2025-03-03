@@ -1,43 +1,63 @@
 import { useTranslation } from "react-i18next";
 import { Button } from "./ui/button";
 import { Languages } from "lucide-react";
-import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
-import { Label } from "./ui/label";
+import { useState } from "react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "./ui/tooltip";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+} from "./ui/dropdown-menu";
 
 const LanguageSwitcher = () => {
   const { i18n, t } = useTranslation();
+  const [language, setLanguage] = useState(i18n.language);
 
   const changeLanguage = (lng: string) => {
+    setLanguage(lng);
     i18n.changeLanguage(lng);
     localStorage.setItem("language", lng);
   };
+
   return (
-    <Popover>
-      <PopoverTrigger asChild>
-        <Button size="icon">
-          <Languages />
-        </Button>
-      </PopoverTrigger>
-      <PopoverContent side="right" className="w-full">
-        <div className="grid gap-5">
-          <Label>{t("languages")}</Label>
-          <div className="flex flex-col gap-2">
-            <Button
-              onClick={() => changeLanguage("en")}
-              variant={i18n.language === "en" ? "default" : "ghost"}
-            >
+    <TooltipProvider>
+      <DropdownMenu>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <DropdownMenuTrigger asChild>
+              <Button size="icon">
+                <Languages />
+              </Button>
+            </DropdownMenuTrigger>
+          </TooltipTrigger>
+          <TooltipContent side="top">Change language</TooltipContent>
+        </Tooltip>
+        <DropdownMenuContent side="right" className="w-56">
+          <DropdownMenuLabel>Languages</DropdownMenuLabel>
+          <DropdownMenuSeparator />
+          <DropdownMenuRadioGroup
+            value={language}
+            onValueChange={(e) => changeLanguage(e)}
+          >
+            <DropdownMenuRadioItem value="en">
               {t("english")}
-            </Button>
-            <Button
-              onClick={() => changeLanguage("vi")}
-              variant={i18n.language === "vi" ? "default" : "ghost"}
-            >
+            </DropdownMenuRadioItem>
+            <DropdownMenuRadioItem value="vi">
               {t("vietnamese")}
-            </Button>
-          </div>
-        </div>
-      </PopoverContent>
-    </Popover>
+            </DropdownMenuRadioItem>
+          </DropdownMenuRadioGroup>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </TooltipProvider>
   );
 };
 
