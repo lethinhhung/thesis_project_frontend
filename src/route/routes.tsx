@@ -9,6 +9,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import Landing from "@/pages/Landing";
+import Courses from "@/pages/Courses";
 
 const PrivateRoute = ({ children }: { children: ReactNode }) => {
   const isAuthenticated = localStorage.getItem("token"); // Kiểm tra đăng nhập
@@ -24,6 +25,7 @@ const AppRoutes = () => {
           <Route path="/" element={<Landing />}></Route>
           <Route element={<DefaultLayout />}>
             <Route path="/home" element={<Home />} />
+            <Route path="/courses" element={<Courses />} />
           </Route>
           <Route element={<AuthLayout />}>
             <Route

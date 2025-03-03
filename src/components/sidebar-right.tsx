@@ -14,6 +14,7 @@ import {
   SidebarMenuItem,
   SidebarSeparator,
 } from "@/components/ui/sidebar";
+import { CountdownTimer } from "./countdown-timer";
 
 // This is sample data.
 const data = {
@@ -47,10 +48,10 @@ export function SidebarRight({
       className="sticky hidden lg:flex top-0 h-svh border-l"
       {...props}
     >
-      <SidebarHeader className="h-16 border-b border-sidebar-border">
-        Clock goes here
-      </SidebarHeader>
-      <SidebarContent>
+      <SidebarHeader className="h-16 border-b border-sidebar-border"></SidebarHeader>
+      <SidebarContent className="scrollbar">
+        <CountdownTimer />
+        <SidebarSeparator className="mx-0" />
         <DatePicker />
         <SidebarSeparator className="mx-0" />
         <Calendars calendars={data.calendars} />
