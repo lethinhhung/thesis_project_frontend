@@ -4,31 +4,40 @@ import * as React from "react";
 import {
   AudioWaveform,
   Blocks,
+  Briefcase,
   Calendar,
   Command,
   Home,
   Inbox,
   MessageCircleQuestion,
+  LayoutDashboard,
+  LibraryBig,
   Search,
   Settings2,
   Sparkles,
   Trash2,
 } from "lucide-react";
 
-import { NavFavorites } from "@/components/nav-favorites";
 import { NavMain } from "@/components/nav-main";
 import { NavSecondary } from "@/components/nav-secondary";
-import { NavWorkspaces } from "@/components/nav-workspaces";
-import { TeamSwitcher } from "@/components/team-switcher";
+import { NavConversations } from "@/components/nav-conversations";
 import {
   Sidebar,
   SidebarContent,
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar";
+import { NavUser } from "./nav-user";
+import { NavControl } from "./nav-control";
+import { NavCourses } from "./nav-courses";
 
 // This is sample data.
 const data = {
+  user: {
+    name: "shadcn",
+    email: "m@example.com",
+    avatar: "/avatars/shadcn.jpg",
+  },
   teams: [
     {
       name: "Acme Inc",
@@ -49,23 +58,41 @@ const data = {
   navMain: [
     {
       title: "Search",
-      url: "#",
+      url: "/search",
       icon: Search,
     },
     {
       title: "Ask AI",
-      url: "#",
+      url: "/ask-ai",
       icon: Sparkles,
     },
     {
+      title: "Courses",
+      url: "/courses",
+      icon: Briefcase,
+      isActive: false,
+    },
+    {
       title: "Home",
-      url: "#",
+      url: "/home",
       icon: Home,
       isActive: true,
     },
     {
+      title: "Dashboard",
+      url: "/dashboard",
+      icon: LayoutDashboard,
+      isActive: false,
+    },
+    {
+      title: "Library",
+      url: "/library",
+      icon: LibraryBig,
+      isActive: false,
+    },
+    {
       title: "Inbox",
-      url: "#",
+      url: "/inbox",
       icon: Inbox,
       badge: "10",
     },
@@ -97,7 +124,7 @@ const data = {
       icon: MessageCircleQuestion,
     },
   ],
-  favorites: [
+  courses: [
     {
       name: "Project Management & Task Tracking",
       url: "#",
@@ -149,7 +176,7 @@ const data = {
       emoji: "✅",
     },
   ],
-  workspaces: [
+  conversations: [
     {
       name: "Personal Life Management",
       emoji: "🏠",
@@ -264,12 +291,13 @@ export function SidebarLeft({
   return (
     <Sidebar className="border-r-0" {...props}>
       <SidebarHeader>
-        <TeamSwitcher teams={data.teams} />
+        <NavUser user={data.user} />
+        <NavControl />
         <NavMain items={data.navMain} />
       </SidebarHeader>
       <SidebarContent className="scrollbar">
-        <NavFavorites favorites={data.favorites} />
-        <NavWorkspaces workspaces={data.workspaces} />
+        <NavCourses courses={data.courses} />
+        <NavConversations conversations={data.conversations} />
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarRail />

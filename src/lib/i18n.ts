@@ -9,6 +9,7 @@ i18n.use(initReactI18next).init({
       translation: {
         english: "English",
         vietnamese: "Vietnamese",
+        languages: "Languages",
 
         // Login page
         welcome: "Welcome back",
@@ -53,6 +54,7 @@ i18n.use(initReactI18next).init({
       translation: {
         english: "Tiếng Anh",
         vietnamese: "Tiếng Việt",
+        languages: "Ngôn ngữ",
 
         // Login page
         welcome: "Chào mừng trở lại",

@@ -25,10 +25,10 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 
-export function NavFavorites({
-  favorites,
+export function NavCourses({
+  courses,
 }: {
-  favorites: {
+  courses: {
     name: string;
     url: string;
     emoji: string;
@@ -38,9 +38,9 @@ export function NavFavorites({
 
   return (
     <SidebarGroup className="group-data-[collapsible=icon]:hidden">
-      <SidebarGroupLabel>Favorites</SidebarGroupLabel>
+      <SidebarGroupLabel>Recent courses</SidebarGroupLabel>
       <SidebarMenu>
-        {favorites.map((item) => (
+        {courses.map((item) => (
           <SidebarMenuItem key={item.name}>
             <SidebarMenuButton asChild>
               <a href={item.url} title={item.name}>
