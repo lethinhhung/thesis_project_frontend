@@ -26,6 +26,7 @@ import {
   SidebarContent,
   SidebarHeader,
   SidebarRail,
+  useSidebar,
 } from "@/components/ui/sidebar";
 import { NavUser } from "./nav-user";
 import { NavControl } from "./nav-control";
@@ -288,17 +289,17 @@ const data = {
 export function SidebarLeft({
   ...props
 }: React.ComponentProps<typeof Sidebar>) {
+  const { isMobile } = useSidebar();
   return (
     <Sidebar className="border-r-0" {...props}>
       <SidebarHeader>
         <NavUser user={data.user} />
-        <NavControl />
+        {isMobile ? <></> : <NavControl />}
         <NavMain items={data.navMain} />
       </SidebarHeader>
       <SidebarContent className="scrollbar">
         <NavCourses courses={data.courses} />
         <NavConversations conversations={data.conversations} />
-        <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarRail />
     </Sidebar>

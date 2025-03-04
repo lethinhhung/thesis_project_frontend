@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Pause, Play, RotateCcw } from "lucide-react";
+import { Hourglass, Pause, Play, RotateCcw } from "lucide-react";
+import { toast } from "sonner";
 
 export function CountdownTimer() {
   const [minutes, setMinutes] = useState(10); // Thời gian mặc định: 10 phút
@@ -12,7 +13,15 @@ export function CountdownTimer() {
   useEffect(() => {
     if (!isRunning || timeLeft <= 0) return;
     const timer = setInterval(() => {
-      setTimeLeft((prev) => prev - 1);
+      setTimeLeft((prev) => {
+        if (prev === 1) {
+          toast.error("Out of time", {
+            icon: <Hourglass size={15} />,
+            description: "The countdown has ended.",
+          });
+        }
+        return prev - 1;
+      });
     }, 1000);
     return () => clearInterval(timer);
   }, [isRunning, timeLeft]);
@@ -33,7 +42,7 @@ export function CountdownTimer() {
       {/* Nút điều khiển */}
       <div className="mt-4 flex justify-center gap-2">
         <Button
-          disabled={minutes === 0 && seconds === 0 ? true : false}
+          disabled={timeLeft === 0 ? true : false}
           onClick={() => setIsRunning(!isRunning)}
           size="icon"
         >
@@ -94,7 +103,7 @@ export function CountdownTimer() {
         <div className="flex flex-col items-center">
           <Button
             variant="ghost"
-            size="sm"
+            size="icon"
             onClick={() => setMinutes(minutes === 99 ? minutes : minutes + 1)}
           >
             ▲
@@ -115,7 +124,7 @@ export function CountdownTimer() {
           />
           <Button
             variant="ghost"
-            size="sm"
+            size="icon"
             onClick={() => setMinutes(minutes === 0 ? minutes : minutes - 1)}
           >
             ▼
@@ -125,7 +134,7 @@ export function CountdownTimer() {
         <div className="flex flex-col items-center">
           <Button
             variant="ghost"
-            size="sm"
+            size="icon"
             onClick={() => setSeconds(seconds === 59 ? seconds : seconds + 1)}
           >
             ▲
@@ -146,7 +155,7 @@ export function CountdownTimer() {
           />
           <Button
             variant="ghost"
-            size="sm"
+            size="icon"
             onClick={() => setSeconds(seconds === 0 ? seconds : seconds - 1)}
           >
             ▼

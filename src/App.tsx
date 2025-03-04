@@ -3,6 +3,7 @@ import { ThemeProvider } from "./components/theme-provider";
 import { useEffect } from "react";
 import AppRoutes from "./route/routes";
 import "./App.css";
+import { Toaster } from "./components/ui/sonner";
 
 function App() {
   const { i18n } = useTranslation();
@@ -18,9 +19,12 @@ function App() {
   }, [i18n.language]);
 
   return (
-    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <AppRoutes />
-    </ThemeProvider>
+    <>
+      <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+        <AppRoutes />
+      </ThemeProvider>
+      <Toaster />
+    </>
   );
 }
 
