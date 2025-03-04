@@ -63,33 +63,29 @@ const data = {
       icon: Search,
     },
     {
-      title: "Ask AI",
-      url: "/ask-ai",
+      title: "Chat",
+      url: "/chat",
       icon: Sparkles,
     },
     {
       title: "Courses",
       url: "/courses",
       icon: Briefcase,
-      isActive: false,
     },
     {
       title: "Home",
       url: "/home",
       icon: Home,
-      isActive: true,
     },
     {
       title: "Dashboard",
       url: "/dashboard",
       icon: LayoutDashboard,
-      isActive: false,
     },
     {
       title: "Library",
       url: "/library",
       icon: LibraryBig,
-      isActive: false,
     },
     {
       title: "Inbox",

@@ -1,9 +1,9 @@
-function Dashboard() {
+function Chat() {
   return (
     <div className="flex flex-col items-center mx-auto h-full w-full max-w-3xl rounded-xl bg-muted/50">
-      Dashboard page
+      Chat page
     </div>
   );
 }
 
-export default Dashboard;
+export default Chat;

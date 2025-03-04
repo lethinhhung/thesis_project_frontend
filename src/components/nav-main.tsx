@@ -6,7 +6,7 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { LucideIcon } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export function NavMain({
   items,
@@ -15,10 +15,10 @@ export function NavMain({
     title: string;
     url: string;
     icon: LucideIcon;
-    isActive?: boolean;
   }[];
 }) {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleClick = (e: React.MouseEvent, url: string) => {
     navigate(url);
@@ -29,7 +29,7 @@ export function NavMain({
     <SidebarMenu>
       {items.map((item) => (
         <SidebarMenuItem key={item.title}>
-          <SidebarMenuButton asChild isActive={item.isActive}>
+          <SidebarMenuButton asChild isActive={location.pathname === item.url}>
             <a href={item.url} onClick={(e) => handleClick(e, item.url)}>
               <item.icon />
               <span>{item.title}</span>

@@ -16,7 +16,7 @@ i18n.use(initReactI18next).init({
         darkMode: "Dark Mode",
         lightMode: "Light Mode",
         system: "System",
-        login_to: "Login to your Study account",
+        login_to: "Login to your Notebok account",
         password: "Password",
         forgot_password: "Forgot your password?",
         login: "Login",
@@ -26,7 +26,7 @@ i18n.use(initReactI18next).init({
 
         // Register page
         create_account: "Create an account",
-        join_study: "Join Study today",
+        join_study: "Join Notebok today",
         username: "Username",
         confirm_password: "Confirm Password",
         use_strong_password: "Use strong password.",
@@ -61,7 +61,7 @@ i18n.use(initReactI18next).init({
         darkMode: "Chế độ tối",
         lightMode: "Chế độ sáng",
         system: "Hệ thống",
-        login_to: "Đăng nhập vào tài khoản Study của bạn",
+        login_to: "Đăng nhập vào tài khoản Notebok của bạn",
         password: "Mật khẩu",
         forgot_password: "Quên mật khẩu?",
         login: "Đăng nhập",
@@ -71,7 +71,7 @@ i18n.use(initReactI18next).init({
 
         // Register page
         create_account: "Tạo tài khoản",
-        join_study: "Tham gia Study ngay hôm nay",
+        join_study: "Tham gia Notebok ngay hôm nay",
         username: "Tên người dùng",
         confirm_password: "Xác nhận mật khẩu",
         use_strong_password: "Sử dụng mật khẩu mạnh.",

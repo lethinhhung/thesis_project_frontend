@@ -15,6 +15,7 @@ import {
   SidebarSeparator,
 } from "@/components/ui/sidebar";
 import { CountdownTimer } from "./countdown-timer";
+import { Label } from "./ui/label";
 
 // This is sample data.
 const data = {
@@ -48,7 +49,11 @@ export function SidebarRight({
       className="sticky hidden lg:flex top-0 h-svh border-l"
       {...props}
     >
-      <SidebarHeader className="h-16 border-b border-sidebar-border"></SidebarHeader>
+      <SidebarHeader className="h-16 border-sidebar-border">
+        <div className="flex items-center justify-center h-full px-4">
+          <Label>Good morning</Label>
+        </div>
+      </SidebarHeader>
       <SidebarContent className="scrollbar">
         <CountdownTimer />
         <SidebarSeparator className="mx-0" />
