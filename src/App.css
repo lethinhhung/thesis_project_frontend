@@ -21,3 +21,14 @@ html::-webkit-scrollbar-thumb:hover {
 html::-webkit-scrollbar-track {
   background: var(--scrollbar-track);
 }
+
+/* Editor */
+@media (width >= 48rem) {
+  .ProseMirror {
+    padding: 0 4rem;
+  }
+}
+
+.ProseMirror-focused {
+  outline: none;
+}
