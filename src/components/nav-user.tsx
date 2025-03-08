@@ -77,20 +77,14 @@ export function NavUser({
                   <span className="truncate text-xs">{user.email}</span>
                 </div>
               </div>
+              {isMobile && (
+                <div className="flex items-center gap-2 p-2">
+                  <NavControl />
+                </div>
+              )}
             </DropdownMenuLabel>
-            {isMobile ? (
-              <>
-                <DropdownMenuSeparator />
-                <DropdownMenuGroup>
-                  <DropdownMenuItem>
-                    <NavControl />
-                  </DropdownMenuItem>
-                </DropdownMenuGroup>
-                <DropdownMenuSeparator />
-              </>
-            ) : (
-              <></>
-            )}
+
+            <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem>
                 <User />

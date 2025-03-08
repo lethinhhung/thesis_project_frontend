@@ -22,13 +22,30 @@ html::-webkit-scrollbar-track {
   background: var(--scrollbar-track);
 }
 
-/* Editor */
-@media (width >= 48rem) {
-  .ProseMirror {
-    padding: 0 4rem;
+/* BlockNote editor */
+@media (width < 48rem) {
+  .bn-editor {
+    padding: 1rem 1rem;
   }
 }
 
-.ProseMirror-focused {
-  outline: none;
+.bn-editor {
+  min-height: 50vh;
+  padding-top: 1rem;
+  width: 100%;
+}
+
+.bn-editor h1 {
+  font-size: 1.865rem;
+  line-height: 1.3;
+}
+
+.bn-editor h2 {
+  font-size: 1.5rem;
+  line-height: 1.3;
+}
+
+.bn-editor h3 {
+  font-size: 1.25rem;
+  line-height: 1.3;
 }

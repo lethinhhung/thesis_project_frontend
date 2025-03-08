@@ -2,6 +2,7 @@ import DragHandle from "@tiptap-pro/extension-drag-handle-react";
 import { EditorContent, useCurrentEditor } from "@tiptap/react";
 import { GripVertical, Plus } from "lucide-react";
 import { Button } from "./ui/button";
+import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 
 const EditorDragHandle = () => {
   const { editor } = useCurrentEditor();
@@ -15,9 +16,15 @@ const EditorDragHandle = () => {
         placement: "left",
       }}
     >
-      <Button size={"icon"} variant={"ghost"}>
-        <Plus />
-      </Button>
+      <Popover>
+        <PopoverTrigger asChild>
+          <Button size={"icon"} variant={"ghost"}>
+            <Plus />
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent>wdadwa</PopoverContent>
+      </Popover>
+
       <GripVertical />
     </DragHandle>
   );

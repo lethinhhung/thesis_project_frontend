@@ -29,23 +29,21 @@ export function NavControl() {
     );
   };
   return (
-    <SidebarMenu>
-      <SidebarMenuItem className="flex gap-3 items-center">
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button onClick={handleSwitch} size={"icon"}>
-                {icon}
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>Change appearance</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
+    <div className="w-full h-full flex gap-2">
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button onClick={handleSwitch} size={"icon"}>
+              {icon}
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>Change appearance</p>
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
 
-        <LanguageSwitcher />
-      </SidebarMenuItem>
-    </SidebarMenu>
+      <LanguageSwitcher />
+    </div>
   );
 }
