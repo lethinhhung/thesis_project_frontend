@@ -1,6 +1,11 @@
 import Editor from "@/components/editor";
 import { useTheme } from "@/components/theme-provider";
 import { Button } from "@/components/ui/button";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { Square, SquareDashed } from "lucide-react";
 import { useState, useEffect } from "react";
 
@@ -33,14 +38,26 @@ function Courses() {
   return (
     <div className="flex flex-col items-center h-full w-full">
       {isDarkTheme && (
-        <Button
-          className="fixed right-3 bottom-4 lg:bottom-4 lg:right-[17rem] z-50"
-          onClick={handlePlainBackground}
-          size="icon"
-          variant="outline"
-        >
-          {isPlainBackground ? <SquareDashed /> : <Square />}
-        </Button>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              className="fixed right-3 bottom-4 lg:bottom-4 lg:right-[17rem] z-50"
+              onClick={handlePlainBackground}
+              size="icon"
+              variant="outline"
+            >
+              {isPlainBackground ? <SquareDashed /> : <Square />}
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>
+              {"Switch to " +
+                (isPlainBackground
+                  ? "default background"
+                  : "transparent background")}
+            </p>
+          </TooltipContent>
+        </Tooltip>
       )}
       <div
         className="w-full max-w-[1000px] font-inherit relative"
