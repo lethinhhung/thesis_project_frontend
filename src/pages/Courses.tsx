@@ -60,7 +60,7 @@ function Courses() {
         </Tooltip>
       )}
       <div
-        className="w-full max-w-[1000px] font-inherit relative"
+        className="w-full max-w-5xl font-inherit relative"
         spellCheck="false"
       >
         <Editor

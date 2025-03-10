@@ -291,13 +291,15 @@ export function SidebarLeft({
     <Sidebar className="border-r-0" {...props}>
       <SidebarHeader>
         <NavUser user={data.user} />
-        {isMobile ? <></> : <NavControl />}
+        {!isMobile && <NavControl />}
         <NavMain items={data.navMain} />
       </SidebarHeader>
-      <SidebarContent className="scrollbar">
-        <NavCourses courses={data.courses} />
-        <NavConversations conversations={data.conversations} />
-      </SidebarContent>
+      {
+        <SidebarContent className="scrollbar">
+          <NavCourses courses={data.courses} />
+          <NavConversations conversations={data.conversations} />
+        </SidebarContent>
+      }
       <SidebarRail />
     </Sidebar>
   );
