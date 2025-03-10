@@ -13,6 +13,9 @@ import Courses from "@/pages/Courses";
 import Search from "@/pages/Search";
 import Library from "@/pages/Library";
 import Chat from "@/pages/Chat";
+import Account from "@/pages/Account";
+import Settings from "@/pages/Settings";
+import Inbox from "@/pages/Inbox";
 
 const PrivateRoute = ({ children }: { children: ReactNode }) => {
   const isAuthenticated = localStorage.getItem("token"); // Kiểm tra đăng nhập
@@ -32,6 +35,10 @@ const AppRoutes = () => {
             <Route path="/courses" element={<Courses />} />
             <Route path="/home" element={<Home />} />
             <Route path="/library" element={<Library />} />
+
+            <Route path="/account" element={<Account />} />
+            <Route path="/settings" element={<Settings />} />
+            <Route path="/inbox" element={<Inbox />} />
           </Route>
           <Route element={<AuthLayout />}>
             <Route

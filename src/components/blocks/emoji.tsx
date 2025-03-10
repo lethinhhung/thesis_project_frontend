@@ -8,7 +8,7 @@ export default function CustomEmojiPicker(
 ) {
   return (
     <div
-      className="bg-background p-2 shadow-lg grid flex-col gap-1 h-fit-content max-h-inherit overflow-y-auto"
+      className="bg-background p-2 shadow-sm grid flex-col gap-1 h-fit-content max-h-inherit overflow-y-auto"
       style={
         { gridTemplateColumns: `repeat(${props.columns || 1}, 1fr)` } as any
       }

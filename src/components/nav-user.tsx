@@ -5,6 +5,7 @@ import {
   Bell,
   ChevronsUpDown,
   CreditCard,
+  Inbox,
   LogOut,
   Settings,
   Sparkles,
@@ -28,6 +29,7 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { NavControl } from "./nav-control";
+import { useNavigate } from "react-router-dom";
 
 export function NavUser({
   user,
@@ -39,6 +41,7 @@ export function NavUser({
   };
 }) {
   const { isMobile } = useSidebar();
+  const navigate = useNavigate();
 
   return (
     <SidebarMenu>
@@ -86,17 +89,17 @@ export function NavUser({
 
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={() => navigate("/account")}>
                 <User />
                 Account
               </DropdownMenuItem>
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={() => navigate("/settings")}>
                 <Settings />
                 Settings
               </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Bell />
-                Notifications
+              <DropdownMenuItem onClick={() => navigate("/inbox")}>
+                <Inbox />
+                Inbox
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />

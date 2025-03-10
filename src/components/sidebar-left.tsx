@@ -16,6 +16,7 @@ import {
   Settings2,
   Sparkles,
   Trash2,
+  Book,
 } from "lucide-react";
 
 import { NavMain } from "@/components/nav-main";
@@ -58,14 +59,14 @@ const data = {
   ],
   navMain: [
     {
+      title: "Home",
+      url: "/home",
+      icon: Home,
+    },
+    {
       title: "Search",
       url: "/search",
       icon: Search,
-    },
-    {
-      title: "Chat",
-      url: "/chat",
-      icon: Sparkles,
     },
     {
       title: "Courses",
@@ -73,9 +74,14 @@ const data = {
       icon: Briefcase,
     },
     {
-      title: "Home",
-      url: "/home",
-      icon: Home,
+      title: "Pages",
+      url: "/pages",
+      icon: Book,
+    },
+    {
+      title: "Chat",
+      url: "/chat",
+      icon: Sparkles,
     },
     {
       title: "Dashboard",
@@ -87,13 +93,8 @@ const data = {
       url: "/library",
       icon: LibraryBig,
     },
-    {
-      title: "Inbox",
-      url: "/inbox",
-      icon: Inbox,
-      badge: "10",
-    },
   ],
+
   navSecondary: [
     {
       title: "Calendar",
