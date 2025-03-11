@@ -41,9 +41,11 @@ const AppRoutes = () => {
             <Route path="/settings" element={<Settings />} />
             <Route path="/inbox" element={<Inbox />} />
           </Route>
+
           <Route element={<ChatLayout />}>
             <Route path="/chat" element={<Chat />} />
           </Route>
+
           <Route element={<AuthLayout />}>
             <Route
               path="/login"

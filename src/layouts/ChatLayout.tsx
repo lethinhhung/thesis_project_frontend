@@ -35,7 +35,7 @@ export default function ChatLayout() {
             </Breadcrumb>
           </div>
         </header>
-        <div className="flex flex-1 flex-col gap-4 p-4 max-w-full  h-[calc(100svh-56px)] overflow-hidden">
+        <div className="flex flex-1 flex-col gap-4 p-4 max-w-full h-[calc(100svh-56px)] overflow-hidden">
           <Outlet />
         </div>
       </SidebarInset>
