@@ -28,7 +28,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { NavControl } from "./nav-control";
+import { NavControls } from "./nav-controls";
 import { useNavigate } from "react-router-dom";
 
 export function NavUser({
@@ -82,7 +82,7 @@ export function NavUser({
               </div>
               {isMobile && (
                 <div className="flex items-center gap-2 p-2">
-                  <NavControl />
+                  <NavControls />
                 </div>
               )}
             </DropdownMenuLabel>

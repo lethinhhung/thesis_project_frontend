@@ -33,6 +33,7 @@ export default function DefaultLayout() {
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
+            <Separator orientation="vertical" className="mr-2 h-4" />
           </div>
         </header>
         <div className="flex flex-1 flex-col gap-4 p-4 max-w-full">

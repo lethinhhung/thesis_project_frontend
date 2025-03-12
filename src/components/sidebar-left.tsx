@@ -8,11 +8,9 @@ import {
   Calendar,
   Command,
   Home,
-  Inbox,
   MessageCircleQuestion,
   LayoutDashboard,
   LibraryBig,
-  Search,
   Settings2,
   Sparkles,
   Trash2,
@@ -20,7 +18,6 @@ import {
 } from "lucide-react";
 
 import { NavMain } from "@/components/nav-main";
-import { NavSecondary } from "@/components/nav-secondary";
 import { NavConversations } from "@/components/nav-conversations";
 import {
   Sidebar,
@@ -30,7 +27,7 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { NavUser } from "./nav-user";
-import { NavControl } from "./nav-control";
+import { NavControls } from "./nav-controls";
 import { NavCourses } from "./nav-courses";
 
 // This is sample data.
@@ -62,11 +59,6 @@ const data = {
       title: "Home",
       url: "/home",
       icon: Home,
-    },
-    {
-      title: "Search",
-      url: "/search",
-      icon: Search,
     },
     {
       title: "Courses",
@@ -291,7 +283,7 @@ export function SidebarLeft({
     <Sidebar className="border-r-0" {...props}>
       <SidebarHeader>
         <NavUser user={data.user} />
-        {!isMobile && <NavControl />}
+        {!isMobile && <NavControls />}
         <NavMain items={data.navMain} />
       </SidebarHeader>
       {

@@ -10,7 +10,7 @@ import { AnimatePresence } from "framer-motion";
 import DefaultLayout from "@/layouts/DefaultLayout";
 import Landing from "@/pages/Landing";
 import Courses from "@/pages/Courses";
-import Search from "@/pages/Search";
+import Pages from "@/pages/Pages";
 import Library from "@/pages/Library";
 import Chat from "@/pages/Chat";
 import Account from "@/pages/Account";
@@ -31,7 +31,7 @@ const AppRoutes = () => {
           {/* Public Routes */}
           <Route path="/" element={<Landing />}></Route>
           <Route element={<DefaultLayout />}>
-            <Route path="/search" element={<Search />} />
+            <Route path="/pages" element={<Pages />} />
 
             <Route path="/courses" element={<Courses />} />
             <Route path="/home" element={<Home />} />
@@ -66,14 +66,16 @@ const AppRoutes = () => {
           </Route>
 
           {/* Private Routes */}
-          <Route
-            path="/dashboard"
-            element={
-              <PrivateRoute>
-                <Dashboard />
-              </PrivateRoute>
-            }
-          />
+          <Route element={<DefaultLayout />}>
+            <Route
+              path="/dashboard"
+              element={
+                <PrivateRoute>
+                  <Dashboard />
+                </PrivateRoute>
+              }
+            />
+          </Route>
         </Routes>
       </AnimatePresence>
     </BrowserRouter>

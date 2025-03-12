@@ -35,7 +35,7 @@ const LanguageSwitcher = () => {
           <TooltipTrigger asChild>
             <DropdownMenuTrigger asChild>
               <Button size="icon">
-                <Languages />
+                <Languages className="text-secondary" />
               </Button>
             </DropdownMenuTrigger>
           </TooltipTrigger>
