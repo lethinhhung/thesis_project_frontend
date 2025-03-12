@@ -46,7 +46,7 @@ export function SidebarRight({
   return (
     <Sidebar
       collapsible="none"
-      className="sticky hidden lg:flex top-0 h-svh border-l"
+      className="sticky hidden xl:flex top-0 h-svh border-l"
       {...props}
     >
       <SidebarHeader className="h-16 border-sidebar-border">
@@ -58,8 +58,8 @@ export function SidebarRight({
         <CountdownTimer />
         <SidebarSeparator className="mx-0" />
         <DatePicker />
-        <SidebarSeparator className="mx-0" />
-        <Calendars calendars={data.calendars} />
+        {/* <SidebarSeparator className="mx-0" />
+        <Calendars calendars={data.calendars} /> */}
       </SidebarContent>
       <SidebarFooter>
         <SidebarMenu>

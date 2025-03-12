@@ -8,11 +8,12 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Trash } from "lucide-react";
+import { Download, Trash } from "lucide-react";
 
 interface Document {
   id: string;
   title: string;
+  summary: string;
   description: string;
   tags: string[];
   type: string;
@@ -21,27 +22,27 @@ interface Document {
 
 export function DocumentCard({ document }: { document: Document }) {
   return (
-    <Card onClick={() => console.log("Clicked")}>
+    <Card
+      onClick={() => console.log("Clicked")}
+      className="duration-200 border-dashed hover:shadow-lg dark:hover:border-solid cursor-pointer"
+    >
       <CardHeader>
         <CardTitle>{document.title}</CardTitle>
+        <CardDescription>{document.summary}</CardDescription>
         <CardDescription>{document.date}</CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="flex flex-col gap-2">
-          <div className="w-full h-full bg-secondary p-2 rounded-lg">
-            This is the short summary of this document, about 2-3 lines long.
-          </div>
-          <div className="flex flex-nowrap gap-2 overflow-hidden py-2">
-            {document.tags.map((tag, index) => (
-              <Badge variant={"outline"} key={index}>
-                {tag}
-              </Badge>
-            ))}
-          </div>
+        <div className="flex flex-nowrap gap-2 overflow-hidden">
+          {document.tags.map((tag, index) => (
+            <Badge variant={"outline"} key={index}>
+              {tag}
+            </Badge>
+          ))}
         </div>
       </CardContent>
-      <CardFooter>
-        <div className="flex h-full w-full justify-end">
+
+      <CardFooter className="flex lg:hidden">
+        <div className="flex gap-2 h-full w-full justify-end">
           <Button
             size={"icon"}
             variant={"destructive"}
@@ -51,6 +52,15 @@ export function DocumentCard({ document }: { document: Document }) {
             }}
           >
             <Trash />
+          </Button>
+          <Button
+            size={"icon"}
+            onClick={(event) => {
+              event.stopPropagation(); // Ngăn chặn sự kiện click lan lên card
+              console.log("Button clicked");
+            }}
+          >
+            <Download />
           </Button>
         </div>
       </CardFooter>

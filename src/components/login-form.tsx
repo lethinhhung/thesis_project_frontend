@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { MouseEvent as ReactMouseEvent, use, useEffect, useState } from "react";
+import { MouseEvent as ReactMouseEvent, useEffect, useState } from "react";
 
 import {
   Form,

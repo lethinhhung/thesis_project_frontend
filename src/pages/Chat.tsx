@@ -8,7 +8,9 @@ function Chat() {
     <div className="flex flex-col items-center justify-between m-auto w-full h-full max-w-5xl rounded-xl">
       <ScrollArea className="flex-1 w-full overflow-y-auto p-4 rounded-2xl">
         <div className="flex justify-end mb-5">
-          <div className="bg-muted/50 p-4 rounded-md">What can you do?</div>
+          <div className="border border-dashed p-4 rounded-md border border-dashed">
+            What can you do?
+          </div>
         </div>
         <div className="flex max-w-full p-4 mb-5 bg-muted/50  rounded-md">
           I can do everything I can do everything I can do everything I can do
@@ -72,7 +74,7 @@ function Chat() {
         <Textarea
           spellCheck={false}
           placeholder="Ask anything..."
-          className="resize-none max-h-[17rem]"
+          className="resize-none max-h-[17rem] border-dashed scrollbar"
         ></Textarea>
         <div className="w-full pt-2 flex justify-end">
           <Button size={"icon"}>
