@@ -9,7 +9,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Download, Sparkles, Trash } from "lucide-react";
+import { CheckCircle2, Download, Sparkles, Trash } from "lucide-react";
 import {
   Tooltip,
   TooltipContent,
@@ -24,6 +24,7 @@ interface Document {
   summary: string;
   tags: string[];
   date: string;
+  status: boolean;
 }
 
 function DocumentPreview({ document }: { document: Document }) {
@@ -32,7 +33,23 @@ function DocumentPreview({ document }: { document: Document }) {
       <ScrollArea className="h-full w-full rounded-xl">
         <Card className="w-full sticky top-0 left-0 z-10 rounded-xl border border-dashed shadow-none bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
           <CardHeader>
-            <CardTitle>{document.title}</CardTitle>
+            <CardTitle>
+              <div className="flex items-center gap-1">
+                {document.title}
+                {document.status && (
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <CheckCircle2 size={"1rem"} />
+                      </TooltipTrigger>
+                      <TooltipContent side="right">
+                        This document has been processed
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                )}
+              </div>
+            </CardTitle>
             <CardDescription>{document.date}</CardDescription>
           </CardHeader>
           <CardContent>
@@ -49,7 +66,11 @@ function DocumentPreview({ document }: { document: Document }) {
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <Button size={"icon"} variant={"outline"}>
+                    <Button
+                      disabled={!document.status}
+                      size={"icon"}
+                      variant={"outline"}
+                    >
                       <Sparkles />
                     </Button>
                   </TooltipTrigger>

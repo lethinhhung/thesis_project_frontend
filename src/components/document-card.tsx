@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Download, Trash } from "lucide-react";
+import { CheckCircle2, Download, Loader, Trash } from "lucide-react";
 
 interface Document {
   id: string;
@@ -17,17 +17,33 @@ interface Document {
   description: string;
   tags: string[];
   type: string;
+  status: boolean;
   date: string;
 }
 
-export function DocumentCard({ document }: { document: Document }) {
+export function DocumentCard({
+  document,
+  isSelected,
+}: {
+  document: Document;
+  isSelected: boolean;
+}) {
   return (
     <Card
       onClick={() => console.log("Clicked")}
-      className="duration-200 border-dashed hover:shadow-lg dark:hover:border-solid cursor-pointer"
+      className={
+        "duration-200 border-dashed hover:shadow-lg dark:hover:border-solid cursor-pointer " +
+        (isSelected && "bg-muted/50")
+      }
     >
       <CardHeader>
-        <CardTitle>{document.title}</CardTitle>
+        <CardTitle>
+          <div className="flex items-center gap-1">
+            {document.title}
+
+            {document.status && <CheckCircle2 size={"1rem"} />}
+          </div>
+        </CardTitle>
         <CardDescription>{document.summary}</CardDescription>
         <CardDescription>{document.date}</CardDescription>
       </CardHeader>

@@ -41,7 +41,7 @@ function Courses() {
         <Tooltip>
           <TooltipTrigger asChild>
             <Button
-              className="fixed right-3 bottom-4 lg:bottom-4 lg:right-[17rem] z-50"
+              className="fixed right-3 bottom-4 xl:bottom-4 xl:right-[17rem] z-50"
               onClick={handlePlainBackground}
               size="icon"
               variant="outline"

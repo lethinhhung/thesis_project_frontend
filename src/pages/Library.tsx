@@ -61,6 +61,7 @@ const documents = [
     tags: ["JavaScript", "Programming", "Beginner"],
     type: "pdf",
     date: "2023-06-10",
+    status: true,
   },
   {
     id: "2",
@@ -72,6 +73,7 @@ const documents = [
     tags: ["React", "Frontend", "Web Development"],
     type: "docx",
     date: "2023-07-15",
+    status: true,
   },
   {
     id: "3",
@@ -83,6 +85,7 @@ const documents = [
     tags: ["Node.js", "Backend", "API"],
     type: "pdf",
     date: "2023-08-20",
+    status: false,
   },
   {
     id: "4",
@@ -94,6 +97,7 @@ const documents = [
     tags: ["MongoDB", "Database", "NoSQL"],
     type: "epub",
     date: "2023-09-05",
+    status: true,
   },
   {
     id: "5",
@@ -105,6 +109,7 @@ const documents = [
     tags: ["CSS", "Web Design", "Frontend"],
     type: "pdf",
     date: "2023-10-01",
+    status: true,
   },
   {
     id: "6",
@@ -116,6 +121,7 @@ const documents = [
     tags: ["Software Engineering", "Development", "Best Practices"],
     type: "docx",
     date: "2023-11-12",
+    status: false,
   },
   {
     id: "7",
@@ -127,6 +133,7 @@ const documents = [
     tags: ["Machine Learning", "AI", "Data Science"],
     type: "pdf",
     date: "2023-12-08",
+    status: false,
   },
   {
     id: "8",
@@ -138,6 +145,7 @@ const documents = [
     tags: ["Python", "Data Science", "Pandas"],
     type: "epub",
     date: "2024-01-20",
+    status: true,
   },
   {
     id: "9",
@@ -149,6 +157,7 @@ const documents = [
     tags: ["System Design", "Interviews", "Architecture"],
     type: "pdf",
     date: "2024-02-14",
+    status: true,
   },
   {
     id: "10",
@@ -160,6 +169,7 @@ const documents = [
     tags: ["Blockchain", "Cryptocurrency", "Decentralization"],
     type: "pdf",
     date: "2024-03-10",
+    status: false,
   },
 ];
 
@@ -236,9 +246,18 @@ function Library() {
               </div>
             </div>
 
-            <div className="flex h-full py-2 w-full grid grid-cols-1 xl:grid-cols-2 gap-4 px-3">
+            <div className="flex h-full py-2 w-full grid grid-cols-1 xl:grid-cols-2 gap-2 px-3">
+              <DocumentCard
+                isSelected
+                key={documents[0].id}
+                document={documents[0]}
+              />
               {documents.map((document) => (
-                <DocumentCard key={document.id} document={document} />
+                <DocumentCard
+                  isSelected={false}
+                  key={document.id}
+                  document={document}
+                />
               ))}
             </div>
 
