@@ -17,6 +17,7 @@ import Account from "@/pages/Account";
 import Settings from "@/pages/Settings";
 import Inbox from "@/pages/Inbox";
 import ChatLayout from "@/layouts/ChatLayout";
+import Page from "@/pages/Page";
 
 const PrivateRoute = ({ children }: { children: ReactNode }) => {
   const isAuthenticated = localStorage.getItem("token"); // Kiểm tra đăng nhập
@@ -32,6 +33,7 @@ const AppRoutes = () => {
           <Route path="/" element={<Landing />}></Route>
           <Route element={<DefaultLayout />}>
             <Route path="/pages" element={<Pages />} />
+            <Route path="/page" element={<Page />} />
 
             <Route path="/courses" element={<Courses />} />
             <Route path="/home" element={<Home />} />

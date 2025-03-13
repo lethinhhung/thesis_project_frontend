@@ -4,16 +4,9 @@ import {
 } from "@/components/custom-ui/pagination";
 import { DocumentCard } from "@/components/document-card";
 import DocumentPreview from "@/components/document-preview";
+import SearchBarWithTags from "@/components/search-bar-with-tags";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -31,24 +24,14 @@ import {
   PaginationItem,
   PaginationLink,
 } from "@/components/ui/pagination";
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import {
-  CalendarClock,
-  Download,
-  Search,
-  SortAsc,
-  Sparkle,
-  Sparkles,
-  Tag,
-  Trash,
-} from "lucide-react";
+import { CalendarClock, Search, SortAsc, Tag } from "lucide-react";
 
 const documents = [
   {
@@ -179,72 +162,7 @@ function Library() {
       <div className="w-full h-full rounded-xl columns-1 lg:columns-2">
         <div className="h-full w-full rounded-xl">
           <ScrollArea className="h-full w-full rounded-xl">
-            <div className="w-full sticky top-0 left-0 z-10 flex flex-wrap flex-col gap-2 items-center p-2 rounded-xl border border-dashed bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-              <div className="flex flex-row flex-wrap gap-2 p-2 w-full">
-                <Input className="flex-1" placeholder="Search documents" />
-
-                <TooltipProvider>
-                  <DropdownMenu>
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <DropdownMenuTrigger asChild>
-                          <Button size={"icon"} variant={"outline"}>
-                            <SortAsc />
-                          </Button>
-                        </DropdownMenuTrigger>
-                      </TooltipTrigger>
-                      <TooltipContent side="top">Sorting</TooltipContent>
-                    </Tooltip>
-                    <DropdownMenuContent>
-                      <DropdownMenuLabel>Sort by</DropdownMenuLabel>
-                      <DropdownMenuSeparator />
-                      <DropdownMenuItem>
-                        Title
-                        <DropdownMenuShortcut>
-                          <Tag />
-                        </DropdownMenuShortcut>
-                      </DropdownMenuItem>
-                      <DropdownMenuItem>
-                        Date
-                        <DropdownMenuShortcut>
-                          <CalendarClock />
-                        </DropdownMenuShortcut>
-                      </DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                </TooltipProvider>
-                <Button size={"icon"}>
-                  <Search />
-                </Button>
-              </div>
-
-              <div className="w-full overflow-x-auto whitespace-nowrap scrollbar">
-                <div className="inline-flex flex-wrap gap-2">
-                  <Badge className="cursor-pointer">All</Badge>
-                  <Badge className="cursor-pointer" variant={"secondary"}>
-                    Programming
-                  </Badge>
-                  <Badge className="cursor-pointer" variant={"secondary"}>
-                    Math
-                  </Badge>
-                  <Badge className="cursor-pointer" variant={"secondary"}>
-                    English
-                  </Badge>
-                  <Badge className="cursor-pointer" variant={"secondary"}>
-                    React
-                  </Badge>
-                  <Badge className="cursor-pointer" variant={"secondary"}>
-                    Web development
-                  </Badge>
-                  <Badge className="cursor-pointer" variant={"secondary"}>
-                    Frontend
-                  </Badge>
-                  <Badge className="cursor-pointer" variant={"secondary"}>
-                    Node.js
-                  </Badge>
-                </div>
-              </div>
-            </div>
+            <SearchBarWithTags placeholder="Search for documents" />
 
             <div className="flex h-full py-2 w-full grid grid-cols-1 xl:grid-cols-2 gap-2 px-3">
               <DocumentCard

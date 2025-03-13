@@ -33,7 +33,7 @@ export function DocumentCard({
       onClick={() => console.log("Clicked")}
       className={
         "duration-200 border-dashed hover:shadow-lg dark:hover:border-solid cursor-pointer " +
-        (isSelected && "bg-muted/50")
+        (isSelected && "bg-muted/50 border-solid")
       }
     >
       <CardHeader>

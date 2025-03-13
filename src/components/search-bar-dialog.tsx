@@ -14,6 +14,7 @@ import {
   LibraryBig,
   Book,
   Inbox,
+  Plus,
 } from "lucide-react";
 
 import {
@@ -41,6 +42,16 @@ const navigattionItems = [
   { title: "Account", url: "/account", icon: User },
   { title: "Settings", url: "/settings", icon: Settings },
   { title: "Inbox", url: "/inbox", icon: Inbox },
+];
+
+const actionsItems = [
+  {
+    title: "New course",
+    url: "/new-course",
+    icon: Briefcase,
+    action: <Plus />,
+  },
+  { title: "New page", url: "/new-page", icon: Book, action: <Plus /> },
 ];
 
 export default function SearchBarDialog({
@@ -123,6 +134,16 @@ export default function SearchBarDialog({
             <span>Chapter 1: Introduction</span>
             <CommandShortcut>⌘S</CommandShortcut>
           </CommandItem>
+        </CommandGroup>
+        <CommandSeparator />
+        <CommandGroup heading="Actions">
+          {actionsItems.map((item) => (
+            <CommandItem onSelect={() => handleClick(item.url)} key={item.url}>
+              <item.icon />
+              <span>{item.title}</span>
+              <CommandShortcut>{item.action}</CommandShortcut>
+            </CommandItem>
+          ))}
         </CommandGroup>
         <CommandSeparator />
         <CommandGroup heading="Navigation">
