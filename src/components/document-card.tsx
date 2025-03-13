@@ -38,13 +38,15 @@ export function DocumentCard({
     >
       <CardHeader>
         <CardTitle>
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1 line=clamp-1">
             {document.title}
 
             {document.status && <CheckCircle2 size={"1rem"} />}
           </div>
         </CardTitle>
-        <CardDescription>{document.summary}</CardDescription>
+        <CardDescription className="line-clamp-3 min-h-[4rem]">
+          {document.summary}
+        </CardDescription>
         <CardDescription>{document.date}</CardDescription>
       </CardHeader>
       <CardContent>
