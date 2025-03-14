@@ -13,6 +13,7 @@ import {
   CheckCircle2,
   Download,
   FolderKanban,
+  Library,
   Loader,
   NotebookPen,
   Trash,
@@ -62,19 +63,23 @@ export function CourseCardLarge({
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
-        <div className="flex w-full justify-end">
-          <div className="flex justify-between gap-2 w-full max-w-40">
+        <div className="flex w-full justify-start">
+          <div className="flex flex-wrap justify-between gap-2 w-full max-w-55">
             <CardDescription className="flex items-center gap-1">
               <NotebookPen size={20} />
               222
             </CardDescription>
             <CardDescription className="flex items-center gap-1">
               <BookCheck size={20} />
-              32
+              322
             </CardDescription>
             <CardDescription className="flex items-center gap-1">
               <FolderKanban size={20} />
-              12
+              122
+            </CardDescription>
+            <CardDescription className="flex items-center gap-1">
+              <Library size={20} />
+              122
             </CardDescription>
           </div>
         </div>

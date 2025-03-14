@@ -1,9 +1,7 @@
-import * as React from "react";
-import { Plus } from "lucide-react";
+import { ChevronRight, Plus } from "lucide-react";
 
-import { Calendars } from "@/components/calendars";
 import { DatePicker } from "@/components/date-picker";
-import { NavUser } from "@/components/nav-user";
+
 import {
   Sidebar,
   SidebarContent,
@@ -16,29 +14,7 @@ import {
 } from "@/components/ui/sidebar";
 import { CountdownTimer } from "./countdown-timer";
 import { Label } from "./ui/label";
-
-// This is sample data.
-const data = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
-  calendars: [
-    {
-      name: "My Calendars",
-      items: ["Personal", "Work", "Family"],
-    },
-    {
-      name: "Favorites",
-      items: ["Holidays", "Birthdays"],
-    },
-    {
-      name: "Other",
-      items: ["Travel", "Reminders", "Deadlines"],
-    },
-  ],
-};
+import { Button } from "./ui/button";
 
 export function SidebarRight({
   ...props
@@ -50,8 +26,13 @@ export function SidebarRight({
       {...props}
     >
       <SidebarHeader className="h-16 border-sidebar-border">
-        <div className="flex items-center justify-center h-full px-4">
-          <Label>Good morning</Label>
+        <div className="flex items-center gap-2 h-full w-full">
+          <div className="flex items-center justify-center h-full px-4">
+            <Label>Good morning</Label>
+          </div>
+          <Button size={"icon"} variant={"ghost"}>
+            <ChevronRight />
+          </Button>
         </div>
       </SidebarHeader>
       <SidebarContent className="scrollbar">

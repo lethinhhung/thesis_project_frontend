@@ -15,6 +15,7 @@ import {
   Book,
   Inbox,
   Plus,
+  Library,
 } from "lucide-react";
 
 import {
@@ -27,10 +28,11 @@ import {
   CommandSeparator,
   CommandShortcut,
 } from "@/components/ui/command";
-import { useEffect } from "react";
+import { act, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import LanguageSwitcher from "./language-switcher";
 import { DarkModeSwitcher } from "./dark-mode-switcher";
+import { title } from "process";
 
 const navigattionItems = [
   { title: "Home", url: "/home", icon: Home },
@@ -52,6 +54,12 @@ const actionsItems = [
     action: <Plus />,
   },
   { title: "New page", url: "/new-page", icon: Book, action: <Plus /> },
+  {
+    title: "New document",
+    url: "/new-document",
+    icon: Library,
+    action: <Plus />,
+  },
 ];
 
 export default function SearchBarDialog({

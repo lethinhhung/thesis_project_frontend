@@ -89,7 +89,7 @@ function Courses() {
               Recent lessons
             </h4>
           </div>
-          <Card className="col-span-12 md:col-span-6 xl:col-span-4">
+          <Card className="col-span-12 md:col-span-6 2xl:col-span-4">
             <CardHeader>
               <CardTitle>Title</CardTitle>
               <CardDescription>Description</CardDescription>
@@ -98,7 +98,7 @@ function Courses() {
             <CardContent>Content</CardContent>
             <CardFooter>Footer</CardFooter>
           </Card>
-          <Card className="col-span-12 md:col-span-6 xl:col-span-4">
+          <Card className="col-span-12 md:col-span-6 2xl:col-span-4">
             <CardHeader>
               <CardTitle>Title</CardTitle>
               <CardDescription>Description</CardDescription>
@@ -107,7 +107,7 @@ function Courses() {
             <CardContent>Content</CardContent>
             <CardFooter>Footer</CardFooter>
           </Card>
-          <Card className="col-span-12 md:col-span-6 xl:col-span-4">
+          <Card className="col-span-12 md:col-span-6 2xl:col-span-4">
             <CardHeader>
               <CardTitle>Title</CardTitle>
               <CardDescription>Description</CardDescription>
@@ -123,8 +123,11 @@ function Courses() {
             <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
               On progress courses
             </h4>
+
             <Button variant={"ghost"}>
-              View all
+              <div className="flex items-center gap-1">
+                View all<p className="text-sm text-muted-foreground">(10)</p>
+              </div>
               <ArrowRight />
             </Button>
           </div>
@@ -133,7 +136,7 @@ function Courses() {
               !course.status && (
                 <CourseCardLarge
                   key={course.id}
-                  className="col-span-12 md:col-span-6 xl:col-span-4"
+                  className="col-span-12 md:col-span-6 2xl:col-span-4"
                   course={course}
                 />
               )
@@ -146,7 +149,9 @@ function Courses() {
               Completed courses
             </h4>
             <Button variant={"ghost"}>
-              View all
+              <div className="flex items-center gap-1">
+                View all<p className="text-sm text-muted-foreground">(5)</p>
+              </div>
               <ArrowRight />
             </Button>
           </div>
@@ -155,7 +160,7 @@ function Courses() {
               course.status && (
                 <CourseCardLarge
                   key={course.id}
-                  className="col-span-12 md:col-span-6 xl:col-span-4"
+                  className="col-span-12 md:col-span-6 2xl:col-span-4"
                   course={course}
                 />
               )

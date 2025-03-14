@@ -40,7 +40,7 @@ const documents = [
     description:
       "This document provides a fundamental introduction to JavaScript, covering basic syntax, data types, loops, functions, and event handling. It is designed for beginners who want to understand how JavaScript works in the web development ecosystem.",
     summary:
-      "Introduction to JavaScript covering syntax, data types, loops, and event handling.",
+      "Introduction to JavaScript covering syntax, data types, loops, and event handling. Introduction to JavaScript covering syntax, data types, loops, and event handling. Introduction to JavaScript covering syntax, data types, loops, and event handling. Introduction to JavaScript covering syntax, data types, loops, and event handling.",
     tags: ["JavaScript", "Programming", "Beginner"],
     type: "pdf",
     date: "2023-06-10",
@@ -160,50 +160,53 @@ function Library() {
   return (
     <div className="w-full h-[calc(100vh-92px)] rounded-xl">
       <div className="w-full h-full rounded-xl columns-1 lg:columns-2">
-        <div className="h-full w-full rounded-xl">
-          <ScrollArea className="h-full w-full rounded-xl">
-            <SearchBarWithTags placeholder="Search for documents" />
+        <div className="flex justify-center h-full w-full rounded-xl">
+          <div className="h-full w-full rounded-xl max-w-xl xl:max-w-max">
+            <ScrollArea className="h-full w-full rounded-xl">
+              <SearchBarWithTags placeholder="Search for documents" />
 
-            <div className="flex h-full py-2 w-full grid grid-cols-1 xl:grid-cols-2 gap-2 px-3">
-              <DocumentCard
-                isSelected
-                key={documents[0].id}
-                document={documents[0]}
-              />
-              {documents.map((document) => (
+              <div className="flex h-full py-2 w-full grid grid-cols-1 2xl:grid-cols-2 gap-2 px-3">
                 <DocumentCard
-                  isSelected={false}
-                  key={document.id}
-                  document={document}
+                  isSelected
+                  key={documents[0].id}
+                  document={documents[0]}
                 />
-              ))}
-            </div>
 
-            <Pagination className="w-full sticky bottom-0 left-0 z-10 rounded-xl border border-dashed bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-              <PaginationContent>
-                <PaginationItem>
-                  <PaginationPreviousNoTitle href="#" />
-                </PaginationItem>
-                <PaginationItem>
-                  <PaginationLink href="#">1</PaginationLink>
-                </PaginationItem>
-                <PaginationItem>
-                  <PaginationLink href="#" isActive>
-                    2
-                  </PaginationLink>
-                </PaginationItem>
-                <PaginationItem>
-                  <PaginationLink href="#">3</PaginationLink>
-                </PaginationItem>
-                <PaginationItem>
-                  <PaginationEllipsis />
-                </PaginationItem>
-                <PaginationItem>
-                  <PaginationNextNoTitle href="#" />
-                </PaginationItem>
-              </PaginationContent>
-            </Pagination>
-          </ScrollArea>
+                {documents.map((document) => (
+                  <DocumentCard
+                    isSelected={false}
+                    key={document.id}
+                    document={document}
+                  />
+                ))}
+              </div>
+
+              <Pagination className="w-full sticky bottom-0 left-0 z-10 rounded-xl border border-dashed bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+                <PaginationContent>
+                  <PaginationItem>
+                    <PaginationPreviousNoTitle href="#" />
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationLink href="#">1</PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationLink href="#" isActive>
+                      2
+                    </PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationLink href="#">3</PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationEllipsis />
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationNextNoTitle href="#" />
+                  </PaginationItem>
+                </PaginationContent>
+              </Pagination>
+            </ScrollArea>
+          </div>
         </div>
 
         <DocumentPreview document={documents[0]} />
