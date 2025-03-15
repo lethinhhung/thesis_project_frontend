@@ -6,19 +6,6 @@ import { DocumentCard } from "@/components/document-card";
 import DocumentPreview from "@/components/document-preview";
 import DocumentPreviewMobile from "@/components/document-preview-mobile";
 import SearchBarWithTags from "@/components/search-bar-with-tags";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "@/components/ui/drawer";
-
 import {
   Pagination,
   PaginationContent,
@@ -27,9 +14,12 @@ import {
   PaginationLink,
 } from "@/components/ui/pagination";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { CheckCircle2, Trash } from "lucide-react";
+import { useState } from "react";
+import { Document } from "@/interfaces/document";
+import { useIsTablet } from "@/hooks/use-tablet";
+import { useCallback } from "react";
 
-const documents = [
+const documents: Document[] = [
   {
     id: "1",
     title: "JavaScript Basics",
@@ -38,7 +28,6 @@ const documents = [
     summary:
       "Introduction to JavaScript covering syntax, data types, loops, and event handling. Introduction to JavaScript covering syntax, data types, loops, and event handling. Introduction to JavaScript covering syntax, data types, loops, and event handling. Introduction to JavaScript covering syntax, data types, loops, and event handling.",
     tags: ["JavaScript", "Programming", "Beginner"],
-    type: "pdf",
     date: "2023-06-10",
     status: true,
   },
@@ -50,7 +39,6 @@ const documents = [
     summary:
       "Comprehensive guide to React, covering components, state, and best practices.",
     tags: ["React", "Frontend", "Web Development"],
-    type: "docx",
     date: "2023-07-15",
     status: true,
   },
@@ -62,7 +50,6 @@ const documents = [
     summary:
       "Guide to Node.js for backend development, covering Express.js and REST APIs.",
     tags: ["Node.js", "Backend", "API"],
-    type: "pdf",
     date: "2023-08-20",
     status: false,
   },
@@ -74,7 +61,6 @@ const documents = [
     summary:
       "Essential guide to MongoDB, including data modeling and CRUD operations.",
     tags: ["MongoDB", "Database", "NoSQL"],
-    type: "epub",
     date: "2023-09-05",
     status: true,
   },
@@ -86,7 +72,7 @@ const documents = [
     summary:
       "Mastering CSS Grid and Flexbox for responsive layouts and modern UI design.",
     tags: ["CSS", "Web Design", "Frontend"],
-    type: "pdf",
+
     date: "2023-10-01",
     status: true,
   },
@@ -98,7 +84,7 @@ const documents = [
     summary:
       "Discussion on software engineering principles, design patterns, and best practices.",
     tags: ["Software Engineering", "Development", "Best Practices"],
-    type: "docx",
+
     date: "2023-11-12",
     status: false,
   },
@@ -110,7 +96,7 @@ const documents = [
     summary:
       "Introduction to machine learning concepts, including supervised learning and neural networks.",
     tags: ["Machine Learning", "AI", "Data Science"],
-    type: "pdf",
+
     date: "2023-12-08",
     status: false,
   },
@@ -122,7 +108,7 @@ const documents = [
     summary:
       "Using Python for data science with libraries like Pandas and Scikit-Learn.",
     tags: ["Python", "Data Science", "Pandas"],
-    type: "epub",
+
     date: "2024-01-20",
     status: true,
   },
@@ -134,7 +120,7 @@ const documents = [
     summary:
       "Guide to system design interviews, including scalability and microservices.",
     tags: ["System Design", "Interviews", "Architecture"],
-    type: "pdf",
+
     date: "2024-02-14",
     status: true,
   },
@@ -146,13 +132,26 @@ const documents = [
     summary:
       "Introduction to blockchain, covering smart contracts and decentralization.",
     tags: ["Blockchain", "Cryptocurrency", "Decentralization"],
-    type: "pdf",
     date: "2024-03-10",
     status: false,
   },
 ];
 
 function Library() {
+  const [selectedDocument, setSelectedDocument] = useState<Document | null>(
+    null
+  );
+  const [openDocumentPreview, setOpenDocumentPreview] = useState(false);
+  const isTablet = useIsTablet();
+
+  const handleDocumentSelect = (document: Document) => {
+    setSelectedDocument(document);
+    if (isTablet) {
+      setOpenDocumentPreview(true);
+      return;
+    }
+  };
+
   return (
     <div className="w-full h-[calc(100vh-92px)] rounded-xl">
       <div className="w-full h-full rounded-xl columns-1 lg:columns-2">
@@ -160,16 +159,16 @@ function Library() {
           <div className="h-full w-full rounded-xl max-w-xl xl:max-w-max">
             <ScrollArea className="h-full w-full rounded-xl">
               <SearchBarWithTags placeholder="Search for documents" />
-              <div>
-                <DocumentPreviewMobile document={documents[0]} />
-              </div>
 
               <div className="flex h-full py-2 w-full grid grid-cols-1 2xl:grid-cols-2 gap-2 px-3">
                 {documents.map((document) => (
                   <DocumentCard
-                    isSelected={false}
                     key={document.id}
                     document={document}
+                    onClick={(e) => {
+                      e.currentTarget.blur();
+                      handleDocumentSelect(document);
+                    }}
                   />
                 ))}
               </div>
@@ -202,8 +201,14 @@ function Library() {
           </div>
         </div>
 
+        <DocumentPreviewMobile
+          open={openDocumentPreview}
+          onOpenChange={setOpenDocumentPreview}
+          document={selectedDocument}
+        />
+
         <div className="w-full h-full relative hidden lg:flex">
-          <DocumentPreview document={documents[0]} />
+          <DocumentPreview document={selectedDocument} />
         </div>
       </div>
     </div>

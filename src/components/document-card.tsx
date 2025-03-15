@@ -8,32 +8,23 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { CheckCircle2, Download, Loader, Trash } from "lucide-react";
-
-interface Document {
-  id: string;
-  title: string;
-  summary: string;
-  description: string;
-  tags: string[];
-  type: string;
-  status: boolean;
-  date: string;
-}
+import { CheckCircle2, Download, Trash } from "lucide-react";
+import { Document } from "@/interfaces/document";
+import { useState } from "react";
+import { set } from "react-hook-form";
 
 export function DocumentCard({
   document,
-  isSelected,
+  onClick,
 }: {
   document: Document;
-  isSelected: boolean;
+  onClick: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }) {
   return (
     <Card
-      onClick={() => console.log("Clicked")}
+      onClick={onClick}
       className={
-        "duration-200 border-dashed hover:shadow-lg dark:hover:border-solid cursor-pointer " +
-        (isSelected && "bg-muted/50 border-solid")
+        "duration-200 border-dashed hover:shadow-lg dark:hover:border-solid cursor-pointer "
       }
     >
       <CardHeader>
@@ -66,7 +57,6 @@ export function DocumentCard({
             variant={"destructive"}
             onClick={(event) => {
               event.stopPropagation(); // Ngăn chặn sự kiện click lan lên card
-              console.log("Button clicked");
             }}
           >
             <Trash />
@@ -75,7 +65,6 @@ export function DocumentCard({
             size={"icon"}
             onClick={(event) => {
               event.stopPropagation(); // Ngăn chặn sự kiện click lan lên card
-              console.log("Button clicked");
             }}
           >
             <Download />

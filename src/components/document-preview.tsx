@@ -27,7 +27,7 @@ interface Document {
   status: boolean;
 }
 
-function DocumentPreview({ document }: { document: Document }) {
+function DocumentPreview({ document }: { document: Document | null }) {
   return (
     <div className="w-full h-full relative flex">
       <ScrollArea className="h-full w-full rounded-xl">
@@ -35,26 +35,26 @@ function DocumentPreview({ document }: { document: Document }) {
           <CardHeader>
             <CardTitle>
               <div className="flex items-center gap-1">
-                {document.title}
-                {document.status && (
+                {document?.title}
+                {document?.status && (
                   <TooltipProvider>
                     <Tooltip>
                       <TooltipTrigger>
                         <CheckCircle2 size={"1rem"} />
                       </TooltipTrigger>
                       <TooltipContent side="right">
-                        This document has been processed
+                        This document? has been processed
                       </TooltipContent>
                     </Tooltip>
                   </TooltipProvider>
                 )}
               </div>
             </CardTitle>
-            <CardDescription>{document.date}</CardDescription>
+            <CardDescription>{document?.date}</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="flex gap-2 flex-wrap ">
-              {document.tags.map((tag) => (
+              {document?.tags.map((tag) => (
                 <Badge key={tag} variant={"secondary"}>
                   {tag}
                 </Badge>
@@ -67,7 +67,7 @@ function DocumentPreview({ document }: { document: Document }) {
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Button
-                      disabled={!document.status}
+                      disabled={!document?.status}
                       size={"icon"}
                       variant={"outline"}
                     >
@@ -103,7 +103,7 @@ function DocumentPreview({ document }: { document: Document }) {
 
         <div className="flex flex-col py-2 gap-2 h-full w-full rounded-xl">
           <Card className="w-full bg-background rounded-xl border border-dashed shadow-none">
-            <CardContent>{document.description}</CardContent>
+            <CardContent>{document?.description}</CardContent>
             <CardFooter>
               <div className="w-full flex justify-end">
                 <Button variant={"secondary"}>
