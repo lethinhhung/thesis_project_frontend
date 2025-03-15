@@ -28,11 +28,10 @@ import {
   CommandSeparator,
   CommandShortcut,
 } from "@/components/ui/command";
-import { act, useEffect } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import LanguageSwitcher from "./language-switcher";
 import { DarkModeSwitcher } from "./dark-mode-switcher";
-import { title } from "process";
 
 const navigattionItems = [
   { title: "Home", url: "/home", icon: Home },

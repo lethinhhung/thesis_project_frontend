@@ -7,20 +7,15 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import {
   BookCheck,
   CheckCircle2,
-  Download,
   FolderKanban,
   Library,
-  Loader,
   NotebookPen,
-  Trash,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Progress } from "./ui/progress";
-import { Separator } from "./ui/separator";
 
 interface Course {
   id: string;

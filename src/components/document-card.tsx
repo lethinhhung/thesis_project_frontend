@@ -10,8 +10,6 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { CheckCircle2, Download, Trash } from "lucide-react";
 import { Document } from "@/interfaces/document";
-import { useState } from "react";
-import { set } from "react-hook-form";
 
 export function DocumentCard({
   document,
@@ -24,7 +22,7 @@ export function DocumentCard({
     <Card
       onClick={onClick}
       className={
-        "duration-200 border-dashed hover:shadow-lg dark:hover:border-solid cursor-pointer "
+        "duration-200 border-dashed hover:shadow-lg dark:hover:border-solid cursor-pointer"
       }
     >
       <CardHeader>

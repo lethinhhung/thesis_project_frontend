@@ -17,7 +17,6 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { useState } from "react";
 import { Document } from "@/interfaces/document";
 import { useIsTablet } from "@/hooks/use-tablet";
-import { useCallback } from "react";
 
 const documents: Document[] = [
   {

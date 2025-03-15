@@ -1,4 +1,3 @@
-import { LucideIcon } from "lucide-react";
 import { PopoverTrigger } from "./ui/popover";
 
 const CustomPopoverTrigger = ({ children }: { children: React.ReactNode }) => {
