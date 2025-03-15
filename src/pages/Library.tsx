@@ -4,19 +4,21 @@ import {
 } from "@/components/custom-ui/pagination";
 import { DocumentCard } from "@/components/document-card";
 import DocumentPreview from "@/components/document-preview";
+import DocumentPreviewMobile from "@/components/document-preview-mobile";
 import SearchBarWithTags from "@/components/search-bar-with-tags";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Input } from "@/components/ui/input";
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
+
 import {
   Pagination,
   PaginationContent,
@@ -25,13 +27,7 @@ import {
   PaginationLink,
 } from "@/components/ui/pagination";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { CalendarClock, Search, SortAsc, Tag } from "lucide-react";
+import { CheckCircle2, Trash } from "lucide-react";
 
 const documents = [
   {
@@ -164,14 +160,11 @@ function Library() {
           <div className="h-full w-full rounded-xl max-w-xl xl:max-w-max">
             <ScrollArea className="h-full w-full rounded-xl">
               <SearchBarWithTags placeholder="Search for documents" />
+              <div>
+                <DocumentPreviewMobile document={documents[0]} />
+              </div>
 
               <div className="flex h-full py-2 w-full grid grid-cols-1 2xl:grid-cols-2 gap-2 px-3">
-                <DocumentCard
-                  isSelected
-                  key={documents[0].id}
-                  document={documents[0]}
-                />
-
                 {documents.map((document) => (
                   <DocumentCard
                     isSelected={false}
@@ -209,7 +202,9 @@ function Library() {
           </div>
         </div>
 
-        <DocumentPreview document={documents[0]} />
+        <div className="w-full h-full relative hidden lg:flex">
+          <DocumentPreview document={documents[0]} />
+        </div>
       </div>
     </div>
   );

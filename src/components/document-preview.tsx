@@ -29,9 +29,9 @@ interface Document {
 
 function DocumentPreview({ document }: { document: Document }) {
   return (
-    <div className="w-full h-full relative hidden lg:flex">
+    <div className="w-full h-full relative flex">
       <ScrollArea className="h-full w-full rounded-xl">
-        <Card className="w-full sticky top-0 left-0 z-10 rounded-xl border border-dashed shadow-none bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <Card className="hidden lg:flex w-full sticky top-0 left-0 z-10 rounded-xl border border-dashed shadow-none bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
           <CardHeader>
             <CardTitle>
               <div className="flex items-center gap-1">
@@ -100,6 +100,7 @@ function DocumentPreview({ document }: { document: Document }) {
             </div>
           </CardFooter>
         </Card>
+
         <div className="flex flex-col py-2 gap-2 h-full w-full rounded-xl">
           <Card className="w-full bg-background rounded-xl border border-dashed shadow-none">
             <CardContent>{document.description}</CardContent>
