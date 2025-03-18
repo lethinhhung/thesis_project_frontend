@@ -1,0 +1,66 @@
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Trash } from "lucide-react";
+import { useState } from "react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "./ui/tooltip";
+
+export function DeleteButton({ type }: { type?: string }) {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <TooltipProvider>
+      <Dialog open={open} onOpenChange={setOpen}>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <DialogTrigger asChild>
+              <Button
+                size={"icon"}
+                variant={"destructive"}
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
+              >
+                <Trash />
+              </Button>
+            </DialogTrigger>
+          </TooltipTrigger>
+          <TooltipContent>Delete</TooltipContent>
+        </Tooltip>
+        <DialogContent onClick={(e) => e.stopPropagation()}>
+          <DialogHeader>
+            <DialogTitle>
+              Are you sure you want to delete this {type}?
+            </DialogTitle>
+            <DialogDescription>
+              This action cannot be undone, and all associated data will be
+              permanently removed.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button onClick={() => setOpen(false)}>Close</Button>
+            <Button
+              onClick={() => console.log("delete")}
+              variant={"destructive"}
+            >
+              Confirm
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+    </TooltipProvider>
+  );
+}
+export default DeleteButton;

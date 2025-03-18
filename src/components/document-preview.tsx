@@ -9,19 +9,15 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import {
-  BookOpen,
-  CheckCircle2,
-  Download,
-  Sparkles,
-  Trash,
-} from "lucide-react";
+import { BookOpen, CheckCircle2, Sparkles } from "lucide-react";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "./ui/tooltip";
+import { DeleteButton } from "@/components/delete-button";
+import { DownloadButton } from "@/components/download-button";
 
 interface Document {
   id: string;
@@ -84,26 +80,10 @@ function DocumentPreview({ document }: { document: Document | null }) {
                     <TooltipContent>Ask AI</TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button size={"icon"} variant={"destructive"}>
-                        <Trash />
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>Delete</TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-                <TooltipProvider>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <Button size={"icon"}>
-                        <Download />
-                      </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>Download</TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
+
+                <DeleteButton />
+
+                <DownloadButton />
               </div>
             </CardFooter>
           </Card>

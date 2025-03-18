@@ -15,10 +15,12 @@ import {
 import { CountdownTimer } from "./countdown-timer";
 import { Label } from "./ui/label";
 import { Button } from "./ui/button";
+import { useNavigate } from "react-router-dom";
 
 export function SidebarRight({
   ...props
 }: React.ComponentProps<typeof Sidebar>) {
+  const nagivate = useNavigate();
   return (
     <Sidebar
       collapsible="none"
@@ -39,18 +41,20 @@ export function SidebarRight({
         <CountdownTimer />
         <SidebarSeparator className="mx-0" />
         <DatePicker />
-        <SidebarSeparator className="mx-0" />
       </SidebarContent>
-      <SidebarFooter>
+      {/* <SidebarFooter>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton className="flex justify-between items-center">
+            <SidebarMenuButton
+              onClick={() => nagivate("/calendar")}
+              className="flex justify-between items-center"
+            >
               <span>Calendar</span>
               <ArrowRight />
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
-      </SidebarFooter>
+      </SidebarFooter> */}
     </Sidebar>
   );
 }

@@ -18,6 +18,8 @@ import Settings from "@/pages/Settings";
 import Inbox from "@/pages/Inbox";
 import ChatLayout from "@/layouts/ChatLayout";
 import Page from "@/pages/Page";
+import Calendar from "@/pages/Calendar";
+import NotFound from "@/pages/NotFound";
 
 const PrivateRoute = ({ children }: { children: ReactNode }) => {
   const isAuthenticated = localStorage.getItem("token"); // Kiểm tra đăng nhập
@@ -30,10 +32,10 @@ const AppRoutes = () => {
       <AnimatePresence mode="wait">
         <Routes>
           {/* Public Routes */}
+          <Route path="*" element={<NotFound />} />
+
           <Route path="/" element={<Landing />}></Route>
           <Route element={<DefaultLayout />}>
-            <Route path="/page" element={<Page />} />
-
             <Route path="/home" element={<Home />} />
             <Route path="/courses" element={<Courses />} />
             <Route path="/pages" element={<Pages />} />
@@ -43,6 +45,9 @@ const AppRoutes = () => {
             <Route path="/account" element={<Account />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/inbox" element={<Inbox />} />
+
+            <Route path="/page" element={<Page />} />
+            <Route path="/calendar" element={<Calendar />} />
           </Route>
 
           <Route element={<ChatLayout />}></Route>

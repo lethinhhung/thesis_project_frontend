@@ -1,18 +1,8 @@
-import {
-  PaginationNextNoTitle,
-  PaginationPreviousNoTitle,
-} from "@/components/custom-ui/pagination";
 import { DocumentCard } from "@/components/document-card";
 import DocumentPreview from "@/components/document-preview";
 import DocumentPreviewMobile from "@/components/document-preview-mobile";
 import SearchBarWithTags from "@/components/search-bar-with-tags";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-} from "@/components/ui/pagination";
+
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useState } from "react";
 import { Document } from "@/interfaces/document";
@@ -154,50 +144,24 @@ function Library() {
   return (
     <div className="w-full h-[calc(100vh-92px)] rounded-xl">
       <div className="w-full h-full rounded-xl columns-1 lg:columns-2">
-        <div className="flex justify-center h-full w-full rounded-xl">
-          <div className="h-full w-full rounded-xl max-w-xl xl:max-w-max">
-            <ScrollArea className="h-full w-full rounded-xl">
-              <SearchBarWithTags placeholder="Search for documents" />
+        <div className="flex col-span-1 justify-center h-full w-full rounded-xl">
+          <ScrollArea className="h-full w-full rounded-xl flex flex -col">
+            <SearchBarWithTags placeholder="Search for documents" />
 
-              <div className="flex h-full py-2 w-full grid grid-cols-1 2xl:grid-cols-2 gap-2 px-3">
-                {documents.map((document) => (
-                  <DocumentCard
-                    key={document.id}
-                    document={document}
-                    onClick={(e) => {
-                      e.currentTarget.blur();
-                      handleDocumentSelect(document);
-                    }}
-                  />
-                ))}
-              </div>
-
-              <Pagination className="w-full sticky bottom-0 left-0 z-10 rounded-xl border border-dashed bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-                <PaginationContent>
-                  <PaginationItem>
-                    <PaginationPreviousNoTitle href="#" />
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationLink href="#">1</PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationLink href="#" isActive>
-                      2
-                    </PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationLink href="#">3</PaginationLink>
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationEllipsis />
-                  </PaginationItem>
-                  <PaginationItem>
-                    <PaginationNextNoTitle href="#" />
-                  </PaginationItem>
-                </PaginationContent>
-              </Pagination>
-            </ScrollArea>
-          </div>
+            <div className="py-2 w-full grid grid-cols-1 2xl:grid-cols-2 gap-2 px-3">
+              {documents.map((document) => (
+                <DocumentCard
+                  className="col-span-1"
+                  key={document.id}
+                  document={document}
+                  onClick={(e) => {
+                    e.currentTarget.blur();
+                    handleDocumentSelect(document);
+                  }}
+                />
+              ))}
+            </div>
+          </ScrollArea>
         </div>
 
         <DocumentPreviewMobile
@@ -206,7 +170,7 @@ function Library() {
           document={selectedDocument}
         />
 
-        <div className="w-full h-full relative hidden lg:flex">
+        <div className="w-full h-full relative hidden lg:flex col-span-1">
           <DocumentPreview document={selectedDocument} />
         </div>
       </div>
