@@ -89,7 +89,7 @@ export function NavUser({
               </DropdownMenuItem>
               <DropdownMenuItem onClick={() => navigate("/inbox")}>
                 <Inbox />
-                Inbox
+                Inbox (3)
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />

@@ -32,11 +32,12 @@ const AppRoutes = () => {
           {/* Public Routes */}
           <Route path="/" element={<Landing />}></Route>
           <Route element={<DefaultLayout />}>
-            <Route path="/pages" element={<Pages />} />
             <Route path="/page" element={<Page />} />
 
-            <Route path="/courses" element={<Courses />} />
             <Route path="/home" element={<Home />} />
+            <Route path="/courses" element={<Courses />} />
+            <Route path="/pages" element={<Pages />} />
+            <Route path="/chat" element={<Chat />} />
             <Route path="/library" element={<Library />} />
 
             <Route path="/account" element={<Account />} />
@@ -44,9 +45,7 @@ const AppRoutes = () => {
             <Route path="/inbox" element={<Inbox />} />
           </Route>
 
-          <Route element={<ChatLayout />}>
-            <Route path="/chat" element={<Chat />} />
-          </Route>
+          <Route element={<ChatLayout />}></Route>
 
           <Route element={<AuthLayout />}>
             <Route

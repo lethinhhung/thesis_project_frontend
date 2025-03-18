@@ -22,7 +22,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { Book, Briefcase, LibraryBig, Plus } from "lucide-react";
+import { Book, Briefcase, LibraryBig, Plus, Sparkles } from "lucide-react";
 import {
   Tooltip,
   TooltipContent,
@@ -34,6 +34,7 @@ const createItems = [
   { title: "Course", url: "/course", icon: <Briefcase /> },
   { title: "Page", url: "/page", icon: <Book /> },
   { title: "Document", url: "/document", icon: <LibraryBig /> },
+  { title: "Chat", url: "/chat", icon: <Sparkles /> },
 ];
 
 export default function DefaultLayout() {

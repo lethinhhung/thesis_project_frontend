@@ -1,4 +1,4 @@
-import { ChevronRight, Plus } from "lucide-react";
+import { ArrowRight, Calendar, ChevronRight, Plus } from "lucide-react";
 
 import { DatePicker } from "@/components/date-picker";
 
@@ -39,15 +39,14 @@ export function SidebarRight({
         <CountdownTimer />
         <SidebarSeparator className="mx-0" />
         <DatePicker />
-        {/* <SidebarSeparator className="mx-0" />
-        <Calendars calendars={data.calendars} /> */}
+        <SidebarSeparator className="mx-0" />
       </SidebarContent>
       <SidebarFooter>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton>
-              <Plus />
-              <span>New Calendar</span>
+            <SidebarMenuButton className="flex justify-between items-center">
+              <span>Calendar</span>
+              <ArrowRight />
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>

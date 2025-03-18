@@ -75,27 +75,27 @@ function SearchBarWithTags({
 
       <div className="w-full overflow-x-auto whitespace-nowrap scrollbar">
         <div className="inline-flex flex-wrap gap-2">
-          <Badge className="cursor-pointer">All</Badge>
+          <Badge className="cursor-pointer">All (30)</Badge>
           <Badge className="cursor-pointer" variant={"secondary"}>
-            Programming
+            Programming (10)
           </Badge>
           <Badge className="cursor-pointer" variant={"secondary"}>
-            Math
+            Math (5)
           </Badge>
           <Badge className="cursor-pointer" variant={"secondary"}>
-            English
+            English (2)
           </Badge>
           <Badge className="cursor-pointer" variant={"secondary"}>
-            React
+            React (3)
           </Badge>
           <Badge className="cursor-pointer" variant={"secondary"}>
-            Web development
+            Web development (5)
           </Badge>
           <Badge className="cursor-pointer" variant={"secondary"}>
-            Frontend
+            Frontend (5)
           </Badge>
           <Badge className="cursor-pointer" variant={"secondary"}>
-            Node.js
+            Node.js (5)
           </Badge>
         </div>
       </div>

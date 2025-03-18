@@ -5,7 +5,7 @@ import { ArrowUp } from "lucide-react";
 
 function Chat() {
   return (
-    <div className="flex flex-col items-center justify-between m-auto w-full h-full max-w-5xl rounded-xl">
+    <div className="flex flex-col items-center justify-between m-auto w-full h-[calc(100vh-92px)] max-w-5xl rounded-xl">
       <ScrollArea className="flex-1 w-full overflow-y-auto p-4 rounded-2xl">
         <div className="flex justify-end mb-5">
           <div className="border border-dashed p-4 rounded-md border border-dashed">
