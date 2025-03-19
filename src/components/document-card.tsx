@@ -53,7 +53,7 @@ export function DocumentCard({
         </div>
       </CardContent>
 
-      <CardFooter
+      {/* <CardFooter
         className="flex lg:hidden"
         onClick={(e) => e.stopPropagation()}
       >
@@ -62,7 +62,7 @@ export function DocumentCard({
 
           <DownloadButton variant="ghost" />
         </div>
-      </CardFooter>
+      </CardFooter> */}
     </Card>
   );
 }

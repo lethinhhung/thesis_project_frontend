@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { CheckCircle2, Trash } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 import {
   Drawer,
   DrawerClose,
@@ -18,15 +18,17 @@ function DocumentPreviewMobile({
   document,
   open,
   onOpenChange,
+  header,
 }: {
   document: Document | null;
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  header: boolean;
 }) {
   return (
     <Drawer open={open} onOpenChange={onOpenChange}>
       <DrawerContent>
-        <div className="flex justify-between w-full">
+        <div className="flex justify-between w-full max-w-5xl mx-auto">
           <DrawerHeader>
             <DrawerTitle>
               <div className="flex justify-between w-full">
@@ -50,8 +52,8 @@ function DocumentPreviewMobile({
           </div>
         </div>
         <div className="flex p-2 justify-center overflow-y-auto h-full w-full">
-          <div className="max-w-xl">
-            <DocumentPreview document={document} />
+          <div className="max-w-3xl">
+            <DocumentPreview document={document} header={header} />
           </div>
         </div>
         <DrawerFooter className="flex">
@@ -59,7 +61,7 @@ function DocumentPreviewMobile({
             <Button>Download</Button>
 
             <DrawerClose asChild>
-              <Button variant="outline">Cancel</Button>
+              <Button variant="outline">Close</Button>
             </DrawerClose>
           </div>
         </DrawerFooter>

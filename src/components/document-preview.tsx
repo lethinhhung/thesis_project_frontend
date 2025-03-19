@@ -20,12 +20,21 @@ import { DeleteButton } from "@/components/delete-button";
 import { DownloadButton } from "@/components/download-button";
 import { Document } from "@/interfaces/document";
 
-function DocumentPreview({ document }: { document: Document | null }) {
+function DocumentPreview({
+  document,
+  header,
+}: {
+  document: Document | null;
+  header: boolean;
+}) {
   return (
     <div className="w-full h-full relative flex">
       {document ? (
         <ScrollArea className="h-full w-full rounded-xl">
-          <Card className="hidden lg:flex w-full sticky top-0 left-0 z-10 rounded-xl border border-dashed shadow-none bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+          <Card
+            hidden={!header}
+            className="flex w-full sticky top-0 left-0 z-10 rounded-xl border border-dashed shadow-none bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+          >
             <CardHeader>
               <CardTitle>
                 <div className="flex items-center gap-1">
@@ -84,7 +93,7 @@ function DocumentPreview({ document }: { document: Document | null }) {
               <CardContent>{document?.description}</CardContent>
               <CardFooter>
                 <div className="w-full flex justify-end">
-                  <Button variant={"secondary"}>
+                  <Button variant={"ghost"}>
                     <Sparkles />
                     <span>Re-summerize</span>
                   </Button>

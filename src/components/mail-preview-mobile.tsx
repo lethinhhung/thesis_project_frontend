@@ -53,7 +53,7 @@ function MailPreviewMobile({
         <DrawerFooter className="flex">
           <div className="flex flex-col gap-2 w-full max-w-xl mx-auto">
             <DrawerClose asChild>
-              <Button variant="outline">Cancel</Button>
+              <Button variant="outline">Close</Button>
             </DrawerClose>
           </div>
         </DrawerFooter>

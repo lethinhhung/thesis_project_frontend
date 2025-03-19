@@ -169,11 +169,12 @@ function Library() {
             open={openDocumentPreview}
             onOpenChange={setOpenDocumentPreview}
             document={selectedDocument}
+            header={false}
           />
         )}
 
         <div className="w-full h-full relative hidden lg:flex col-span-1">
-          <DocumentPreview document={selectedDocument} />
+          <DocumentPreview document={selectedDocument} header={true} />
         </div>
       </div>
     </div>

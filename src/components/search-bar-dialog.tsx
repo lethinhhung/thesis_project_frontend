@@ -59,6 +59,12 @@ const actionsItems = [
     icon: Library,
     action: <Plus />,
   },
+  {
+    title: "New chat",
+    url: "/new-chat",
+    icon: Sparkles,
+    action: <Plus />,
+  },
 ];
 
 export default function SearchBarDialog({
@@ -166,13 +172,13 @@ export default function SearchBarDialog({
           <CommandItem value="appearance dark light mode">
             <span>Appearance</span>
             <CommandShortcut>
-              <DarkModeSwitcher />
+              <DarkModeSwitcher variant={"ghost"} />
             </CommandShortcut>
           </CommandItem>
           <CommandItem value="languages english vietnamese">
             <span>Languagues</span>
             <CommandShortcut>
-              <LanguageSwitcher />
+              <LanguageSwitcher variant={"ghost"} />
             </CommandShortcut>
           </CommandItem>
         </CommandGroup>
