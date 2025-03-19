@@ -21,6 +21,7 @@ import Page from "@/pages/Page";
 import Calendar from "@/pages/Calendar";
 import NotFound from "@/pages/NotFound";
 import Course from "@/pages/Course";
+import Lesson from "@/pages/Lesson";
 
 const PrivateRoute = ({ children }: { children: ReactNode }) => {
   const isAuthenticated = localStorage.getItem("token"); // Kiểm tra đăng nhập
@@ -49,6 +50,7 @@ const AppRoutes = () => {
 
             <Route path="/page" element={<Page />} />
             <Route path="/course/:courseId" element={<Course />} />
+            <Route path="/course/:courseId/:lessonId" element={<Lesson />} />
 
             <Route path="/calendar" element={<Calendar />} />
           </Route>

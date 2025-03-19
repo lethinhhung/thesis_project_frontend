@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Progress } from "./ui/progress";
+import { useNavigate } from "react-router-dom";
 
 interface Course {
   id: string;
@@ -36,11 +37,12 @@ export function CourseCardLarge({
   course: Course;
   className?: string;
 }) {
+  const navigate = useNavigate();
   return (
     <Card
-      onClick={() => console.log("Clicked")}
+      onClick={() => navigate("/course/hehe")}
       className={cn(
-        "pt-0 duration-200 dark:border-dashed hover:shadow-lg dark:hover:border-solid cursor-pointer ",
+        "pt-0 duration-200 border-dashed hover:shadow-lg dark:hover:border-solid cursor-pointer ",
         className
       )}
     >

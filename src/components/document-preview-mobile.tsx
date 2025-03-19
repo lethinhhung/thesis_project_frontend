@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, Sparkles } from "lucide-react";
 import {
   Drawer,
   DrawerClose,
@@ -13,6 +13,10 @@ import {
 import DocumentPreview from "./document-preview";
 import { Document } from "@/interfaces/document";
 import DeleteButton from "./delete-button";
+import DownloadButton from "./download-button";
+import { TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
+import { Tooltip } from "@radix-ui/react-tooltip";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 function DocumentPreviewMobile({
   document,
@@ -25,6 +29,7 @@ function DocumentPreviewMobile({
   onOpenChange: (open: boolean) => void;
   header: boolean;
 }) {
+  const isMobile = useIsMobile();
   return (
     <Drawer open={open} onOpenChange={onOpenChange}>
       <DrawerContent>
@@ -49,6 +54,17 @@ function DocumentPreviewMobile({
           </DrawerHeader>
           <div className="p-4 flex items-center gap-2">
             <DeleteButton type="document" variant="ghost" />
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button hidden={isMobile} size={"icon"} variant={"ghost"}>
+                    <Sparkles />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>Ask AI</TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+            <DownloadButton variant={"ghost"} />
           </div>
         </div>
         <div className="flex p-2 justify-center overflow-y-auto h-full w-full">
@@ -58,8 +74,6 @@ function DocumentPreviewMobile({
         </div>
         <DrawerFooter className="flex">
           <div className="flex flex-col gap-2 w-full max-w-xl mx-auto">
-            <Button>Download</Button>
-
             <DrawerClose asChild>
               <Button variant="outline">Close</Button>
             </DrawerClose>

@@ -1,6 +1,13 @@
 "use client";
 
-import { ChevronsUpDown, Inbox, LogOut, Settings, User } from "lucide-react";
+import {
+  ChevronsUpDown,
+  Dot,
+  Inbox,
+  LogOut,
+  Settings,
+  User,
+} from "lucide-react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
@@ -87,9 +94,15 @@ export function NavUser({
                 <Settings />
                 Settings
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => navigate("/inbox")}>
-                <Inbox />
-                Inbox (3)
+              <DropdownMenuItem
+                className="flex justify-between items-center"
+                onClick={() => navigate("/inbox")}
+              >
+                <div className="flex items-center gap-2">
+                  <Inbox />
+                  Inbox
+                </div>
+                <Dot className="text-xl text-sky-500" />
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />

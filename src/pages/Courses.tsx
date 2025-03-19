@@ -1,4 +1,5 @@
 import { CourseCardLarge } from "@/components/course-card-large";
+import { LessonCardLarge } from "@/components/lesson-card-large";
 import SearchBarWithTags from "@/components/search-bar-with-tags";
 import { Button } from "@/components/ui/button";
 import {
@@ -9,17 +10,23 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Lesson } from "@/interfaces/lesson";
 import { ArrowRight } from "lucide-react";
 
 const courses = [
   {
     id: "course-001",
-    title: "Lập trình JavaScript cơ bản",
+    title: "Basic JavaScript Programming",
     summary:
-      "Khóa học giới thiệu các khái niệm cơ bản của JavaScript. Khóa học giới thiệu các khái niệm cơ bản của JavaScript. Khóa học giới thiệu các khái niệm cơ bản của JavaScript. Khóa học giới thiệu các khái niệm cơ bản của JavaScript. Khóa học giới thiệu các khái niệm cơ bản của JavaScript. Khóa học giới thiệu các khái niệm cơ bản của JavaScript. ",
+      "This course introduces fundamental JavaScript concepts. This course introduces fundamental JavaScript concepts. This course introduces fundamental JavaScript concepts. This course introduces fundamental JavaScript concepts. This course introduces fundamental JavaScript concepts. This course introduces fundamental JavaScript concepts.",
     description:
-      "Khóa học này giúp bạn làm quen với các khái niệm như biến, vòng lặp, điều kiện và hàm trong JavaScript.",
-    tags: ["JavaScript", "Lập trình", "Cơ bản", "Sieu sieu sieu dai dai dai"],
+      "This course helps you get familiar with concepts such as variables, loops, conditions, and functions in JavaScript.",
+    tags: [
+      "JavaScript",
+      "Programming",
+      "Basic",
+      "Super super super long long long",
+    ],
     type: "online",
     status: true,
     date: "2025-03-13",
@@ -27,10 +34,10 @@ const courses = [
   },
   {
     id: "course-002",
-    title: "Phát triển Web với React",
-    summary: "Hướng dẫn phát triển ứng dụng web với React.",
+    title: "Web Development with React",
+    summary: "A guide to developing web applications with React.",
     description:
-      "Học cách sử dụng React để xây dựng các ứng dụng web hiện đại, bao gồm quản lý state, component và hooks.",
+      "Learn how to use React to build modern web applications, including state management, components, and hooks.",
     tags: ["React", "Front-end", "JavaScript"],
     type: "online",
     status: true,
@@ -39,11 +46,11 @@ const courses = [
   },
   {
     id: "course-003",
-    title: "Cấu trúc dữ liệu và giải thuật",
-    summary: "Nắm vững các cấu trúc dữ liệu quan trọng và thuật toán phổ biến.",
+    title: "Data Structures and Algorithms",
+    summary: "Master essential data structures and common algorithms.",
     description:
-      "Khóa học này bao gồm danh sách liên kết, stack, queue, cây, đồ thị và các thuật toán tìm kiếm, sắp xếp.",
-    tags: ["Khoa học máy tính", "Thuật toán", "Dữ liệu"],
+      "This course covers linked lists, stacks, queues, trees, graphs, and search and sorting algorithms.",
+    tags: ["Computer Science", "Algorithms", "Data"],
     type: "offline",
     status: false,
     date: "2025-02-28",
@@ -51,11 +58,11 @@ const courses = [
   },
   {
     id: "course-004",
-    title: "Phân tích dữ liệu với Python",
-    summary: "Học cách sử dụng Python để phân tích và trực quan hóa dữ liệu.",
+    title: "Data Analysis with Python",
+    summary: "Learn how to use Python for data analysis and visualization.",
     description:
-      "Giới thiệu về Pandas, NumPy, Matplotlib và các công cụ hỗ trợ phân tích dữ liệu.",
-    tags: ["Python", "Data Science", "Phân tích"],
+      "An introduction to Pandas, NumPy, Matplotlib, and other data analysis tools.",
+    tags: ["Python", "Data Science", "Analysis"],
     type: "online",
     status: true,
     date: "2025-03-05",
@@ -63,15 +70,39 @@ const courses = [
   },
   {
     id: "course-005",
-    title: "Phát triển API với Node.js",
-    summary: "Tạo API RESTful sử dụng Node.js và Express.",
+    title: "API Development with Node.js",
+    summary: "Create RESTful APIs using Node.js and Express.",
     description:
-      "Khóa học tập trung vào việc xây dựng API, bảo mật, xác thực người dùng và tối ưu hiệu suất.",
+      "This course focuses on building APIs, security, user authentication, and performance optimization.",
     tags: ["Node.js", "Backend", "API"],
     type: "online",
     status: false,
     date: "2025-03-01",
     emoji: "🌐",
+  },
+];
+
+const lessons: Lesson[] = [
+  {
+    id: "lesson-001",
+    title: "Introduction to JavaScript",
+    description:
+      "Learn the basics of JavaScript, including syntax, variables, and data types.",
+    date: "2025-03-10",
+  },
+  {
+    id: "lesson-002",
+    title: "React Components and Props",
+    description:
+      "Understand how to build reusable components and pass data using props in React.",
+    date: "2025-03-12",
+  },
+  {
+    id: "lesson-003",
+    title: "Data Structures: Arrays and Linked Lists",
+    description:
+      "Explore the fundamentals of arrays and linked lists, their operations, and use cases.",
+    date: "2025-03-15",
   },
 ];
 
@@ -89,33 +120,13 @@ function Courses() {
               Recent lessons
             </h4>
           </div>
-          <Card className="col-span-12 md:col-span-6 2xl:col-span-4">
-            <CardHeader>
-              <CardTitle>Title</CardTitle>
-              <CardDescription>Description</CardDescription>
-            </CardHeader>
-
-            <CardContent>Content</CardContent>
-            <CardFooter>Footer</CardFooter>
-          </Card>
-          <Card className="col-span-12 md:col-span-6 2xl:col-span-4">
-            <CardHeader>
-              <CardTitle>Title</CardTitle>
-              <CardDescription>Description</CardDescription>
-            </CardHeader>
-
-            <CardContent>Content</CardContent>
-            <CardFooter>Footer</CardFooter>
-          </Card>
-          <Card className="col-span-12 md:col-span-6 2xl:col-span-4">
-            <CardHeader>
-              <CardTitle>Title</CardTitle>
-              <CardDescription>Description</CardDescription>
-            </CardHeader>
-
-            <CardContent>Content</CardContent>
-            <CardFooter>Footer</CardFooter>
-          </Card>
+          {lessons.map((lesson) => (
+            <LessonCardLarge
+              key={lesson.id}
+              lesson={lesson}
+              className="col-span-12 md:col-span-6 2xl:col-span-4"
+            />
+          ))}
         </div>
 
         <div className="col-span-12 grid grid-cols-12 gap-2">

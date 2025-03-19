@@ -1,4 +1,4 @@
-import { ArrowRight, Calendar, ChevronRight, Plus } from "lucide-react";
+import { ArrowRight, Calendar, ChevronRight, Cloud, Plus } from "lucide-react";
 
 import { DatePicker } from "@/components/date-picker";
 
@@ -30,11 +30,10 @@ export function SidebarRight({
       <SidebarHeader className="h-16 border-sidebar-border">
         <div className="flex items-center gap-2 h-full w-full">
           <div className="flex items-center justify-center h-full px-4">
-            <Label>Good morning</Label>
+            <Label>
+              <Cloud /> Good morning
+            </Label>
           </div>
-          <Button size={"icon"} variant={"ghost"}>
-            <ChevronRight />
-          </Button>
         </div>
       </SidebarHeader>
       <SidebarContent className="scrollbar">
