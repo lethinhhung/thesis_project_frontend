@@ -78,14 +78,21 @@ function SearchBarWithTags({
       )}
     >
       <div className="flex flex-row flex-wrap gap-2 p-2 w-full">
-        <Input className="flex-1" placeholder={placeholder} />
+        <Input
+          className="flex-1 border border-dashed"
+          placeholder={placeholder}
+        />
 
         <TooltipProvider>
           <DropdownMenu>
             <Tooltip>
               <TooltipTrigger asChild>
                 <DropdownMenuTrigger asChild>
-                  <Button size={"icon"} variant={"outline"}>
+                  <Button
+                    size={"icon"}
+                    variant={"ghost"}
+                    className="border border-dashed"
+                  >
                     <SortAsc />
                   </Button>
                 </DropdownMenuTrigger>
@@ -115,7 +122,11 @@ function SearchBarWithTags({
             <Tooltip>
               <TooltipTrigger asChild>
                 <DialogTrigger asChild>
-                  <Button size={"icon"} variant={"secondary"}>
+                  <Button
+                    size={"icon"}
+                    variant={"ghost"}
+                    className="border border-dashed"
+                  >
                     <Tag />
                   </Button>
                 </DialogTrigger>
@@ -153,7 +164,7 @@ function SearchBarWithTags({
             <PaginationLink href="#">1</PaginationLink>
           </PaginationItem>
           <PaginationItem>
-            <PaginationLink href="#" isActive>
+            <PaginationLink href="#" isActive className="border border-dashed">
               2
             </PaginationLink>
           </PaginationItem>

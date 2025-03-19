@@ -43,6 +43,7 @@ export function CountdownTimer() {
       {/* Nút điều khiển */}
       <div className="mt-4 flex justify-center gap-2">
         <Button
+          variant={"ghost"}
           disabled={timeLeft === 0 ? true : false}
           onClick={() => setIsRunning(!isRunning)}
           size="icon"
@@ -54,14 +55,14 @@ export function CountdownTimer() {
             setTimeLeft(minutes * 60 + seconds);
             setIsRunning(false);
           }}
-          variant="outline"
+          variant="ghost"
           size="icon"
         >
           <RotateCcw />
         </Button>
         <HoverCard openDelay={0}>
           <HoverCardTrigger asChild>
-            <Button variant="secondary" size="icon">
+            <Button variant="ghost" size="icon">
               <Ellipsis />
             </Button>
           </HoverCardTrigger>
@@ -74,7 +75,7 @@ export function CountdownTimer() {
                   setMinutes(5);
                   setTimeLeft(5 * 60);
                 }}
-                variant="outline"
+                variant="ghost"
               >
                 5"
               </Button>
@@ -85,7 +86,7 @@ export function CountdownTimer() {
                   setMinutes(25);
                   setTimeLeft(25 * 60);
                 }}
-                variant="outline"
+                variant="ghost"
               >
                 25"
               </Button>
@@ -96,7 +97,7 @@ export function CountdownTimer() {
                   setMinutes(60);
                   setTimeLeft(60 * 60);
                 }}
-                variant="outline"
+                variant="ghost"
               >
                 60"
               </Button>

@@ -5,10 +5,10 @@ import { DarkModeSwitcher } from "./dark-mode-switcher";
 
 export function NavControls() {
   return (
-    <div className="w-full h-full flex gap-2 items-center">
-      <DarkModeSwitcher />
+    <div className="w-full h-full flex gap-1 items-center">
+      <DarkModeSwitcher variant={"ghost"} />
 
-      <LanguageSwitcher />
+      <LanguageSwitcher variant={"ghost"} />
     </div>
   );
 }

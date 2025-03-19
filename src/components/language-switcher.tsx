@@ -18,7 +18,19 @@ import {
   DropdownMenuRadioItem,
 } from "./ui/dropdown-menu";
 
-const LanguageSwitcher = () => {
+const LanguageSwitcher = ({
+  variant,
+}: {
+  variant?:
+    | "link"
+    | "default"
+    | "destructive"
+    | "outline"
+    | "secondary"
+    | "ghost"
+    | null
+    | undefined;
+}) => {
   const { i18n, t } = useTranslation();
   const [language, setLanguage] = useState(i18n.language);
 
@@ -34,8 +46,8 @@ const LanguageSwitcher = () => {
         <Tooltip>
           <TooltipTrigger asChild>
             <DropdownMenuTrigger asChild>
-              <Button size="icon">
-                <Languages className="text-secondary" />
+              <Button size="icon" variant={variant}>
+                <Languages />
               </Button>
             </DropdownMenuTrigger>
           </TooltipTrigger>

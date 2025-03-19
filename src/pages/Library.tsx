@@ -164,11 +164,13 @@ function Library() {
           </ScrollArea>
         </div>
 
-        <DocumentPreviewMobile
-          open={openDocumentPreview}
-          onOpenChange={setOpenDocumentPreview}
-          document={selectedDocument}
-        />
+        {isTablet && (
+          <DocumentPreviewMobile
+            open={openDocumentPreview}
+            onOpenChange={setOpenDocumentPreview}
+            document={selectedDocument}
+          />
+        )}
 
         <div className="w-full h-full relative hidden lg:flex col-span-1">
           <DocumentPreview document={selectedDocument} />

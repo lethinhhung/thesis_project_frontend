@@ -58,9 +58,9 @@ export function DocumentCard({
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex gap-2 h-full w-full justify-end">
-          <DeleteButton type="document" />
+          <DeleteButton type="document" variant="ghost" />
 
-          <DownloadButton />
+          <DownloadButton variant="ghost" />
         </div>
       </CardFooter>
     </Card>

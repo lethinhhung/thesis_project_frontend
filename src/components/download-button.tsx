@@ -7,7 +7,19 @@ import {
   TooltipTrigger,
 } from "./ui/tooltip";
 
-export function DownloadButton() {
+export function DownloadButton({
+  variant,
+}: {
+  variant?:
+    | "link"
+    | "default"
+    | "destructive"
+    | "outline"
+    | "secondary"
+    | "ghost"
+    | null
+    | undefined;
+}) {
   return (
     <TooltipProvider>
       <Tooltip>
@@ -17,6 +29,7 @@ export function DownloadButton() {
             onClick={(e) => {
               e.stopPropagation();
             }}
+            variant={variant}
           >
             <Download />
           </Button>

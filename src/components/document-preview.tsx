@@ -18,16 +18,7 @@ import {
 } from "./ui/tooltip";
 import { DeleteButton } from "@/components/delete-button";
 import { DownloadButton } from "@/components/download-button";
-
-interface Document {
-  id: string;
-  title: string;
-  description: string;
-  summary: string;
-  tags: string[];
-  date: string;
-  status: boolean;
-}
+import { Document } from "@/interfaces/document";
 
 function DocumentPreview({ document }: { document: Document | null }) {
   return (
@@ -72,7 +63,7 @@ function DocumentPreview({ document }: { document: Document | null }) {
                       <Button
                         disabled={!document?.status}
                         size={"icon"}
-                        variant={"outline"}
+                        variant={"ghost"}
                       >
                         <Sparkles />
                       </Button>
@@ -81,9 +72,9 @@ function DocumentPreview({ document }: { document: Document | null }) {
                   </Tooltip>
                 </TooltipProvider>
 
-                <DeleteButton />
+                <DeleteButton variant="ghost" type="document" />
 
-                <DownloadButton />
+                <DownloadButton variant={"ghost"} />
               </div>
             </CardFooter>
           </Card>

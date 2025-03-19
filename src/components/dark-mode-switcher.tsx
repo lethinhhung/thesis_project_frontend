@@ -11,19 +11,25 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
-export function DarkModeSwitcher() {
+export function DarkModeSwitcher({
+  variant,
+}: {
+  variant?:
+    | "link"
+    | "default"
+    | "destructive"
+    | "outline"
+    | "secondary"
+    | "ghost"
+    | null
+    | undefined;
+}) {
   const [icon, setIcon] = useState(<Sun />);
   const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     setIcon(
-      theme === "light" ? (
-        <Sun className="text-secondary" />
-      ) : theme === "dark" ? (
-        <Moon className="text-secondary" />
-      ) : (
-        <SunMoon className="text-secondary" />
-      )
+      theme === "light" ? <Sun /> : theme === "dark" ? <Moon /> : <SunMoon />
     );
   }, [theme]);
 
@@ -36,7 +42,7 @@ export function DarkModeSwitcher() {
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger asChild>
-          <Button onClick={handleSwitch} size={"icon"}>
+          <Button onClick={handleSwitch} size={"icon"} variant={variant}>
             {icon}
           </Button>
         </TooltipTrigger>

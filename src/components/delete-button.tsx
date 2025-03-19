@@ -17,7 +17,21 @@ import {
   TooltipTrigger,
 } from "./ui/tooltip";
 
-export function DeleteButton({ type }: { type?: string }) {
+export function DeleteButton({
+  type,
+  variant,
+}: {
+  type?: string;
+  variant?:
+    | "link"
+    | "default"
+    | "destructive"
+    | "outline"
+    | "secondary"
+    | "ghost"
+    | null
+    | undefined;
+}) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -28,7 +42,7 @@ export function DeleteButton({ type }: { type?: string }) {
             <DialogTrigger asChild>
               <Button
                 size={"icon"}
-                variant={"destructive"}
+                variant={variant}
                 onClick={(e) => {
                   e.stopPropagation();
                 }}

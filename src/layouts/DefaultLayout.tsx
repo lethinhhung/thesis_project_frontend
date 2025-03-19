@@ -65,7 +65,7 @@ export default function DefaultLayout() {
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <DropdownMenuTrigger asChild>
-                      <Button size={"icon"} variant={"secondary"}>
+                      <Button size={"icon"} variant={"ghost"}>
                         <Plus />
                       </Button>
                     </DropdownMenuTrigger>

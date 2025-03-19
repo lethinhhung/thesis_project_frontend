@@ -1,6 +1,5 @@
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { CheckCircle2, Trash } from "lucide-react";
+import { CheckCircle2, Mail, MailOpen } from "lucide-react";
 import {
   Drawer,
   DrawerClose,
@@ -10,16 +9,16 @@ import {
   DrawerHeader,
   DrawerTitle,
 } from "@/components/ui/drawer";
-import DocumentPreview from "./document-preview";
-import { Document } from "@/interfaces/document";
+import MailPreview from "./mail-preview";
+import { Mail as MailInterface } from "@/interfaces/mail";
 import DeleteButton from "./delete-button";
 
-function DocumentPreviewMobile({
-  document,
+function MailPreviewMobile({
+  mail,
   open,
   onOpenChange,
 }: {
-  document: Document | null;
+  mail: MailInterface | null;
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }) {
@@ -31,33 +30,28 @@ function DocumentPreviewMobile({
             <DrawerTitle>
               <div className="flex justify-between w-full">
                 <div className="flex items-center gap-1">
-                  {document?.title}{" "}
-                  {document?.status && <CheckCircle2 size={"1rem"} />}
+                  {mail?.title} {mail?.status && <CheckCircle2 size={"1rem"} />}
                 </div>
+                <Button size={"sm"} variant={"ghost"}></Button>
               </div>
             </DrawerTitle>
-            <DrawerDescription>{document?.date}</DrawerDescription>
-            <div className="flex gap-2 flex-nowrap">
-              {document?.tags.map((tag) => (
-                <Badge key={tag} variant={"secondary"}>
-                  {tag}
-                </Badge>
-              ))}
-            </div>
+            <DrawerDescription>{mail?.date}</DrawerDescription>
           </DrawerHeader>
-          <div className="p-4 flex items-center gap-2">
-            <DeleteButton type="document" variant="ghost" />
+          <div className="p-4 gap-2 flex items-center">
+            <DeleteButton type="mail" variant={"ghost"} />
+
+            <Button variant={"ghost"} size={"icon"}>
+              {mail?.status ? <MailOpen /> : <Mail />}
+            </Button>
           </div>
         </div>
         <div className="flex p-2 justify-center overflow-y-auto h-full w-full">
           <div className="max-w-xl">
-            <DocumentPreview document={document} />
+            <MailPreview mail={mail} />
           </div>
         </div>
         <DrawerFooter className="flex">
           <div className="flex flex-col gap-2 w-full max-w-xl mx-auto">
-            <Button>Download</Button>
-
             <DrawerClose asChild>
               <Button variant="outline">Cancel</Button>
             </DrawerClose>
@@ -68,4 +62,4 @@ function DocumentPreviewMobile({
   );
 }
 
-export default DocumentPreviewMobile;
+export default MailPreviewMobile;

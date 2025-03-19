@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Search } from "lucide-react";
+import { Mail, Search } from "lucide-react";
 import {
   Pagination,
   PaginationContent,
@@ -20,8 +20,13 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Mail as MailInterface } from "@/interfaces/mail";
+import MailPreview from "@/components/mail-preview";
+import { useState } from "react";
+import { useIsTablet } from "@/hooks/use-tablet";
+import MailPreviewMobile from "@/components/mail-preview-mobile";
 
-const messages = [
+const mails: MailInterface[] = [
   {
     from: "Admin",
     title: "Welcome to the Platform",
@@ -63,6 +68,17 @@ const messages = [
 ];
 
 function Inbox() {
+  const [mail, setmail] = useState<MailInterface | null>(null);
+  const [openMailPreview, setOpenMailPreview] = useState(false);
+  const isTablet = useIsTablet();
+
+  const handleSelectmail = (mail: MailInterface) => {
+    setmail(mail);
+    if (isTablet) {
+      setOpenMailPreview(true);
+      return;
+    }
+  };
   return (
     <div className="w-full h-[calc(100vh-92px)] rounded-xl flex justify-center items-center">
       <div className="w-full h-full rounded-xl columns-1 lg:columns-2">
@@ -75,10 +91,17 @@ function Inbox() {
             >
               <div className="flex flex-row flex-wrap gap-2 px-2 pt-2 w-full">
                 <div className="w-full flex flex-row gap-2">
-                  <Input className="w-full" placeholder={"Search"} />
+                  <Input
+                    className="w-full border border-dashed"
+                    placeholder={"Search"}
+                  />
 
-                  <Button size={"icon"}>
-                    <Search />
+                  <Button
+                    size={"icon"}
+                    variant="ghost"
+                    className="border border-dashed"
+                  >
+                    <Mail />
                   </Button>
                 </div>
                 <Pagination className="w-full bg-transparent">
@@ -90,7 +113,11 @@ function Inbox() {
                       <PaginationLink href="#">1</PaginationLink>
                     </PaginationItem>
                     <PaginationItem>
-                      <PaginationLink href="#" isActive>
+                      <PaginationLink
+                        href="#"
+                        isActive
+                        className="border border-dashed"
+                      >
                         2
                       </PaginationLink>
                     </PaginationItem>
@@ -109,25 +136,38 @@ function Inbox() {
             </div>
 
             <div className="w-full flex flex-col gap-2 p-3">
-              {messages.map((message, index) => (
+              {mails.map((mail, index) => (
                 <Card
-                  className={!message.status ? "bg-secondary" : ""}
+                  className={!mail.status ? "bg-secondary" : ""}
                   key={index}
+                  onClick={() => handleSelectmail(mail)}
                 >
                   <CardHeader>
-                    <CardTitle>{message.from}</CardTitle>
-                    <p>{message.title}</p>
+                    <CardTitle>{mail.from}</CardTitle>
+                    <p>{mail.title}</p>
                     <CardDescription className="line-clamp-2">
-                      {message.content}
+                      {mail.content}
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <CardDescription>{message.date}</CardDescription>
+                    <CardDescription>{mail.date}</CardDescription>
                   </CardContent>
                 </Card>
               ))}
             </div>
           </ScrollArea>
+        </div>
+
+        {isTablet && (
+          <MailPreviewMobile
+            open={openMailPreview}
+            onOpenChange={setOpenMailPreview}
+            mail={mail}
+          />
+        )}
+
+        <div className="w-full h-full hidden lg:flex rounded-xl col-span-1">
+          <MailPreview mail={mail} />
         </div>
       </div>
     </div>
