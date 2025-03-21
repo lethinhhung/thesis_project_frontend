@@ -84,7 +84,7 @@ function SearchBarWithTags({
         />
 
         <TooltipProvider>
-          <DropdownMenu>
+          <DropdownMenu modal={false}>
             <Tooltip>
               <TooltipTrigger asChild>
                 <DropdownMenuTrigger asChild>

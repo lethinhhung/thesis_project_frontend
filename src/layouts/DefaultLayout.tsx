@@ -42,7 +42,7 @@ export default function DefaultLayout() {
     <SidebarProvider>
       <SidebarLeft />
       <SidebarInset>
-        <header className="z-50 sticky top-0 flex h-14 shrink-0 items-center gap-2 border-b border-dashed bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <header className="z-30 sticky top-0 flex h-14 shrink-0 items-center gap-2 border-b border-dashed bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
           {/* <header className="sticky top-0 flex h-14 shrink-0 items-center gap-2 bg-background"> */}
           <div className="flex flex-1 items-center gap-2 px-3">
             <SidebarTrigger />
@@ -61,7 +61,7 @@ export default function DefaultLayout() {
 
           <div className="flex items-center gap-2 px-3">
             <TooltipProvider>
-              <DropdownMenu>
+              <DropdownMenu modal={false}>
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <DropdownMenuTrigger asChild>

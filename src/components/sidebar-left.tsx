@@ -33,8 +33,8 @@ import { NavCourses } from "./nav-courses";
 // This is sample data.
 const data = {
   user: {
-    name: "shadcn",
-    email: "m@example.com",
+    name: "kongtrua",
+    email: "thung260803@gmail.com",
     avatar: "/avatars/shadcn.jpg",
   },
   teams: [

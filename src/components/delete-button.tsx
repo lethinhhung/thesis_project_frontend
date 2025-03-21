@@ -35,8 +35,8 @@ export function DeleteButton({
   const [open, setOpen] = useState(false);
 
   return (
-    <TooltipProvider>
-      <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog open={open} onOpenChange={setOpen}>
+      <TooltipProvider>
         <Tooltip>
           <TooltipTrigger asChild>
             <DialogTrigger asChild>
@@ -53,28 +53,25 @@ export function DeleteButton({
           </TooltipTrigger>
           <TooltipContent>Delete</TooltipContent>
         </Tooltip>
-        <DialogContent onClick={(e) => e.stopPropagation()}>
-          <DialogHeader>
-            <DialogTitle>
-              Are you sure you want to delete this {type}?
-            </DialogTitle>
-            <DialogDescription>
-              This action cannot be undone, and all associated data will be
-              permanently removed.
-            </DialogDescription>
-          </DialogHeader>
-          <DialogFooter>
-            <Button onClick={() => setOpen(false)}>Close</Button>
-            <Button
-              onClick={() => console.log("delete")}
-              variant={"destructive"}
-            >
-              Confirm
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
-    </TooltipProvider>
+      </TooltipProvider>
+      <DialogContent onClick={(e) => e.stopPropagation()}>
+        <DialogHeader>
+          <DialogTitle>
+            Are you sure you want to delete this {type}?
+          </DialogTitle>
+          <DialogDescription>
+            This action cannot be undone, and all associated data will be
+            permanently removed.
+          </DialogDescription>
+        </DialogHeader>
+        <DialogFooter>
+          <Button onClick={() => setOpen(false)}>Close</Button>
+          <Button onClick={() => console.log("delete")} variant={"destructive"}>
+            Confirm
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
 }
 export default DeleteButton;

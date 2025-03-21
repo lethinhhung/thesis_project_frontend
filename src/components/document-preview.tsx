@@ -93,9 +93,9 @@ function DocumentPreview({
               <CardContent>{document?.description}</CardContent>
               <CardFooter>
                 <div className="w-full flex justify-end">
-                  <Button variant={"ghost"}>
+                  <Button size={"sm"} variant={"ghost"}>
                     <Sparkles />
-                    <span>Re-summerize</span>
+                    Re-summerize
                   </Button>
                 </div>
               </CardFooter>

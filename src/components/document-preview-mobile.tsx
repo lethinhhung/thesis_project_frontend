@@ -16,7 +16,6 @@ import DeleteButton from "./delete-button";
 import DownloadButton from "./download-button";
 import { TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
 import { Tooltip } from "@radix-ui/react-tooltip";
-import { useIsMobile } from "@/hooks/use-mobile";
 
 function DocumentPreviewMobile({
   document,
@@ -29,10 +28,17 @@ function DocumentPreviewMobile({
   onOpenChange: (open: boolean) => void;
   header: boolean;
 }) {
-  const isMobile = useIsMobile();
   return (
-    <Drawer open={open} onOpenChange={onOpenChange}>
-      <DrawerContent>
+    <Drawer
+      modal={false}
+      open={open}
+      onOpenChange={onOpenChange}
+      autoFocus={open}
+    >
+      {open && (
+        <div className="fixed inset-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/20 z-40"></div>
+      )}
+      <DrawerContent onInteractOutside={() => onOpenChange(false)}>
         <div className="flex justify-between w-full max-w-5xl mx-auto">
           <DrawerHeader>
             <DrawerTitle>
@@ -44,7 +50,7 @@ function DocumentPreviewMobile({
               </div>
             </DrawerTitle>
             <DrawerDescription>{document?.date}</DrawerDescription>
-            <div className="flex gap-2 flex-nowrap">
+            <div className="flex gap-2 flex-wrap">
               {document?.tags.map((tag) => (
                 <Badge key={tag} variant={"secondary"}>
                   {tag}
@@ -52,18 +58,19 @@ function DocumentPreviewMobile({
               ))}
             </div>
           </DrawerHeader>
-          <div className="p-4 flex items-center gap-2">
-            <DeleteButton type="document" variant="ghost" />
+          <div className="p-2 flex flex-col sm:flex-row items-center gap-1 sm:gap-2">
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Button hidden={isMobile} size={"icon"} variant={"ghost"}>
+                  <Button size={"icon"} variant={"ghost"}>
                     <Sparkles />
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent>Ask AI</TooltipContent>
               </Tooltip>
             </TooltipProvider>
+            <DeleteButton type="document" variant="ghost" />
+
             <DownloadButton variant={"ghost"} />
           </div>
         </div>

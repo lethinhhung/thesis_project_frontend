@@ -1,12 +1,14 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
-  Card,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Image, Settings } from "lucide-react";
+  ChartColumnIncreasing,
+  Image,
+  Settings,
+  Sparkles,
+  SquareLibrary,
+  TableOfContents,
+} from "lucide-react";
 import {
   Collapsible,
   CollapsibleContent,
@@ -63,6 +65,111 @@ const lessons: Lesson[] = [
       "Discover how to create RESTful APIs using Node.js and Express.",
     date: "2025-03-20",
   },
+  {
+    id: "lesson-006",
+    title: "Understanding TypeScript",
+    description:
+      "Learn how TypeScript enhances JavaScript with static typing and interfaces.",
+    date: "2025-03-22",
+  },
+  {
+    id: "lesson-007",
+    title: "Database Management with MongoDB",
+    description:
+      "Understand NoSQL databases and how to use MongoDB for storing data efficiently.",
+    date: "2025-03-25",
+  },
+  {
+    id: "lesson-008",
+    title: "State Management in React with Redux",
+    description:
+      "Learn how to manage application state in React using Redux and the Context API.",
+    date: "2025-03-27",
+  },
+  {
+    id: "lesson-009",
+    title: "Authentication and Authorization in Web Applications",
+    description:
+      "Explore different authentication methods, including JWT and OAuth.",
+    date: "2025-03-30",
+  },
+  {
+    id: "lesson-010",
+    title: "Deployment and CI/CD Pipelines",
+    description:
+      "Learn how to deploy applications using CI/CD pipelines with GitHub Actions and Docker.",
+    date: "2025-04-02",
+  },
+  {
+    id: "lesson-011",
+    title: "Advanced JavaScript: Closures and Async/Await",
+    description:
+      "Deep dive into JavaScript closures, promises, and async/await for handling asynchronous operations.",
+    date: "2025-04-05",
+  },
+  {
+    id: "lesson-012",
+    title: "GraphQL: Introduction and Implementation",
+    description:
+      "Learn how GraphQL works and how to build APIs with GraphQL and Apollo Server.",
+    date: "2025-04-08",
+  },
+  {
+    id: "lesson-013",
+    title: "Web Security Fundamentals",
+    description:
+      "Understand web security principles, including XSS, CSRF, and SQL injection prevention.",
+    date: "2025-04-10",
+  },
+  {
+    id: "lesson-014",
+    title: "Microservices Architecture with Node.js",
+    description:
+      "Explore microservices architecture and how to build scalable applications using Node.js and Docker.",
+    date: "2025-04-12",
+  },
+  {
+    id: "lesson-015",
+    title: "React Performance Optimization",
+    description:
+      "Learn techniques to improve performance in React applications, such as memoization and lazy loading.",
+    date: "2025-04-15",
+  },
+  {
+    id: "lesson-016",
+    title: "Testing in JavaScript with Jest",
+    description:
+      "Understand the importance of testing and how to use Jest for unit and integration testing.",
+    date: "2025-04-18",
+  },
+  {
+    id: "lesson-017",
+    title: "DevOps Essentials: Docker and Kubernetes",
+    description:
+      "Get hands-on experience with Docker containers and Kubernetes for managing cloud applications.",
+    date: "2025-04-20",
+  },
+  {
+    id: "lesson-018",
+    title: "Next.js: Building Server-Side Rendered Applications",
+    description:
+      "Learn how Next.js improves performance and SEO with server-side rendering and static site generation.",
+    date: "2025-04-22",
+  },
+  {
+    id: "lesson-019",
+    title: "Machine Learning Basics with TensorFlow.js",
+    description:
+      "Discover how to build and deploy machine learning models using TensorFlow.js in the browser.",
+    date: "2025-04-25",
+  },
+  {
+    id: "lesson-020",
+    title: "Web3 and Blockchain Development",
+    description:
+      "Explore the fundamentals of blockchain technology and build decentralized applications (DApps).",
+    date: "2025-04-28",
+  },
 ];
 
 const documents: Document[] = [
@@ -110,6 +217,77 @@ const documents: Document[] = [
     date: "2023-09-05",
     status: true,
   },
+  {
+    id: "5",
+    title: "CSS Grid & Flexbox",
+    description:
+      "A complete reference to CSS layout techniques, focusing on Grid and Flexbox. It explains how to create responsive designs, align elements efficiently, and implement modern UI structures.",
+    summary:
+      "Mastering CSS Grid and Flexbox for responsive layouts and modern UI design.",
+    tags: ["CSS", "Web Design", "Frontend"],
+
+    date: "2023-10-01",
+    status: true,
+  },
+  {
+    id: "6",
+    title: "Software Engineering Principles",
+    description:
+      "An extensive discussion on software engineering principles, covering software design patterns, clean coding practices, testing methodologies, and agile development workflows.",
+    summary:
+      "Discussion on software engineering principles, design patterns, and best practices.",
+    tags: ["Software Engineering", "Development", "Best Practices"],
+
+    date: "2023-11-12",
+    status: false,
+  },
+  {
+    id: "7",
+    title: "Machine Learning Basics",
+    description:
+      "An introductory guide to machine learning concepts, including supervised and unsupervised learning, neural networks, feature engineering, and model evaluation techniques.",
+    summary:
+      "Introduction to machine learning concepts, including supervised learning and neural networks.",
+    tags: ["Machine Learning", "AI", "Data Science"],
+
+    date: "2023-12-08",
+    status: false,
+  },
+  {
+    id: "8",
+    title: "Python for Data Science",
+    description:
+      "A practical guide to using Python for data science, featuring NumPy, Pandas, Matplotlib, and Scikit-Learn for data manipulation, visualization, and machine learning tasks.",
+    summary:
+      "Using Python for data science with libraries like Pandas and Scikit-Learn.",
+    tags: ["Python", "Data Science", "Pandas"],
+
+    date: "2024-01-20",
+    status: true,
+  },
+  {
+    id: "9",
+    title: "System Design Interview Guide",
+    description:
+      "A strategic resource for system design interviews, covering scalable architectures, microservices, caching strategies, database sharding, and real-world case studies.",
+    summary:
+      "Guide to system design interviews, including scalability and microservices.",
+    tags: ["System Design", "Interviews", "Architecture"],
+
+    date: "2024-02-14",
+    status: true,
+  },
+  {
+    id: "10",
+    title: "Blockchain Fundamentals",
+    description:
+      "An overview of blockchain technology, including consensus mechanisms, smart contracts, cryptographic principles, and decentralized applications.",
+    summary:
+      "Introduction to blockchain, covering smart contracts and decentralization.",
+    tags: ["Blockchain", "Cryptocurrency", "Decentralization"],
+    date: "2024-03-10",
+    status: false,
+  },
 ];
 
 function Course() {
@@ -125,7 +303,7 @@ function Course() {
   };
   return (
     <div className="flex flex-col items-center mx-auto h-full w-full max-w-7xl rounded-xl">
-      <div className="w-full flex p-4 flex-col gap-4 border-b border-dashed">
+      <div className="w-full flex p-2 md:p-4 flex-col gap-4 border-b border-dashed">
         <Collapsible open={isExpanded} onOpenChange={setIsExpanded}>
           <CollapsibleContent
             className={
@@ -142,10 +320,10 @@ function Course() {
           </CollapsibleContent>
           <div className="flex justify-between items-center">
             <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
-              {"Javascript basic" + (isExpanded ? " 💻" : "")}
+              {"Javascript in web development" + (isExpanded ? " 💻" : "")}
               <p className="text-sm text-muted-foreground">12/10/2021</p>
             </h3>
-            <div className="flex gap-2 items-center">
+            <div className="flex flex-col sm:flex-row gap-2 items-center">
               <CollapsibleTrigger asChild>
                 <Button size={"icon"} variant={"ghost"}>
                   <Image />
@@ -172,44 +350,78 @@ function Course() {
         The king, seeing how much happier his subjects were, realized the error
         of his ways and repealed the joke tax.
       </div>
-      <div className="w-full flex p-4 flex-col gap-4">
-        <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
-          Lessons ({lessons.length})
-        </h4>
-        <div className="w-full flex grid grid-col-1 md:grid-cols-2 xl:grid-col-3 gap-4">
-          {lessons.map((lesson) => (
-            <LessonCardLarge
-              key={lesson.id}
-              lesson={lesson}
-              className="col-span-1"
-            />
-          ))}
-        </div>
-      </div>
-      <div className="w-full flex p-4 flex-col gap-4">
-        <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
-          Documents ({documents.length})
-        </h4>
-        <DocumentPreviewMobile
-          open={openDocumentPreview}
-          onOpenChange={setOpenDocumentPreview}
-          document={selectedDocument}
-          header={false}
-        />
 
-        <div className="w-full flex grid grid-col-1 md:grid-cols-2 xl:grid-col-3 gap-4">
-          {documents.map((document) => (
-            <DocumentCard
-              className="col-span-1"
-              key={document.id}
-              document={document}
-              onClick={() => {
-                handleDocumentSelect(document);
-              }}
+      <Tabs defaultValue="lessons" className="w-full py-4">
+        <TabsList className="mx-2 md:mx-4 sticky top-16 z-10 transition-all duration-300">
+          <TabsTrigger value="lessons">
+            <TableOfContents />
+            <div className="hidden sm:flex">Lessons</div>
+          </TabsTrigger>
+          <TabsTrigger value="documents">
+            <SquareLibrary />
+            <div className="hidden sm:flex">Documents</div>
+          </TabsTrigger>
+          <TabsTrigger value="dashboard">
+            <ChartColumnIncreasing />
+            <div className="hidden sm:flex">Dashboard</div>
+          </TabsTrigger>
+          <TabsTrigger value="ask">
+            <Sparkles />
+            <div className="hidden sm:flex">Ask AI</div>
+          </TabsTrigger>
+        </TabsList>
+        <TabsContent className="" value="lessons">
+          <div className="w-full flex p-2 md:p-4 flex-col gap-4">
+            <div className="w-full flex justify-between items-center">
+              <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
+                Lessons ({lessons.length})
+              </h4>
+              <Button size={"sm"}>new</Button>
+            </div>
+            <div className="w-full flex grid grid-col-1 sm:px-2 md:grid-cols-2 2xl:grid-cols-3 gap-4">
+              {lessons.map((lesson) => (
+                <LessonCardLarge
+                  key={lesson.id}
+                  lesson={lesson}
+                  className="col-span-1"
+                />
+              ))}
+            </div>
+          </div>
+        </TabsContent>
+        <TabsContent className="" value="documents">
+          <div className="w-full flex p-2 md:p-4 flex-col gap-4">
+            <div className="w-full flex justify-between items-center">
+              <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
+                Documents ({documents.length})
+              </h4>
+              <Button size={"sm"}>new</Button>
+            </div>
+
+            <DocumentPreviewMobile
+              open={openDocumentPreview}
+              onOpenChange={setOpenDocumentPreview}
+              document={selectedDocument}
+              header={false}
             />
-          ))}
-        </div>
-      </div>
+
+            <div className="w-full flex grid grid-col-1 sm:px-2 md:grid-cols-2 2xl:grid-cols-3 gap-4">
+              {documents.map((document) => (
+                <DocumentCard
+                  className="col-span-1"
+                  key={document.id}
+                  document={document}
+                  onClick={() => {
+                    handleDocumentSelect(document);
+                  }}
+                />
+              ))}
+            </div>
+          </div>
+        </TabsContent>
+        <TabsContent value="dashboard">Charts go here.</TabsContent>
+        <TabsContent value="ask">Ask AI</TabsContent>
+      </Tabs>
     </div>
   );
 }

@@ -2,15 +2,12 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle2 } from "lucide-react";
 import { Document } from "@/interfaces/document";
-import { DeleteButton } from "@/components/delete-button";
-import { DownloadButton } from "@/components/download-button";
 import { cn } from "@/lib/utils";
 
 export function DocumentCard({

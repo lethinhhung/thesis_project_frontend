@@ -154,10 +154,7 @@ function Library() {
                   className="col-span-1"
                   key={document.id}
                   document={document}
-                  onClick={(e) => {
-                    e.currentTarget.blur();
-                    handleDocumentSelect(document);
-                  }}
+                  onClick={() => handleDocumentSelect(document)}
                 />
               ))}
             </div>

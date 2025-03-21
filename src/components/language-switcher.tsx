@@ -42,7 +42,7 @@ const LanguageSwitcher = ({
 
   return (
     <TooltipProvider>
-      <DropdownMenu>
+      <DropdownMenu modal={false}>
         <Tooltip>
           <TooltipTrigger asChild>
             <DropdownMenuTrigger asChild>
