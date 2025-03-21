@@ -280,7 +280,7 @@ export function SidebarLeft({
 }: React.ComponentProps<typeof Sidebar>) {
   const { isMobile } = useSidebar();
   return (
-    <Sidebar className="border-r-0" {...props}>
+    <Sidebar className="border-r-0 z-40" {...props}>
       <SidebarHeader>
         <NavUser user={data.user} />
         {!isMobile && <NavControls />}

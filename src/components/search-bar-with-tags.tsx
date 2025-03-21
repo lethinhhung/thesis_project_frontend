@@ -38,6 +38,7 @@ import {
 } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 import { CalendarClock, SortAsc, Tag } from "lucide-react";
+import SortButton from "./sort-button";
 
 const badges = [
   { title: "All", total: "50" },
@@ -83,40 +84,8 @@ function SearchBarWithTags({
           placeholder={placeholder}
         />
 
-        <TooltipProvider>
-          <DropdownMenu modal={false}>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <DropdownMenuTrigger asChild>
-                  <Button
-                    size={"icon"}
-                    variant={"ghost"}
-                    className="border border-dashed"
-                  >
-                    <SortAsc />
-                  </Button>
-                </DropdownMenuTrigger>
-              </TooltipTrigger>
-              <TooltipContent side="top">Sorting</TooltipContent>
-            </Tooltip>
-            <DropdownMenuContent>
-              <DropdownMenuLabel>Sort by</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>
-                Title
-                <DropdownMenuShortcut>
-                  <Tag />
-                </DropdownMenuShortcut>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                Date
-                <DropdownMenuShortcut>
-                  <CalendarClock />
-                </DropdownMenuShortcut>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </TooltipProvider>
+        <SortButton variant={"ghost"} />
+
         <TooltipProvider>
           <Dialog>
             <Tooltip>

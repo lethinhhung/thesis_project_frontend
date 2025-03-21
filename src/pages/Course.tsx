@@ -4,6 +4,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   ChartColumnIncreasing,
   Image,
+  Search,
   Settings,
   Sparkles,
   SquareLibrary,
@@ -20,6 +21,8 @@ import { useState } from "react";
 import DocumentPreviewMobile from "@/components/document-preview-mobile";
 import { LessonCardLarge } from "@/components/lesson-card-large";
 import { Lesson } from "@/interfaces/lesson";
+import { Input } from "@/components/ui/input";
+import SortButton from "@/components/sort-button";
 
 const badges = [
   { title: "Math" },
@@ -352,31 +355,50 @@ function Course() {
       </div>
 
       <Tabs defaultValue="lessons" className="w-full py-4">
-        <TabsList className="mx-2 md:mx-4 sticky top-16 z-10 transition-all duration-300">
-          <TabsTrigger value="lessons">
-            <TableOfContents />
-            <div className="hidden sm:flex">Lessons</div>
-          </TabsTrigger>
-          <TabsTrigger value="documents">
-            <SquareLibrary />
-            <div className="hidden sm:flex">Documents</div>
-          </TabsTrigger>
-          <TabsTrigger value="dashboard">
-            <ChartColumnIncreasing />
-            <div className="hidden sm:flex">Dashboard</div>
-          </TabsTrigger>
-          <TabsTrigger value="ask">
-            <Sparkles />
-            <div className="hidden sm:flex">Ask AI</div>
-          </TabsTrigger>
-        </TabsList>
+        <Collapsible className="flex flex-wrap gap-2 items-center mx-2 md:mx-4 sticky top-16 z-10 transition-all duration-300 pr-25">
+          <TabsList>
+            <TabsTrigger value="lessons">
+              <TableOfContents />
+              <div className="hidden sm:flex">Lessons</div>
+            </TabsTrigger>
+            <TabsTrigger value="documents">
+              <SquareLibrary />
+              <div className="hidden sm:flex">Documents</div>
+            </TabsTrigger>
+            <TabsTrigger value="dashboard">
+              <ChartColumnIncreasing />
+              <div className="hidden sm:flex">Dashboard</div>
+            </TabsTrigger>
+            <TabsTrigger value="ask">
+              <Sparkles />
+              <div className="hidden sm:flex">Ask AI</div>
+            </TabsTrigger>
+          </TabsList>
+
+          <CollapsibleTrigger asChild>
+            <Button size={"icon"} variant={"secondary"} className="rounded-lg">
+              <Search />
+            </Button>
+          </CollapsibleTrigger>
+          <CollapsibleContent className="">
+            <Input
+              placeholder={"Search"}
+              autoFocus
+              className="border-dashed bg-secondary"
+            />
+          </CollapsibleContent>
+        </Collapsible>
         <TabsContent className="" value="lessons">
           <div className="w-full flex p-2 md:p-4 flex-col gap-4">
-            <div className="w-full flex justify-between items-center">
+            <div className="w-full flex justify-between items-center sticky top-16">
               <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
                 Lessons ({lessons.length})
               </h4>
-              <Button size={"sm"}>new</Button>
+              <div className="flex gap-2 items-center">
+                <SortButton variant={"secondary"} />
+
+                <Button size={"sm"}>new</Button>
+              </div>
             </div>
             <div className="w-full flex grid grid-col-1 sm:px-2 md:grid-cols-2 2xl:grid-cols-3 gap-4">
               {lessons.map((lesson) => (
@@ -391,11 +413,15 @@ function Course() {
         </TabsContent>
         <TabsContent className="" value="documents">
           <div className="w-full flex p-2 md:p-4 flex-col gap-4">
-            <div className="w-full flex justify-between items-center">
+            <div className="w-full flex justify-between items-center sticky top-16">
               <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
                 Documents ({documents.length})
               </h4>
-              <Button size={"sm"}>new</Button>
+              <div className="flex gap-2 items-center">
+                <SortButton variant={"secondary"} />
+
+                <Button size={"sm"}>new</Button>
+              </div>
             </div>
 
             <DocumentPreviewMobile

@@ -41,7 +41,7 @@ export function DocumentCard({
         <CardDescription>{document.date}</CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="flex flex-nowrap gap-2 overflow-hidden">
+        <div className="flex flex-wrap gap-2">
           {document.tags.map((tag, index) => (
             <Badge variant={"outline"} key={index}>
               {tag}
