@@ -142,7 +142,7 @@ function Library() {
   };
 
   return (
-    <div className="w-full h-[calc(100vh-92px)] rounded-xl">
+    <div className="w-full h-[calc(100dvh-92px)] rounded-xl">
       <div className="w-full h-full rounded-xl columns-1 lg:columns-2">
         <div className="flex col-span-1 justify-center h-full w-full rounded-xl">
           <ScrollArea className="h-full w-full rounded-xl flex flex -col">

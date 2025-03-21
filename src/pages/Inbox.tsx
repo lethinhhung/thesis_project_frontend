@@ -80,7 +80,7 @@ function Inbox() {
     }
   };
   return (
-    <div className="w-full h-[calc(100vh-92px)] rounded-xl flex justify-center items-center">
+    <div className="w-full h-[calc(100dvh-92px)] rounded-xl flex justify-center items-center">
       <div className="w-full h-full rounded-xl columns-1 lg:columns-2">
         <div className="flex justify-center col-span-1 h-full w-full rounded-xl">
           <ScrollArea className="h-full w-full rounded-xl">

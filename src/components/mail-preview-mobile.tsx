@@ -23,8 +23,11 @@ function MailPreviewMobile({
   onOpenChange: (open: boolean) => void;
 }) {
   return (
-    <Drawer open={open} onOpenChange={onOpenChange}>
-      <DrawerContent>
+    <Drawer open={open} onOpenChange={onOpenChange} modal={false}>
+      {open && (
+        <div className="fixed inset-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/20 z-40"></div>
+      )}
+      <DrawerContent onInteractOutside={() => onOpenChange(false)}>
         <div className="flex justify-between w-full">
           <DrawerHeader>
             <DrawerTitle>

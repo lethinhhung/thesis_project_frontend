@@ -8,7 +8,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { BookOpen, Mail, MailOpen } from "lucide-react";
+import { Mail, MailOpen } from "lucide-react";
 import { DeleteButton } from "@/components/delete-button";
 import { Mail as MailInterface } from "@/interfaces/mail";
 
@@ -40,7 +40,7 @@ function MailPreview({ mail }: { mail: MailInterface | null }) {
         </ScrollArea>
       ) : (
         <div className="flex items-center justify-center w-full h-full gap-2">
-          <BookOpen />
+          <MailOpen />
           <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
             Select a mail to preview
           </h4>
