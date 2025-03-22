@@ -31,8 +31,8 @@ html::-webkit-scrollbar-track {
 }
 
 .bn-editor {
-  min-height: 50vh;
   padding-top: 1rem;
+  padding-bottom: calc(100dvh - 110px);
   max-width: 100% !important;
   word-break: keep-all !important;
 }

@@ -19,9 +19,20 @@ import {
   filterSuggestionItems,
   insertOrUpdateBlock,
 } from "@blocknote/core";
-import { SquareSplitVertical } from "lucide-react";
+import {
+  SquareSplitVertical,
+  Quote as QuoteIcon,
+  Heading4 as Heading4Icon,
+  Code,
+  Type,
+} from "lucide-react";
 import CustomEmojiPicker from "./blocks/emoji";
 import { useEffect } from "react";
+import { Quote } from "./blocks/quote";
+import { Heading4 } from "./blocks/heading4";
+import { InlineCode } from "./blocks/inline-code";
+import { describe } from "node:test";
+import { Muted } from "./blocks/muted";
 
 const plainTheme = {
   light: lightDefaultTheme,
@@ -40,6 +51,10 @@ const schema = BlockNoteSchema.create({
   blockSpecs: {
     ...defaultBlockSpecs,
     divider: Divider,
+    quote: Quote,
+    heading4: Heading4,
+    inlinecode: InlineCode,
+    muted: Muted,
   },
 });
 
@@ -52,7 +67,65 @@ const insertDivider = (editor: typeof schema.BlockNoteEditor) => ({
   },
   aliases: ["divider", "hr", "line", "separator", "rule", "thematic break"],
   group: "More",
-  icon: <SquareSplitVertical />,
+  icon: <SquareSplitVertical size={18} />,
+});
+
+const insertQuote = (editor: typeof schema.BlockNoteEditor) => ({
+  title: "Quote",
+  onItemClick: () => {
+    insertOrUpdateBlock(editor, {
+      type: "quote",
+    });
+  },
+  aliases: [
+    "quote",
+    "blockquote",
+    "citation",
+    "reference",
+    "source",
+    "cite",
+    "quotation",
+    "epigraph",
+    "excerpt",
+  ],
+  group: "More",
+  icon: <QuoteIcon size={18} />,
+});
+
+const insertHeading4 = (editor: typeof schema.BlockNoteEditor) => ({
+  title: "Heading 4",
+  onItemClick: () => {
+    insertOrUpdateBlock(editor, {
+      type: "heading4",
+    });
+  },
+  aliases: ["heading4", "h4", "subheading", "subheader", "subtitle"],
+  group: "More",
+  icon: <Heading4Icon size={18} />,
+});
+
+const insertInlineCode = (editor: typeof schema.BlockNoteEditor) => ({
+  title: "Inline code",
+  onItemClick: () => {
+    insertOrUpdateBlock(editor, {
+      type: "inlinecode",
+    });
+  },
+  aliases: ["inlinecode", "code", "monospace", "monospaced", "typewriter"],
+  group: "More",
+  icon: <Code size={18} />,
+});
+
+const insertMuted = (editor: typeof schema.BlockNoteEditor) => ({
+  title: "Muted text",
+  onItemClick: () => {
+    insertOrUpdateBlock(editor, {
+      type: "muted",
+    });
+  },
+  aliases: ["muted", "dim", "faded", "subdued", "soft"],
+  group: "More",
+  icon: <Type size={18} />,
 });
 
 const Editor = ({
@@ -91,7 +164,6 @@ const Editor = ({
 
   async function saveContent() {
     const html = await editor.blocksToFullHTML(editor.document);
-    console.log(html);
     localStorage.setItem("content", html);
   }
   useEffect(() => {
@@ -111,7 +183,14 @@ const Editor = ({
         getItems={async (query) =>
           // Gets all default slash menu items and `insertAlert` item.
           filterSuggestionItems(
-            [...getDefaultReactSlashMenuItems(editor), insertDivider(editor)],
+            [
+              ...getDefaultReactSlashMenuItems(editor),
+              insertDivider(editor),
+              insertQuote(editor),
+              insertHeading4(editor),
+              insertInlineCode(editor),
+              insertMuted(editor),
+            ],
             query
           )
         }
