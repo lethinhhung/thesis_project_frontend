@@ -16,7 +16,6 @@ import Chat from "@/pages/Chat";
 import Account from "@/pages/Account";
 import Settings from "@/pages/Settings";
 import Inbox from "@/pages/Inbox";
-import ChatLayout from "@/layouts/ChatLayout";
 import Page from "@/pages/Page";
 import Calendar from "@/pages/Calendar";
 import NotFound from "@/pages/NotFound";
@@ -24,7 +23,8 @@ import Course from "@/pages/Course";
 import Lesson from "@/pages/Lesson";
 
 const PrivateRoute = ({ children }: { children: ReactNode }) => {
-  const isAuthenticated = localStorage.getItem("token"); // Kiểm tra đăng nhập
+  // const isAuthenticated = localStorage.getItem("token");
+  const isAuthenticated = localStorage.getItem("user");
   return isAuthenticated ? children : <Navigate to="/login" />;
 };
 
@@ -35,27 +35,7 @@ const AppRoutes = () => {
         <Routes>
           {/* Public Routes */}
           <Route path="*" element={<NotFound />} />
-
           <Route path="/" element={<Landing />}></Route>
-          <Route element={<DefaultLayout />}>
-            <Route path="/home" element={<Home />} />
-            <Route path="/courses" element={<Courses />} />
-            <Route path="/pages" element={<Pages />} />
-            <Route path="/chat" element={<Chat />} />
-            <Route path="/library" element={<Library />} />
-
-            <Route path="/account" element={<Account />} />
-            <Route path="/settings" element={<Settings />} />
-            <Route path="/inbox" element={<Inbox />} />
-
-            <Route path="/page" element={<Page />} />
-            <Route path="/course/:courseId" element={<Course />} />
-            <Route path="/course/:courseId/:lessonId" element={<Lesson />} />
-
-            <Route path="/calendar" element={<Calendar />} />
-          </Route>
-
-          <Route element={<ChatLayout />}></Route>
 
           <Route element={<AuthLayout />}>
             <Route
@@ -77,15 +57,29 @@ const AppRoutes = () => {
           </Route>
 
           {/* Private Routes */}
-          <Route element={<DefaultLayout />}>
-            <Route
-              path="/dashboard"
-              element={
-                <PrivateRoute>
-                  <Dashboard />
-                </PrivateRoute>
-              }
-            />
+          <Route
+            element={
+              <PrivateRoute>
+                <DefaultLayout />
+              </PrivateRoute>
+            }
+          >
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/courses" element={<Courses />} />
+            <Route path="/pages" element={<Pages />} />
+            <Route path="/chat" element={<Chat />} />
+            <Route path="/library" element={<Library />} />
+
+            <Route path="/account" element={<Account />} />
+            <Route path="/settings" element={<Settings />} />
+            <Route path="/inbox" element={<Inbox />} />
+
+            <Route path="/page" element={<Page />} />
+            <Route path="/course/:courseId" element={<Course />} />
+            <Route path="/course/:courseId/:lessonId" element={<Lesson />} />
+
+            <Route path="/calendar" element={<Calendar />} />
           </Route>
         </Routes>
       </AnimatePresence>

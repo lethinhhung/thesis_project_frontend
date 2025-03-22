@@ -397,7 +397,7 @@ function Course() {
               <div className="flex gap-2 items-center">
                 <SortButton variant={"secondary"} />
 
-                <Button size={"sm"}>new</Button>
+                <Button>new</Button>
               </div>
             </div>
             <div className="w-full flex grid grid-col-1 sm:px-2 md:grid-cols-2 2xl:grid-cols-3 gap-4">
@@ -420,7 +420,7 @@ function Course() {
               <div className="flex gap-2 items-center">
                 <SortButton variant={"secondary"} />
 
-                <Button size={"sm"}>new</Button>
+                <Button>new</Button>
               </div>
             </div>
 

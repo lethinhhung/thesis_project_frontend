@@ -179,4 +179,24 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  .bn-editor * {
+    @apply font-[Geist];
+  }
+
+  .bn-editor h1 .bn-inline-content {
+    @apply scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl;
+  }
+
+  .bn-editor h2 .bn-inline-content {
+    @apply scroll-m-20 pb-2 text-3xl font-semibold tracking-tight first:mt-0;
+  }
+
+  .bn-editor h3 .bn-inline-content {
+    @apply scroll-m-20 text-2xl font-semibold tracking-tight;
+  }
+
+  .bn-editor p .bn-inline-content {
+    @apply leading-7 [&:not(:first-child)]:mt-6;
+  }
 }

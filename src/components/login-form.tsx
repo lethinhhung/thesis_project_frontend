@@ -54,9 +54,12 @@ export function LoginForm({
 
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
+    localStorage.setItem(
+      "user",
+      JSON.stringify({ ...values, name: "Name", avatar: "/placeholder.svg" })
+    );
     console.log(values);
+    navigate("/home");
   }
 
   const handleSignUp = (e: ReactMouseEvent<HTMLAnchorElement>) => {
