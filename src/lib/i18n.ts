@@ -1,6 +1,9 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 
+const storedLang = localStorage.getItem("language") || "vi";
+document.documentElement.lang = storedLang; // Cập nhật thuộc tính lang của <html>
+
 i18n.use(initReactI18next).init({
   resources: {
     en: {

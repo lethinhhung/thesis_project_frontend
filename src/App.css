@@ -1,5 +1,5 @@
 html {
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
   scrollbar-width: thin;
   scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
 }
@@ -26,7 +26,7 @@ html::-webkit-scrollbar-track {
 /* BlockNote editor */
 @media (width < 48rem) {
   .bn-editor {
-    padding: 1rem 1rem;
+    padding: 1rem 2rem;
   }
 }
 
@@ -34,5 +34,38 @@ html::-webkit-scrollbar-track {
   min-height: 50vh;
   padding-top: 1rem;
   max-width: 100% !important;
-  word-break: break-all !important;
+  word-break: keep-all !important;
+}
+
+.bn-editor h1 {
+  font-size: 2.25rem; /* 4xl */
+  font-weight: 800; /* extrabold */
+  letter-spacing: -0.02em; /* tracking-tight */
+}
+
+@media (min-width: 1024px) {
+  /* lg */
+  .bn-editor h1 {
+    font-size: 3rem; /* 5xl */
+  }
+}
+
+.bn-editor h2 {
+  padding-bottom: 0.5rem; /* pb-2 */
+  font-size: 1.875rem; /* 3xl */
+  font-weight: 600; /* semibold */
+  letter-spacing: -0.02em; /* tracking-tight */
+}
+
+.bn-editor h3 {
+  font-size: 1.5rem; /* 2xl */
+  font-weight: 600; /* semibold */
+  letter-spacing: -0.02em; /* tracking-tight */
+}
+
+.bn-editor p {
+  line-height: 1.75; /* leading-7 */
+}
+
+.bn-container .bn-side-menu .bn-button {
 }

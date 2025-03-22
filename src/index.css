@@ -179,12 +179,17 @@
   body {
     @apply bg-background text-foreground;
   }
+}
 
+@layer component {
   .bn-editor * {
     @apply font-[Geist];
   }
 
-  .bn-editor h1 .bn-inline-content {
+  html[lang="vi"] .bn-editor * {
+    @apply font-sans;
+  }
+  /* .bn-editor h1 .bn-inline-content {
     @apply scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl;
   }
 
@@ -198,5 +203,5 @@
 
   .bn-editor p .bn-inline-content {
     @apply leading-7 [&:not(:first-child)]:mt-6;
-  }
+  } */
 }

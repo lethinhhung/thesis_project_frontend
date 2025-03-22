@@ -34,9 +34,6 @@ export function NavMain({
     <>
       {/* Lazy load SearchBarDialog */}
       <Suspense>
-        {open && (
-          <div className="z-50 fixed inset-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80"></div>
-        )}
         <SearchBarDialog open={open} setOpen={setOpen} />
       </Suspense>
       <SidebarMenu>

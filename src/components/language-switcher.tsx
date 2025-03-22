@@ -38,6 +38,7 @@ const LanguageSwitcher = ({
     setLanguage(lng);
     i18n.changeLanguage(lng);
     localStorage.setItem("language", lng);
+    document.documentElement.lang = lng;
   };
 
   return (

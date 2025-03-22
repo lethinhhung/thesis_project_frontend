@@ -445,8 +445,42 @@ function Course() {
             </div>
           </div>
         </TabsContent>
-        <TabsContent value="dashboard">Charts go here.</TabsContent>
-        <TabsContent value="ask">Ask AI</TabsContent>
+        <TabsContent value="dashboard">
+          <div className="w-full flex p-2 md:p-4 flex-col gap-4">
+            <div className="w-full flex justify-between items-center">
+              <div className="flex flex-col">
+                <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
+                  Dashboard
+                </h4>
+                <p className="text-sm text-muted-foreground">
+                  Track your learning progress! View course statistics, quizzes,
+                  projects, and your grades. Stay updated with upcoming lessons
+                  and assess your overall performance.
+                </p>
+              </div>
+            </div>
+            <div className="w-full h-500 flex grid grid-col-1 sm:px-2 md:grid-cols-2 2xl:grid-cols-3 gap-4">
+              Content
+            </div>
+          </div>
+        </TabsContent>
+        <TabsContent value="ask">
+          <div className="w-full flex p-2 md:p-4 flex-col gap-4">
+            <div className="w-full flex justify-between items-center sticky top-16">
+              <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
+                Ask AI
+              </h4>
+              <div className="flex gap-2 items-center">
+                <SortButton variant={"secondary"} />
+
+                <Button>new</Button>
+              </div>
+            </div>
+            <div className="w-full flex grid grid-col-1 sm:px-2 md:grid-cols-2 2xl:grid-cols-3 gap-4">
+              Content
+            </div>
+          </div>
+        </TabsContent>
       </Tabs>
     </div>
   );

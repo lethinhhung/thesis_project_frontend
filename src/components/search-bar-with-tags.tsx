@@ -11,15 +11,6 @@ import {
   PaginationItem,
   PaginationLink,
 } from "@/components/ui/pagination";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import {
   Dialog,
@@ -37,8 +28,9 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
-import { CalendarClock, SortAsc, Tag } from "lucide-react";
+import { Tag } from "lucide-react";
 import SortButton from "./sort-button";
+import { useState } from "react";
 
 const badges = [
   { title: "All", total: "50" },
@@ -71,6 +63,7 @@ function SearchBarWithTags({
   className?: string;
   placeholder?: string;
 }) {
+  const [open, setOpen] = useState(false);
   return (
     <div
       className={cn(
@@ -87,7 +80,7 @@ function SearchBarWithTags({
         <SortButton variant={"ghost"} />
 
         <TooltipProvider>
-          <Dialog>
+          <Dialog open={open} onOpenChange={setOpen}>
             <Tooltip>
               <TooltipTrigger asChild>
                 <DialogTrigger asChild>

@@ -94,7 +94,7 @@ export default function SearchBarDialog({
   };
 
   return (
-    <CommandDialog modal={false} open={open} onOpenChange={setOpen}>
+    <CommandDialog open={open} onOpenChange={setOpen}>
       <CommandInput placeholder="Search for everything..." />
       <CommandList className="scrollbar">
         <CommandEmpty>No results found.</CommandEmpty>

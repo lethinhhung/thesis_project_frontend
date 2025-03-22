@@ -29,15 +29,7 @@ function DocumentPreviewMobile({
   header: boolean;
 }) {
   return (
-    <Drawer
-      modal={false}
-      open={open}
-      onOpenChange={onOpenChange}
-      autoFocus={open}
-    >
-      {open && (
-        <div className="fixed inset-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/20 z-40"></div>
-      )}
+    <Drawer open={open} onOpenChange={onOpenChange} autoFocus={open}>
       <DrawerContent onInteractOutside={() => onOpenChange(false)}>
         <div className="flex justify-between w-full max-w-5xl mx-auto">
           <DrawerHeader>

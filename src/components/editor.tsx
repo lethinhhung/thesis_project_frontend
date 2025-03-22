@@ -21,6 +21,7 @@ import {
 } from "@blocknote/core";
 import { SquareSplitVertical } from "lucide-react";
 import CustomEmojiPicker from "./blocks/emoji";
+import { useEffect } from "react";
 
 const plainTheme = {
   light: lightDefaultTheme,
@@ -61,7 +62,15 @@ const Editor = ({
   isPlainBackground: boolean;
   isDarkTheme: boolean;
 }) => {
-  const editor = useCreateBlockNote({ schema });
+  const editor = useCreateBlockNote({
+    schema,
+    initialContent: [
+      {
+        type: "paragraph",
+        content: "Welcome to this demo!",
+      },
+    ],
+  });
   const isMobile = useIsMobile();
 
   // Xác định theme của editor
@@ -73,12 +82,27 @@ const Editor = ({
       : isDarkTheme
       ? "dark"
       : "light";
+  async function loadInitialHTML() {
+    const content = await localStorage.getItem("content");
+    if (!content) return;
+    const blocks = await editor.tryParseHTMLToBlocks(content);
+    editor.replaceBlocks(editor.document, blocks);
+  }
+
+  async function saveContent() {
+    const html = await editor.blocksToFullHTML(editor.document);
+    console.log(html);
+    localStorage.setItem("content", html);
+  }
+  useEffect(() => {
+    loadInitialHTML();
+  }, [editor]);
 
   return (
     <BlockNoteView
+      onChange={saveContent}
       editor={editor}
       theme={editorTheme}
-      sideMenu={!isMobile}
       slashMenu={false}
       emojiPicker={false}
     >
