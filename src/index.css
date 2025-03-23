@@ -183,7 +183,7 @@
 
 @layer component {
   .bn-editor * {
-    @apply font-[Geist];
+    @apply font-[Geist] text-primary;
   }
 
   html[lang="vi"] .bn-editor * {

@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/collapsible";
 import { Document } from "@/interfaces/document";
 import { DocumentCard } from "@/components/document-card";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import DocumentPreviewMobile from "@/components/document-preview-mobile";
 import { LessonCardLarge } from "@/components/lesson-card-large";
 import { Lesson } from "@/interfaces/lesson";
@@ -299,6 +299,18 @@ function Course() {
     null
   );
   const [openDocumentPreview, setOpenDocumentPreview] = useState(false);
+  const tabTop = useRef<HTMLDivElement | null>(null);
+
+  const scrollToTabTop = () => {
+    const navbarHeight = 72; // Điều chỉnh theo chiều cao thực tế của navbar
+    if (tabTop.current) {
+      const topOffset =
+        tabTop.current.getBoundingClientRect().top +
+        window.scrollY -
+        navbarHeight;
+      window.scrollTo({ top: topOffset, behavior: "smooth" });
+    }
+  };
 
   const handleDocumentSelect = (document: Document) => {
     setSelectedDocument(document);
@@ -306,6 +318,7 @@ function Course() {
   };
   return (
     <div className="flex flex-col items-center mx-auto h-full w-full max-w-7xl rounded-xl">
+      <div></div>
       <div className="w-full flex p-2 md:p-4 flex-col gap-4 border-b border-dashed">
         <Collapsible open={isExpanded} onOpenChange={setIsExpanded}>
           <CollapsibleContent
@@ -354,22 +367,22 @@ function Course() {
         of his ways and repealed the joke tax.
       </div>
 
-      <Tabs defaultValue="lessons" className="w-full py-4">
+      <Tabs ref={tabTop} defaultValue="lessons" className="w-full py-4">
         <Collapsible className="flex flex-wrap gap-2 items-center mx-2 md:mx-4 sticky top-16 z-10 transition-all duration-300 pr-25">
           <TabsList>
-            <TabsTrigger value="lessons">
+            <TabsTrigger onClick={scrollToTabTop} value="lessons">
               <TableOfContents />
               <div className="hidden sm:flex">Lessons</div>
             </TabsTrigger>
-            <TabsTrigger value="documents">
+            <TabsTrigger onClick={scrollToTabTop} value="documents">
               <SquareLibrary />
               <div className="hidden sm:flex">Documents</div>
             </TabsTrigger>
-            <TabsTrigger value="dashboard">
+            <TabsTrigger onClick={scrollToTabTop} value="dashboard">
               <ChartColumnIncreasing />
               <div className="hidden sm:flex">Dashboard</div>
             </TabsTrigger>
-            <TabsTrigger value="ask">
+            <TabsTrigger onClick={scrollToTabTop} value="ask">
               <Sparkles />
               <div className="hidden sm:flex">Ask AI</div>
             </TabsTrigger>

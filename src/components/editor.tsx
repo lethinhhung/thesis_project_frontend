@@ -31,7 +31,6 @@ import { useEffect } from "react";
 import { Quote } from "./blocks/quote";
 import { Heading4 } from "./blocks/heading4";
 import { InlineCode } from "./blocks/inline-code";
-import { describe } from "node:test";
 import { Muted } from "./blocks/muted";
 
 const plainTheme = {
@@ -137,12 +136,6 @@ const Editor = ({
 }) => {
   const editor = useCreateBlockNote({
     schema,
-    initialContent: [
-      {
-        type: "paragraph",
-        content: "Welcome to this demo!",
-      },
-    ],
   });
   const isMobile = useIsMobile();
 
@@ -150,8 +143,6 @@ const Editor = ({
   const editorTheme =
     isPlainBackground && isDarkTheme
       ? plainTheme.dark
-      : isPlainBackground
-      ? plainTheme.light
       : isDarkTheme
       ? "dark"
       : "light";
@@ -165,10 +156,11 @@ const Editor = ({
   async function saveContent() {
     const html = await editor.blocksToFullHTML(editor.document);
     localStorage.setItem("content", html);
+    console.log(html);
   }
   useEffect(() => {
     loadInitialHTML();
-  }, [editor]);
+  }, []);
 
   return (
     <BlockNoteView
