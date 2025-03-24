@@ -69,7 +69,7 @@ export function NavUser({
             align="start"
             sideOffset={4}
           >
-            <DropdownMenuLabel className="p-0 font-normal">
+            <DropdownMenuLabel className="p-0 font-normal ">
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                 <Avatar className="h-8 w-8 rounded-lg">
                   <AvatarImage src={userLocal.avatar} alt={userLocal.name} />
@@ -82,11 +82,10 @@ export function NavUser({
                   <span className="truncate text-xs">{userLocal.email}</span>
                 </div>
               </div>
-              {isMobile && (
-                <div className="flex items-center gap-2 p-2">
-                  <NavControls />
-                </div>
-              )}
+
+              <div className="flex md:hidden items-center gap-2">
+                <NavControls />
+              </div>
             </DropdownMenuLabel>
 
             <DropdownMenuSeparator />

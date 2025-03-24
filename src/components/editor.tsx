@@ -156,7 +156,7 @@ const Editor = ({
   async function saveContent() {
     const html = await editor.blocksToFullHTML(editor.document);
     localStorage.setItem("content", html);
-    console.log(html);
+    console.log(await editor.blocksToMarkdownLossy(editor.document));
   }
   useEffect(() => {
     loadInitialHTML();

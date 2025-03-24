@@ -281,7 +281,7 @@ export function SidebarLeft({
   const { isMobile } = useSidebar();
   return (
     <Sidebar className="border-r-0 z-40" {...props}>
-      <SidebarHeader>
+      <SidebarHeader className="md:gap-0">
         <NavUser user={data.user} />
         {!isMobile && <NavControls />}
         <NavMain items={data.navMain} />

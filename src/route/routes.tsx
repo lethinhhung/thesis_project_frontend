@@ -21,7 +21,7 @@ import Calendar from "@/pages/Calendar";
 import NotFound from "@/pages/NotFound";
 import Course from "@/pages/Course";
 import Lesson from "@/pages/Lesson";
-import ScrollToTop from "@/ultils/scroll-to-top";
+import ScrollToTop from "@/utils/scroll-to-top";
 
 const PrivateRoute = ({ children }: { children: ReactNode }) => {
   // const isAuthenticated = localStorage.getItem("token");

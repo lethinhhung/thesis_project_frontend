@@ -51,7 +51,6 @@ html::-webkit-scrollbar-track {
 }
 
 .bn-editor h2 {
-  padding-bottom: 0.5rem; /* pb-2 */
   font-size: 1.875rem; /* 3xl */
   font-weight: 600; /* semibold */
   letter-spacing: -0.02em; /* tracking-tight */
