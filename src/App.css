@@ -66,5 +66,33 @@ html::-webkit-scrollbar-track {
   line-height: 1.75; /* leading-7 */
 }
 
+.bn-panel {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 100dvw;
+  padding: 0 1rem;
+}
+
+.bn-toolbar {
+}
+
+@media (max-width: 1280px) {
+  [aria-label="Replace image"] {
+    display: none !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .bn-file-block-content-wrapper {
+    max-width: calc(100dvw - 255px - 152px);
+  }
+}
+
+.bn-editor .tableWrapper {
+  padding: 10px 0px !important;
+}
+
 .bn-container .bn-side-menu .bn-button {
 }

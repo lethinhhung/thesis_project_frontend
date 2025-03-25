@@ -23,7 +23,7 @@ export function DocumentCard({
     <Card
       onClick={onClick}
       className={cn(
-        "duration-200 border-dashed hover:shadow-lg dark:hover:border-solid cursor-pointer",
+        "duration-200 dark:border-dashed hover:shadow-lg dark:hover:border-solid cursor-pointer",
         className
       )}
     >

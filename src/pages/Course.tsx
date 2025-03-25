@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   ChartColumnIncreasing,
+  Folder,
   Image,
   Search,
   Settings,
@@ -16,13 +17,14 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 import { Document } from "@/interfaces/document";
-import { DocumentCard } from "@/components/document-card";
-import { useEffect, useRef, useState } from "react";
-import DocumentPreviewMobile from "@/components/document-preview-mobile";
-import { LessonCardLarge } from "@/components/lesson-card-large";
+import { useRef, useState } from "react";
 import { Lesson } from "@/interfaces/lesson";
 import { Input } from "@/components/ui/input";
 import SortButton from "@/components/sort-button";
+import CourseDashboard from "@/components/ui/course-dashboard";
+import CourseLessons from "@/components/course-lessons";
+import CourseDocument from "@/components/course-document";
+import CourseTestsProjects from "@/components/course-tests-projects";
 
 const badges = [
   { title: "Math" },
@@ -295,30 +297,24 @@ const documents: Document[] = [
 
 function Course() {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [selectedDocument, setSelectedDocument] = useState<Document | null>(
-    null
-  );
-  const [openDocumentPreview, setOpenDocumentPreview] = useState(false);
+
   const tabTop = useRef<HTMLDivElement | null>(null);
+  const [tab, setTab] = useState("dashboard");
 
   const scrollToTabTop = () => {
-    const navbarHeight = 72; // Điều chỉnh theo chiều cao thực tế của navbar
+    const navbarHeight = 56;
     if (tabTop.current) {
       const topOffset =
         tabTop.current.getBoundingClientRect().top +
         window.scrollY -
         navbarHeight;
+
       window.scrollTo({ top: topOffset, behavior: "smooth" });
     }
   };
 
-  const handleDocumentSelect = (document: Document) => {
-    setSelectedDocument(document);
-    setOpenDocumentPreview(true);
-  };
   return (
     <div className="flex flex-col items-center mx-auto h-full w-full max-w-7xl rounded-xl">
-      <div></div>
       <div className="w-full flex p-2 md:p-4 flex-col gap-4 border-b border-dashed">
         <Collapsible open={isExpanded} onOpenChange={setIsExpanded}>
           <CollapsibleContent
@@ -367,24 +363,34 @@ function Course() {
         of his ways and repealed the joke tax.
       </div>
 
-      <Tabs ref={tabTop} defaultValue="lessons" className="w-full py-4">
-        <Collapsible className="flex flex-wrap gap-2 items-center mx-2 md:mx-4 sticky top-16 z-10 transition-all duration-300 pr-25">
+      <Tabs
+        value={tab}
+        onValueChange={setTab}
+        ref={tabTop}
+        defaultValue="dashboard"
+        className="w-full py-4"
+      >
+        <Collapsible className="flex flex-wrap gap-2 items-center mx-2 md:mx-4 sticky top-16 z-10 transition-all duration-300 pr-27">
           <TabsList>
+            <TabsTrigger onClick={scrollToTabTop} value="dashboard">
+              <ChartColumnIncreasing />
+              <div className="hidden lg:flex">Dashboard</div>
+            </TabsTrigger>
             <TabsTrigger onClick={scrollToTabTop} value="lessons">
               <TableOfContents />
-              <div className="hidden sm:flex">Lessons</div>
+              <div className="hidden lg:flex">Lessons</div>
             </TabsTrigger>
             <TabsTrigger onClick={scrollToTabTop} value="documents">
               <SquareLibrary />
-              <div className="hidden sm:flex">Documents</div>
+              <div className="hidden lg:flex">Documents</div>
             </TabsTrigger>
-            <TabsTrigger onClick={scrollToTabTop} value="dashboard">
-              <ChartColumnIncreasing />
-              <div className="hidden sm:flex">Dashboard</div>
+            <TabsTrigger onClick={scrollToTabTop} value="tests">
+              <Folder />
+              <div className="hidden lg:flex">Tests & Projects</div>
             </TabsTrigger>
             <TabsTrigger onClick={scrollToTabTop} value="ask">
               <Sparkles />
-              <div className="hidden sm:flex">Ask AI</div>
+              <div className="hidden lg:flex">Ask AI</div>
             </TabsTrigger>
           </TabsList>
 
@@ -401,81 +407,22 @@ function Course() {
             />
           </CollapsibleContent>
         </Collapsible>
+        <TabsContent value="dashboard">
+          <CourseDashboard
+            lessons={lessons}
+            documents={documents}
+            setTab={setTab}
+            scrollToTabTop={scrollToTabTop}
+          />
+        </TabsContent>
         <TabsContent className="" value="lessons">
-          <div className="w-full flex p-2 md:p-4 flex-col gap-4">
-            <div className="w-full flex justify-between items-center sticky top-16">
-              <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
-                Lessons ({lessons.length})
-              </h4>
-              <div className="flex gap-2 items-center">
-                <SortButton variant={"secondary"} />
-
-                <Button>new</Button>
-              </div>
-            </div>
-            <div className="w-full flex grid grid-col-1 sm:px-2 md:grid-cols-2 2xl:grid-cols-3 gap-4">
-              {lessons.map((lesson) => (
-                <LessonCardLarge
-                  key={lesson.id}
-                  lesson={lesson}
-                  className="col-span-1"
-                />
-              ))}
-            </div>
-          </div>
+          <CourseLessons lessons={lessons} />
         </TabsContent>
         <TabsContent className="" value="documents">
-          <div className="w-full flex p-2 md:p-4 flex-col gap-4">
-            <div className="w-full flex justify-between items-center sticky top-16">
-              <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
-                Documents ({documents.length})
-              </h4>
-              <div className="flex gap-2 items-center">
-                <SortButton variant={"secondary"} />
-
-                <Button>new</Button>
-              </div>
-            </div>
-
-            <DocumentPreviewMobile
-              open={openDocumentPreview}
-              onOpenChange={setOpenDocumentPreview}
-              document={selectedDocument}
-              header={false}
-            />
-
-            <div className="w-full flex grid grid-col-1 sm:px-2 md:grid-cols-2 2xl:grid-cols-3 gap-4">
-              {documents.map((document) => (
-                <DocumentCard
-                  className="col-span-1"
-                  key={document.id}
-                  document={document}
-                  onClick={() => {
-                    handleDocumentSelect(document);
-                  }}
-                />
-              ))}
-            </div>
-          </div>
+          <CourseDocument documents={documents} />
         </TabsContent>
-        <TabsContent value="dashboard">
-          <div className="w-full flex p-2 md:p-4 flex-col gap-4">
-            <div className="w-full flex justify-between items-center">
-              <div className="flex flex-col">
-                <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
-                  Dashboard
-                </h4>
-                <p className="text-sm text-muted-foreground">
-                  Track your learning progress! View course statistics, quizzes,
-                  projects, and your grades. Stay updated with upcoming lessons
-                  and assess your overall performance.
-                </p>
-              </div>
-            </div>
-            <div className="w-full h-500 flex grid grid-col-1 sm:px-2 md:grid-cols-2 2xl:grid-cols-3 gap-4">
-              Content
-            </div>
-          </div>
+        <TabsContent className="" value="tests">
+          <CourseTestsProjects />
         </TabsContent>
         <TabsContent value="ask">
           <div className="w-full flex p-2 md:p-4 flex-col gap-4">
