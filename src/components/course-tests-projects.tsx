@@ -1,4 +1,6 @@
-import { PencilLine, Settings } from "lucide-react";
+"use client";
+
+import { Settings } from "lucide-react";
 import SortButton from "./sort-button";
 import { Button } from "./ui/button";
 import {
@@ -8,6 +10,13 @@ import {
   CardHeader,
   CardTitle,
 } from "./ui/card";
+import CourseTestsChart from "./course-tests-chart";
+
+const testsData = [
+  { test: "Essay", score: 9 },
+  { test: "Mid-term", score: 8 },
+  { test: "End-term", score: 10 },
+];
 
 function CourseTestsProjects() {
   return (
@@ -32,46 +41,25 @@ function CourseTestsProjects() {
               </Button>
             </div>
           </CardHeader>
+          <CardContent>
+            <CourseTestsChart data={testsData} />
+          </CardContent>
           <CardContent className="space-y-4">
-            <Card>
-              <div className="flex flex-row items-center justify-between">
-                <CardHeader>
-                  <CardTitle>Essay</CardTitle>
-                  <CardDescription>1/1/2021</CardDescription>
-                </CardHeader>
-                <div className="pr-6">
-                  <h2 className="scroll-m-20 text-3xl font-semibold tracking-tight first:mt-0">
-                    10
-                  </h2>
+            {testsData.map((test, index) => (
+              <Card key={index} className="p-4">
+                <div className="flex flex-row items-center justify-between">
+                  <CardHeader className="px-2">
+                    <CardTitle>{test.test}</CardTitle>
+                    <CardDescription>1/1/2021</CardDescription>
+                  </CardHeader>
+                  <div className="px-2">
+                    <h2 className="scroll-m-20 text-3xl font-semibold tracking-tight first:mt-0">
+                      {test.score}
+                    </h2>
+                  </div>
                 </div>
-              </div>
-            </Card>
-            <Card>
-              <div className="flex flex-row items-center justify-between">
-                <CardHeader>
-                  <CardTitle>Mid-term</CardTitle>
-                  <CardDescription>1/1/2021</CardDescription>
-                </CardHeader>
-                <div className="pr-6">
-                  <h2 className="scroll-m-20 text-3xl font-semibold tracking-tight first:mt-0">
-                    10
-                  </h2>
-                </div>
-              </div>
-            </Card>
-            <Card>
-              <div className="flex flex-row items-center justify-between">
-                <CardHeader>
-                  <CardTitle>End-term</CardTitle>
-                  <CardDescription>1/1/2021</CardDescription>
-                </CardHeader>
-                <div className="pr-6">
-                  <h2 className="scroll-m-20 text-3xl font-semibold tracking-tight first:mt-0">
-                    10
-                  </h2>
-                </div>
-              </div>
-            </Card>
+              </Card>
+            ))}
           </CardContent>
         </Card>
         <Card>
