@@ -156,7 +156,6 @@ const Editor = ({
   async function saveContent() {
     const html = await editor.blocksToFullHTML(editor.document);
     localStorage.setItem("content", html);
-    console.log(await editor.blocksToMarkdownLossy(editor.document));
   }
   useEffect(() => {
     loadInitialHTML();
@@ -164,11 +163,13 @@ const Editor = ({
 
   return (
     <BlockNoteView
+      className="w-full col-span-full"
       onChange={saveContent}
       editor={editor}
       theme={editorTheme}
       slashMenu={false}
       emojiPicker={false}
+      // onClick={() => console.log(editor.getSelection()?.blocks)}
     >
       <SuggestionMenuController
         triggerCharacter={"/"}

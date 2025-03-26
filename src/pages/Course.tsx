@@ -5,6 +5,7 @@ import {
   ChartColumnIncreasing,
   Folder,
   Image,
+  MoreHorizontal,
   Search,
   Settings,
   Sparkles,
@@ -342,7 +343,7 @@ function Course() {
                 </Button>
               </CollapsibleTrigger>
               <Button size={"icon"} variant={"ghost"}>
-                <Settings />
+                <MoreHorizontal />
               </Button>
             </div>
           </div>

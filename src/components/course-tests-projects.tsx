@@ -7,15 +7,16 @@ import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "./ui/card";
 import CourseTestsChart from "./course-tests-chart";
 
 const testsData = [
-  { test: "Essay", score: 9 },
-  { test: "Mid-term", score: 8 },
-  { test: "End-term", score: 10 },
+  { test: "Essay", score: 9, date: "1/1/2021" },
+  { test: "Mid-term", score: 8, date: "1/3/2021" },
+  { test: "End-term", score: 10, date: "1/5/2021" },
 ];
 
 function CourseTestsProjects() {
@@ -50,7 +51,7 @@ function CourseTestsProjects() {
                 <div className="flex flex-row items-center justify-between">
                   <CardHeader className="px-2">
                     <CardTitle>{test.test}</CardTitle>
-                    <CardDescription>1/1/2021</CardDescription>
+                    <CardDescription>{test.date}</CardDescription>
                   </CardHeader>
                   <div className="px-2">
                     <h2 className="scroll-m-20 text-3xl font-semibold tracking-tight first:mt-0">
