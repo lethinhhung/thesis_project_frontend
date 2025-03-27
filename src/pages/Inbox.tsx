@@ -82,59 +82,58 @@ function Inbox() {
   return (
     <div className="w-full h-[calc(100dvh-92px)] rounded-xl flex justify-center items-center">
       <div className="w-full h-full rounded-xl columns-1 lg:columns-2">
-        <div className="flex justify-center col-span-1 h-full w-full rounded-xl">
-          <ScrollArea className="h-full w-full rounded-xl">
-            <div
-              className={
-                "w-full h-full sticky top-0 left-0 z-10 flex flex-wrap gap-2 items-center p-2 rounded-xl border border-dashed bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
-              }
-            >
-              <div className="flex flex-row flex-wrap gap-2 px-2 pt-2 w-full">
-                <div className="w-full flex flex-row gap-2">
-                  <Input
-                    className="w-full border border-dashed"
-                    placeholder={"Search"}
-                  />
+        <div className="flex flex-col justify-center col-span-1 h-full w-full rounded-xl">
+          <div
+            className={
+              "w-full sticky top-0 left-0 z-10 flex flex-wrap gap-2 items-center p-2 rounded-xl border border-dashed bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+            }
+          >
+            <div className="flex flex-row flex-wrap gap-2 px-2 pt-2 w-full">
+              <div className="w-full flex flex-row gap-2">
+                <Input
+                  className="w-full border border-dashed"
+                  placeholder={"Search"}
+                />
 
-                  <Button
-                    size={"icon"}
-                    variant="ghost"
-                    className="border border-dashed"
-                  >
-                    <Mail />
-                  </Button>
-                </div>
-                <Pagination className="w-full bg-transparent">
-                  <PaginationContent>
-                    <PaginationItem>
-                      <PaginationPreviousNoTitle href="#" />
-                    </PaginationItem>
-                    <PaginationItem>
-                      <PaginationLink href="#">1</PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                      <PaginationLink
-                        href="#"
-                        isActive
-                        className="border border-dashed"
-                      >
-                        2
-                      </PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                      <PaginationLink href="#">3</PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                      <PaginationEllipsis />
-                    </PaginationItem>
-                    <PaginationItem>
-                      <PaginationNextNoTitle href="#" />
-                    </PaginationItem>
-                  </PaginationContent>
-                </Pagination>
+                <Button
+                  size={"icon"}
+                  variant="ghost"
+                  className="border border-dashed"
+                >
+                  <Mail />
+                </Button>
               </div>
+              <Pagination className="w-full bg-transparent">
+                <PaginationContent>
+                  <PaginationItem>
+                    <PaginationPreviousNoTitle href="#" />
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationLink href="#">1</PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationLink
+                      href="#"
+                      isActive
+                      className="border border-dashed"
+                    >
+                      2
+                    </PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationLink href="#">3</PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationEllipsis />
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationNextNoTitle href="#" />
+                  </PaginationItem>
+                </PaginationContent>
+              </Pagination>
             </div>
-
+          </div>
+          <div className="h-full w-full rounded-xl overflow-y-auto">
             <div className="w-full flex flex-col gap-2 p-3">
               {mails.map((mail, index) => (
                 <Card
@@ -155,7 +154,7 @@ function Inbox() {
                 </Card>
               ))}
             </div>
-          </ScrollArea>
+          </div>
         </div>
 
         {isTablet && (

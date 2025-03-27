@@ -8,7 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { BookOpen, CheckCircle2, Sparkles } from "lucide-react";
 import {
   Tooltip,
@@ -28,12 +28,12 @@ function DocumentPreview({
   header: boolean;
 }) {
   return (
-    <div className="w-full h-full relative flex">
+    <div className="w-full h-full flex">
       {document ? (
-        <ScrollArea className="h-full w-full rounded-xl">
+        <div className="h-full w-full rounded-xl flex flex-col">
           <Card
             hidden={!header}
-            className="flex w-full sticky top-0 left-0 z-10 rounded-xl border border-dashed shadow-none bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+            className="flex w-full sticky top-0 left-0 z-10 rounded-xl border border-dashed shadow-none"
           >
             <CardHeader>
               <CardTitle>
@@ -88,7 +88,7 @@ function DocumentPreview({
             </CardFooter>
           </Card>
 
-          <div className="flex flex-col py-2 gap-2 h-full w-full rounded-xl">
+          <div className="flex flex-col py-2 gap-2 w-full rounded-xl overflow-y-auto scrollbar">
             <Card className="w-full bg-background rounded-xl border border-dashed shadow-none">
               <CardContent>{document?.description}</CardContent>
               <CardFooter>
@@ -110,7 +110,7 @@ function DocumentPreview({
               </CardContent>
             </Card>
           </div>
-        </ScrollArea>
+        </div>
       ) : (
         <div className="flex items-center justify-center w-full h-full gap-2">
           <BookOpen />

@@ -82,8 +82,8 @@ function Chat() {
   }, [messages]);
 
   return (
-    <div className="flex flex-col space-y-4 items-center justify-between m-auto w-full h-[calc(100dvh-92px)] max-w-5xl rounded-xl">
-      <ScrollArea id="scroll" className="flex-1 w-full overflow-y-auto md:p-4">
+    <div className="flex flex-col mx-auto space-y-4 items-center justify-between w-full h-[calc(100dvh-92px)] max-w-5xl rounded-xl">
+      <div id="scroll" className="w-full overflow-y-auto md:p-4">
         {messages.map((message, index) =>
           message.sender === "user" ? (
             <div key={index} className="flex justify-end mb-5">
@@ -107,9 +107,9 @@ function Chat() {
         )}
 
         <div ref={messagesEndRef}></div>
-      </ScrollArea>
+      </div>
 
-      <div className="relative flex flex-col items-center w-full rounded-2xl md:px-4 bg-background">
+      <div className="flex flex-col items-center w-full rounded-2xl md:px-4 bg-background">
         <Textarea
           onChange={(e) => setInput(e.target.value)}
           value={input}
@@ -118,28 +118,6 @@ function Chat() {
           className="resize-none max-h-[17rem] border-dashed scrollbar"
         ></Textarea>
         <div className="w-full pt-1 md:pt-2 flex gap-1 md:gap-2 justify-end">
-          <div className="w-full flex gap-1 md:gap-2 overflow-x-auto whitespace-nowrap">
-            <Button variant={"outline"}>
-              <FileText />
-              <div className="hidden md:flex">Document.docx</div>
-            </Button>
-            <Button variant={"outline"}>
-              <FileText />
-              <div className="hidden md:flex">Document.docx</div>
-            </Button>
-            <Button variant={"outline"}>
-              <FileText />
-              <div className="hidden md:flex">Document.docx</div>
-            </Button>
-            <Button variant={"outline"}>
-              <FileText />
-              <div className="hidden md:flex">Document.docx</div>
-            </Button>
-            <Button variant={"outline"}>
-              <FileText />
-              <div className="hidden md:flex">Document.docx</div>
-            </Button>
-          </div>
           <Button size={"icon"} onClick={scrollToBottom} variant={"ghost"}>
             <ChevronDown />
           </Button>

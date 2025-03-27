@@ -67,7 +67,7 @@ function SearchBarWithTags({
   return (
     <div
       className={cn(
-        "w-full h-full sticky top-0 left-0 z-10 flex flex-wrap flex-col gap-1 items-center p-2 rounded-xl border border-dashed bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60",
+        "w-full sticky top-0 left-0 z-10 flex flex-wrap flex-col gap-1 items-center p-2 rounded-xl border border-dashed bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60",
         className
       )}
     >

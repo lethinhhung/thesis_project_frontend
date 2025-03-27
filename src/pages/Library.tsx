@@ -144,21 +144,19 @@ function Library() {
   return (
     <div className="w-full h-[calc(100dvh-92px)] rounded-xl">
       <div className="w-full h-full rounded-xl columns-1 lg:columns-2">
-        <div className="flex col-span-1 justify-center h-full w-full rounded-xl">
-          <ScrollArea className="h-full w-full rounded-xl flex flex -col">
-            <SearchBarWithTags placeholder="Search for documents" />
+        <div className="h-full w-full col-span-1 rounded-xl flex flex-col">
+          <SearchBarWithTags placeholder="Search for documents" />
 
-            <div className="py-2 w-full grid grid-cols-1 2xl:grid-cols-2 gap-2 px-3">
-              {documents.map((document) => (
-                <DocumentCard
-                  className="col-span-1"
-                  key={document.id}
-                  document={document}
-                  onClick={() => handleDocumentSelect(document)}
-                />
-              ))}
-            </div>
-          </ScrollArea>
+          <div className="py-2 w-full grid grid-cols-1 2xl:grid-cols-2 gap-2 px-3 overflow-y-auto scrollbar">
+            {documents.map((document) => (
+              <DocumentCard
+                className="col-span-1"
+                key={document.id}
+                document={document}
+                onClick={() => handleDocumentSelect(document)}
+              />
+            ))}
+          </div>
         </div>
 
         {isTablet && (
@@ -170,7 +168,7 @@ function Library() {
           />
         )}
 
-        <div className="w-full h-full relative hidden lg:flex col-span-1">
+        <div className="w-full h-full hidden lg:flex col-span-1">
           <DocumentPreview document={selectedDocument} header={true} />
         </div>
       </div>
