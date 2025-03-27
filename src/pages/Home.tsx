@@ -12,7 +12,7 @@ function Home() {
   };
 
   return (
-    <div className="flex flex-col items-center mx-auto h-2000 w-full max-w-3xl rounded-xl bg-muted/50">
+    <div className="flex flex-col items-center mx-auto h-2000 w-full max-w-7xl rounded-xl bg-muted/50">
       <Button className="m-5" onClick={handleLogin}>
         <LogIn />
         {t("login")}

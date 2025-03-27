@@ -9,12 +9,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
 import {
   Tooltip,
   TooltipContent,
@@ -23,9 +17,7 @@ import {
 import {
   ArrowUpRight,
   FileText,
-  FlaskConical,
   MoreHorizontal,
-  Settings,
   Sparkles,
   Square,
   SquareDashed,
@@ -89,12 +81,12 @@ function Lesson() {
         className="w-full grid grid-cols-2 gap-4 max-w-5xl font-inherit relative"
         spellCheck="false"
       >
-        <Card className="border-dashed col-span-2 lg:col-span-1">
+        <Card className="dark:border-dashed col-span-2 lg:col-span-1">
           <div className="flex justify-between">
             <CardHeader>
               <CardTitle>Lesson 1 📄</CardTitle>
               <CardDescription>22/12/2013</CardDescription>
-              <CardDescription>Lesson description</CardDescription>
+              <CardDescription>User's lesson note</CardDescription>
             </CardHeader>
             <div className="px-4">
               <Button size={"sm"} variant={"ghost"}>
@@ -102,10 +94,26 @@ function Lesson() {
               </Button>
             </div>
           </div>
-          <CardContent className="flex flex-col gap-2">
-            <p>Reference documents</p>
-            <div className="grid grid-cols-2 gap-2 p-2">
-              <Card className="p-3">
+          <CardContent className="flex flex-col gap-4 border border-dashed mx-6 p-4 rounded-lg">
+            <p className="text-sm text-muted-foreground">Reference documents</p>
+            <div className="grid grid-cols-3 gap-2">
+              <Button variant={"ghost"}>
+                <FileText />
+                Document.docx
+              </Button>
+              <Button variant={"ghost"}>
+                <FileText />
+                Document.docx
+              </Button>
+              <Button variant={"ghost"}>
+                <FileText />
+                Document.docx
+              </Button>
+              <Button variant={"ghost"}>
+                <FileText />
+                Document.docx
+              </Button>
+              {/* <Card className="p-3">
                 <CardHeader className="px-0 flex flex-row items-center gap-2">
                   <CardDescription>
                     <FileText />
@@ -144,11 +152,11 @@ function Lesson() {
                     Document.docx
                   </CardDescription>
                 </CardHeader>
-              </Card>
+              </Card> */}
             </div>
           </CardContent>
         </Card>
-        <Card className="border-dashed justify-between col-span-2 lg:col-span-1">
+        <Card className="dark:border-dashed justify-between col-span-2 lg:col-span-1">
           <CardHeader>
             <CardTitle>Summary</CardTitle>
             <CardDescription>
@@ -164,9 +172,6 @@ function Lesson() {
               onClick={() => navigate("/chat")}
             >
               <ArrowUpRight /> Chat with AI
-            </Button>
-            <Button size={"sm"} variant={"ghost"}>
-              <FlaskConical /> Test with AI
             </Button>
             <Button size={"sm"} variant={"secondary"}>
               <Sparkles /> Re-summerize

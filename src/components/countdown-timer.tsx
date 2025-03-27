@@ -1,7 +1,15 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Ellipsis, Hourglass, Pause, Play, RotateCcw } from "lucide-react";
+import {
+  ChevronDown,
+  ChevronUp,
+  Ellipsis,
+  Hourglass,
+  Pause,
+  Play,
+  RotateCcw,
+} from "lucide-react";
 import { toast } from "sonner";
 import {
   Collapsible,
@@ -70,7 +78,8 @@ export function CountdownTimer() {
           </Button>
         </CollapsibleTrigger>
       </div>
-      <CollapsibleContent className="border-t border-dashed pt-2">
+
+      <CollapsibleContent className="border-t border-dashed pt-2 text-popover-foreground outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2">
         <div className="flex flex-row items-center justify-center gap-2">
           <Button
             onClick={() => {
@@ -118,7 +127,7 @@ export function CountdownTimer() {
               size="sm"
               onClick={() => setMinutes(minutes === 99 ? minutes : minutes + 1)}
             >
-              ▲
+              <ChevronUp />
             </Button>
             <Input
               type="number"
@@ -139,7 +148,7 @@ export function CountdownTimer() {
               size="sm"
               onClick={() => setMinutes(minutes === 0 ? minutes : minutes - 1)}
             >
-              ▼
+              <ChevronDown />
             </Button>
           </div>
           <span className="text-xl font-semibold">"</span>
@@ -149,7 +158,7 @@ export function CountdownTimer() {
               size="sm"
               onClick={() => setSeconds(seconds === 59 ? seconds : seconds + 1)}
             >
-              ▲
+              <ChevronUp />
             </Button>
             <Input
               type="number"
@@ -170,7 +179,7 @@ export function CountdownTimer() {
               size="sm"
               onClick={() => setSeconds(seconds === 0 ? seconds : seconds - 1)}
             >
-              ▼
+              <ChevronDown />
             </Button>
           </div>
           <span className="text-xl font-semibold">'</span>

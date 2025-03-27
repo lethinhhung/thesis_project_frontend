@@ -1,16 +1,12 @@
-import { ChevronRight, Cloud, Sparkles } from "lucide-react";
+import { ChevronRight, Cloud, Inbox, Sparkles } from "lucide-react";
 import { DatePicker } from "@/components/date-picker";
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
-  SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
   SidebarHeader,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
   SidebarSeparator,
 } from "@/components/ui/sidebar";
 import { CountdownTimer } from "./countdown-timer";
@@ -21,10 +17,14 @@ import {
   CollapsibleTrigger,
 } from "./ui/collapsible";
 import ChatSmall from "./chat-small";
+import ButtonWithBadge from "./button-with-badge";
+import { useNavigate, useParams } from "react-router-dom";
 
 export function SidebarRight({
   ...props
 }: React.ComponentProps<typeof Sidebar>) {
+  const navigate = useNavigate();
+  const { lessonId } = useParams();
   return (
     <Sidebar
       collapsible="none"
@@ -32,12 +32,16 @@ export function SidebarRight({
       {...props}
     >
       <SidebarHeader className="border-sidebar-border">
-        <div className="flex items-center gap-2 h-full w-full">
-          <div className="flex items-center justify-center h-full px-4">
-            <Label>
-              <Cloud /> Good morning
-            </Label>
-          </div>
+        <div className="flex items-center justify-between gap-2 w-full h-full">
+          <ButtonWithBadge
+            onClick={() => navigate("/inbox")}
+            isBadgeVisible={true}
+            badgeColor="bg-sky-500"
+            variant={"ghost"}
+          />
+          <Label>
+            <Cloud />
+          </Label>
         </div>
         <CountdownTimer />
       </SidebarHeader>
@@ -46,7 +50,7 @@ export function SidebarRight({
         <DatePicker />
         <div className="min-h-1000"></div>
       </SidebarContent>
-      <SidebarFooter className="px-0">
+      <SidebarFooter className="px-0 border-t border-dashed">
         <Collapsible className="group/collapsible">
           <SidebarGroupLabel
             asChild
@@ -54,7 +58,9 @@ export function SidebarRight({
           >
             <CollapsibleTrigger className="gap-2">
               <Sparkles />
-              Ask AI
+              <div className=" line-clamp-1 word-break break-all">
+                Ask AI {lessonId && `about ${lessonId?.toString()}`}
+              </div>
               <ChevronRight className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-90" />
             </CollapsibleTrigger>
           </SidebarGroupLabel>

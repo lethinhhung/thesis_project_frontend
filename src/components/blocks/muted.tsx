@@ -8,7 +8,9 @@ export const Muted = createReactBlockSpec(
   },
   {
     render: ({ contentRef }) => {
-      return <p ref={contentRef} className="text-sm text-muted-foreground"></p>;
+      return (
+        <p ref={contentRef} className="!text-sm !text-muted-foreground"></p>
+      );
     },
   }
 );

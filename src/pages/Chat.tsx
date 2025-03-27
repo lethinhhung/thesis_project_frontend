@@ -1,7 +1,14 @@
 import { Button } from "@/components/ui/button";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Textarea } from "@/components/ui/textarea";
-import { ArrowUp, ChevronDown, Paperclip, Plus } from "lucide-react";
+import {
+  ArrowUp,
+  ChevronDown,
+  FileText,
+  Paperclip,
+  Plus,
+  X,
+} from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 interface Message {
@@ -111,10 +118,36 @@ function Chat() {
           className="resize-none max-h-[17rem] border-dashed scrollbar"
         ></Textarea>
         <div className="w-full pt-1 md:pt-2 flex gap-1 md:gap-2 justify-end">
+          <div className="w-full flex gap-1 md:gap-2 overflow-x-auto whitespace-nowrap">
+            <Button variant={"outline"}>
+              <FileText />
+              <div className="hidden md:flex">Document.docx</div>
+            </Button>
+            <Button variant={"outline"}>
+              <FileText />
+              <div className="hidden md:flex">Document.docx</div>
+            </Button>
+            <Button variant={"outline"}>
+              <FileText />
+              <div className="hidden md:flex">Document.docx</div>
+            </Button>
+            <Button variant={"outline"}>
+              <FileText />
+              <div className="hidden md:flex">Document.docx</div>
+            </Button>
+            <Button variant={"outline"}>
+              <FileText />
+              <div className="hidden md:flex">Document.docx</div>
+            </Button>
+          </div>
           <Button size={"icon"} onClick={scrollToBottom} variant={"ghost"}>
             <ChevronDown />
           </Button>
-          <Button size={"icon"} variant={"ghost"}>
+          <Button
+            onClick={() => setMessages([])}
+            size={"icon"}
+            variant={"ghost"}
+          >
             <Plus />
           </Button>
           <Button size={"icon"} variant={"ghost"}>

@@ -371,7 +371,7 @@ function Course() {
         defaultValue="dashboard"
         className="w-full py-4"
       >
-        <Collapsible className="flex flex-wrap gap-2 items-center mx-2 md:mx-4 sticky top-16 z-10 transition-all duration-300 pr-27">
+        <Collapsible className="flex flex-wrap gap-1 sm:gap-2 items-center mx-2 md:mx-4 sticky top-16 z-10 transition-all duration-300 pr-26">
           <TabsList>
             <TabsTrigger onClick={scrollToTabTop} value="dashboard">
               <ChartColumnIncreasing />

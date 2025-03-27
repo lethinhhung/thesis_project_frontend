@@ -1,4 +1,4 @@
-import { Send, Sparkles, User } from "lucide-react";
+import { Send, User } from "lucide-react";
 import { ScrollArea } from "./ui/scroll-area";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
@@ -58,7 +58,7 @@ function ChatSmall() {
           </div>
         </div>
       </ScrollArea>
-      <div className="flex gap-1">
+      <div className="flex gap-1 px-2 pt-2">
         <Input />
         <Button size={"icon"}>
           <Send />
