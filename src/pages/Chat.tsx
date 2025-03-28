@@ -109,7 +109,7 @@ function Chat() {
 
   return (
     <div className="flex flex-col mx-auto space-y-4 items-center justify-between w-full h-[calc(100dvh-92px)] max-w-5xl rounded-xl">
-      <div id="scroll" className="w-full overflow-y-auto md:p-4">
+      <div id="scroll" className="w-full overflow-y-auto md:p-4 scrollbar">
         {messages.map((message, index) =>
           message.sender === "user" ? (
             <div key={index} className="flex justify-end mb-5">

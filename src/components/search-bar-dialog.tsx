@@ -48,20 +48,20 @@ const navigattionItems = [
 const actionsItems = [
   {
     title: "New course",
-    url: "/new-course",
+    url: "/courses",
     icon: Briefcase,
     action: <Plus />,
   },
-  { title: "New page", url: "/new-page", icon: Book, action: <Plus /> },
+  { title: "New page", url: "/pages", icon: Book, action: <Plus /> },
   {
     title: "New document",
-    url: "/new-document",
+    url: "/library",
     icon: Library,
     action: <Plus />,
   },
   {
     title: "New chat",
-    url: "/new-chat",
+    url: "/chat",
     icon: Sparkles,
     action: <Plus />,
   },
@@ -96,7 +96,7 @@ export default function SearchBarDialog({
   return (
     <CommandDialog open={open} onOpenChange={setOpen}>
       <CommandInput placeholder="Search for everything..." />
-      <CommandList className="scrollbar">
+      <CommandList className="scrollbar max-h-100">
         <CommandEmpty>No results found.</CommandEmpty>
         <CommandGroup heading="Courses">
           <CommandItem>

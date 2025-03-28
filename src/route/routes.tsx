@@ -22,6 +22,9 @@ import NotFound from "@/pages/NotFound";
 import Course from "@/pages/Course";
 import Lesson from "@/pages/Lesson";
 import ScrollToTop from "@/utils/scroll-to-top";
+import CoursesAll from "@/pages/CoursesAll";
+import CoursesSearch from "@/pages/CoursesSearch";
+import CoursesCompleted from "@/pages/CoursesCompleted";
 
 const PrivateRoute = ({ children }: { children: ReactNode }) => {
   // const isAuthenticated = localStorage.getItem("token");
@@ -68,7 +71,7 @@ const AppRoutes = () => {
           >
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/home" element={<Home />} />
-            <Route path="/courses" element={<Courses />} />
+            {/* <Route path="/courses" element={<Courses />} /> */}
             <Route path="/pages" element={<Pages />} />
             <Route path="/chat" element={<Chat />} />
             <Route path="/library" element={<Library />} />
@@ -78,7 +81,15 @@ const AppRoutes = () => {
             <Route path="/inbox" element={<Inbox />} />
 
             <Route path="/pages/:pageId" element={<Page />} />
-            <Route path="/courses/:courseId" element={<Course />} />
+            <Route path="/courses" element={<Courses />}>
+              <Route index element={<Navigate to="all" replace />} />
+              <Route path="all" element={<CoursesAll />} />
+              <Route path="search" element={<CoursesSearch />} />
+              <Route path="completed" element={<CoursesCompleted />} />
+              <Route path="ongoing" element={<CoursesCompleted />} />
+            </Route>
+            <Route path="/courses/:courseId" element={<Course />}></Route>
+
             <Route
               path="/courses/:courseId/lessons/:lessonId"
               element={<Lesson />}

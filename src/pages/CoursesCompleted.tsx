@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { Lesson } from "@/interfaces/lesson";
 import { ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { Outlet } from "react-router-dom";
 
 const courses = [
   {
@@ -88,17 +87,42 @@ const courses = [
   },
 ];
 
-function Courses() {
+const lessons: Lesson[] = [
+  {
+    id: "lesson-001",
+    title: "Introduction to JavaScript",
+    description:
+      "Learn the basics of JavaScript, including syntax, variables, and data types.",
+    date: "2025-03-10",
+  },
+  {
+    id: "lesson-002",
+    title: "React Components and Props",
+    description:
+      "Understand how to build reusable components and pass data using props in React.",
+    date: "2025-03-12",
+  },
+  {
+    id: "lesson-003",
+    title: "Data Structures: Arrays and Linked Lists",
+    description:
+      "Explore the fundamentals of arrays and linked lists, their operations, and use cases.",
+    date: "2025-03-15",
+  },
+];
+
+function CoursesCompleted() {
   return (
-    <div className="flex flex-col items-center w-full space-y-6">
-      <SearchBarWithTags
-        className="max-w-3xl top-18"
-        placeholder="Search for courses or lessons"
-        withPagination={false}
-      />
-      <Outlet />
+    <div className="col-span-12 grid grid-cols-12 gap-6 max-w-6xl w-full">
+      {courses.map((course) => (
+        <CourseCard
+          key={course.id}
+          className="col-span-12 md:col-span-6 2xl:col-span-4"
+          course={course}
+        />
+      ))}
     </div>
   );
 }
 
-export default Courses;
+export default CoursesCompleted;

@@ -31,6 +31,7 @@ import { cn } from "@/lib/utils";
 import { Tag } from "lucide-react";
 import SortButton from "./sort-button";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const badges = [
   { title: "All", total: "50" },
@@ -66,6 +67,7 @@ function SearchBarWithTags({
   withPagination?: boolean;
 }) {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
   return (
     <div
       className={cn(
@@ -75,6 +77,7 @@ function SearchBarWithTags({
     >
       <div className="flex flex-row flex-wrap gap-2 p-2 w-full">
         <Input
+          onChange={(e) => navigate(`/courses/search`)}
           className="flex-1 border border-dashed"
           placeholder={placeholder}
         />

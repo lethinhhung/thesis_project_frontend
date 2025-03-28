@@ -5,12 +5,15 @@ import {
   BreadcrumbList,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import { Home } from "lucide-react";
 
 const breadcrumbMap: Record<string, string> = {
   dashboard: "Dashboard",
   home: "Home",
   courses: "Courses",
+  all: "All",
+  completed: "Completed",
+  ongoing: "Ongoing",
+  search: "Search",
   pages: "Pages",
   chat: "Chat",
   library: "Library",

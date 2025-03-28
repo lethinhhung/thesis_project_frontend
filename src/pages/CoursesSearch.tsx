@@ -4,8 +4,6 @@ import SearchBarWithTags from "@/components/search-bar-with-tags";
 import { Button } from "@/components/ui/button";
 import { Lesson } from "@/interfaces/lesson";
 import { ArrowRight } from "lucide-react";
-import { useNavigate } from "react-router-dom";
-import { Outlet } from "react-router-dom";
 
 const courses = [
   {
@@ -88,17 +86,8 @@ const courses = [
   },
 ];
 
-function Courses() {
-  return (
-    <div className="flex flex-col items-center w-full space-y-6">
-      <SearchBarWithTags
-        className="max-w-3xl top-18"
-        placeholder="Search for courses or lessons"
-        withPagination={false}
-      />
-      <Outlet />
-    </div>
-  );
+function CoursesSearch() {
+  return <div className="col-span-12 grid grid-cols-12 gap-6"></div>;
 }
 
-export default Courses;
+export default CoursesSearch;
