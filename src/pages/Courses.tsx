@@ -1,15 +1,7 @@
-import { CourseCardLarge } from "@/components/course-card-large";
+import { CourseCard } from "@/components/course-card";
 import { LessonCardLarge } from "@/components/lesson-card-large";
 import SearchBarWithTags from "@/components/search-bar-with-tags";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Lesson } from "@/interfaces/lesson";
 import { ArrowRight } from "lucide-react";
 
@@ -80,6 +72,18 @@ const courses = [
     date: "2025-03-01",
     emoji: "🌐",
   },
+  {
+    id: "course-006",
+    title: "API Development with Node.js",
+    summary: "Create RESTful APIs using Node.js and Express.",
+    description:
+      "This course focuses on building APIs, security, user authentication, and performance optimization.",
+    tags: ["Node.js", "Backend", "API"],
+    type: "online",
+    status: false,
+    date: "2025-03-01",
+    emoji: "🌐",
+  },
 ];
 
 const lessons: Lesson[] = [
@@ -112,9 +116,10 @@ function Courses() {
       <SearchBarWithTags
         className="max-w-3xl top-18"
         placeholder="Search for courses or lessons"
+        withPagination={false}
       />
-      <div className="grid grid-cols-12 space-y-8 w-full h-full max-w-6xl">
-        <div className="col-span-12 grid grid-cols-12 gap-2">
+      <div className="grid grid-cols-12 space-y-8 w-full h-full max-w-6xl p-2">
+        <div className="col-span-12 grid grid-cols-12 gap-6">
           <div className="col-span-12 flex justify-between items-center">
             <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
               Recent lessons
@@ -129,7 +134,7 @@ function Courses() {
           ))}
         </div>
 
-        <div className="col-span-12 grid grid-cols-12 gap-2">
+        <div className="col-span-12 grid grid-cols-12 gap-6">
           <div className="col-span-12 flex justify-between items-center">
             <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
               On progress courses
@@ -145,7 +150,7 @@ function Courses() {
           {courses.map(
             (course) =>
               !course.status && (
-                <CourseCardLarge
+                <CourseCard
                   key={course.id}
                   className="col-span-12 md:col-span-6 2xl:col-span-4"
                   course={course}
@@ -154,7 +159,7 @@ function Courses() {
           )}
         </div>
 
-        <div className="col-span-12 grid grid-cols-12 gap-2">
+        <div className="col-span-12 grid grid-cols-12 gap-6">
           <div className="col-span-12 flex justify-between items-center">
             <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
               Completed courses
@@ -169,7 +174,7 @@ function Courses() {
           {courses.map(
             (course) =>
               course.status && (
-                <CourseCardLarge
+                <CourseCard
                   key={course.id}
                   className="col-span-12 md:col-span-6 2xl:col-span-4"
                   course={course}

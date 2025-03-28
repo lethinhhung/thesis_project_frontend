@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/collapsible";
 import { Input } from "@/components/ui/input";
 import { useNavigate } from "react-router-dom";
+import { FoldersCard } from "@/components/folders-card";
 
 const pages: Page[] = [
   {
@@ -31,7 +32,7 @@ const pages: Page[] = [
       "A comprehensive guide to the React framework, explaining its core concepts such as components, props, state management, lifecycle methods, and the importance of hooks. The document also covers best practices for structuring React applications, optimizing performance, and leveraging React Router for navigation. Whether you are a beginner or an experienced developer, this guide will help you build efficient and scalable web applications using React.",
     summary:
       "In-depth guide to React, covering components, state management, lifecycle methods, hooks, and best practices for building scalable web applications.",
-    tags: ["React", "Frontend", "Web Development"],
+    tags: ["Frontend", "Web Development"],
     date: "2023-07-15",
     status: true,
   },
@@ -53,7 +54,7 @@ const pages: Page[] = [
       "This document provides an essential overview of MongoDB, a popular NoSQL database. Topics covered include fundamental concepts such as document-based data modeling, CRUD operations, indexing strategies, data aggregation pipelines, and best practices for handling large-scale data efficiently. The guide also explores how to integrate MongoDB with backend frameworks like Node.js and Express, making it a valuable resource for developers looking to build robust database solutions.",
     summary:
       "Detailed introduction to MongoDB, covering data modeling, CRUD operations, indexing, and integration with backend frameworks.",
-    tags: ["MongoDB", "Database", "NoSQL"],
+    tags: ["Database", "NoSQL"],
     date: "2023-09-05",
     status: true,
   },
@@ -86,7 +87,7 @@ const pages: Page[] = [
       "An introductory guide to machine learning concepts, covering the fundamentals of supervised and unsupervised learning, neural networks, feature engineering, and model evaluation techniques. The document also provides an overview of popular machine learning libraries such as TensorFlow and Scikit-Learn, along with practical examples to help beginners get started with building and training models.",
     summary:
       "Introduction to machine learning concepts, covering supervised learning, neural networks, and model evaluation techniques.",
-    tags: ["Machine Learning", "AI", "Data Science"],
+    tags: ["Machine Learning", "AI"],
     date: "2023-12-08",
     status: false,
   },
@@ -97,7 +98,7 @@ const pages: Page[] = [
       "A practical guide to using Python for data science, covering essential libraries such as NumPy, Pandas, Matplotlib, and Scikit-Learn. The document provides hands-on examples for data manipulation, visualization, statistical analysis, and machine learning applications, making it an excellent resource for data scientists and analysts looking to enhance their Python skills.",
     summary:
       "Practical guide to Python for data science, featuring data manipulation, visualization, and machine learning with Pandas and Scikit-Learn.",
-    tags: ["Python", "Data Science", "Pandas"],
+    tags: ["Python"],
     date: "2024-01-20",
     status: true,
   },
@@ -119,7 +120,7 @@ const pages: Page[] = [
       "An overview of blockchain technology, covering core topics such as consensus mechanisms, smart contracts, cryptographic principles, and decentralized applications (DApps). The document explains how blockchain works, its real-world applications in industries such as finance and supply chain management, and the future potential of decentralized technologies.",
     summary:
       "Comprehensive introduction to blockchain, covering consensus mechanisms, smart contracts, and real-world applications.",
-    tags: ["Blockchain", "Cryptocurrency", "Decentralization"],
+    tags: ["Blockchain", "Decentralization"],
     date: "2024-03-10",
     status: false,
   },
@@ -152,7 +153,7 @@ const pages: Page[] = [
       "A deep dive into TypeScript, covering type annotations, interfaces, generics, decorators, and how it enhances JavaScript development.",
     summary:
       "Mastering TypeScript, including interfaces, generics, and decorators.",
-    tags: ["TypeScript", "JavaScript", "Frontend"],
+    tags: ["TypeScript", "JavaScript"],
     date: "2024-05-10",
     status: false,
   },
@@ -281,7 +282,28 @@ function Pages() {
             ))}
           </div>
         </TabsContent>
-        <TabsContent value="folder"></TabsContent>
+        <TabsContent value="folder">
+          <div className="w-full flex justify-between items-center sticky top-18">
+            <h4 className="scroll-m-20 text-xl font-semibold tracking-tight px-2">
+              Folder ({pages.length})
+            </h4>
+            <div className="flex gap-2 items-center">
+              <SortButton variant={"secondary"} />
+
+              <Button>new</Button>
+            </div>
+          </div>
+          <div className="columns-sm space-y-4 p-2 md:p-4">
+            {pages.map((page) => (
+              <FoldersCard
+                key={page.id}
+                page={page}
+                onClick={() => {}}
+                className="break-inside-avoid-column"
+              />
+            ))}
+          </div>
+        </TabsContent>
       </Tabs>
     </div>
   );

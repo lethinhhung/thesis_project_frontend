@@ -30,22 +30,28 @@ export default function Breadcrumbs() {
   return (
     <Breadcrumb>
       <BreadcrumbList>
+        <BreadcrumbItem>
+          <Link className="text-primary" to={"/home"}>
+            Notebok
+          </Link>
+        </BreadcrumbItem>
+
         {pathSegments.map((segment, index) => {
           const path = `/${pathSegments.slice(0, index + 1).join("/")}`;
           const isLast = index === pathSegments.length - 1;
           return (
-            <BreadcrumbItem key={path}>
-              {isLast ? (
-                <span>{breadcrumbMap[segment] || segment}</span>
-              ) : (
-                <>
+            <div key={path} className="flex items-center gap-2">
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                {isLast ? (
+                  <span>{breadcrumbMap[segment] || segment}</span>
+                ) : (
                   <Link className="text-primary" to={path}>
                     {breadcrumbMap[segment] || segment}
                   </Link>
-                  <BreadcrumbSeparator />
-                </>
-              )}
-            </BreadcrumbItem>
+                )}
+              </BreadcrumbItem>
+            </div>
           );
         })}
       </BreadcrumbList>

@@ -59,15 +59,17 @@ const badges = [
 function SearchBarWithTags({
   className,
   placeholder,
+  withPagination = true,
 }: {
   className?: string;
   placeholder?: string;
+  withPagination?: boolean;
 }) {
   const [open, setOpen] = useState(false);
   return (
     <div
       className={cn(
-        "w-full sticky top-0 left-0 z-10 flex flex-wrap flex-col gap-1 items-center p-2 rounded-xl border border-dashed bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60",
+        "w-full sticky top-0 left-0 z-10 flex flex-wrap flex-col items-center p-1 rounded-xl border border-dashed bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60",
         className
       )}
     >
@@ -117,7 +119,10 @@ function SearchBarWithTags({
         </TooltipProvider>
       </div>
 
-      <Pagination className="mt-auto w-full rounded-xl bg-transparent">
+      <Pagination
+        hidden={!withPagination}
+        className="mt-auto w-full rounded-xl bg-transparent"
+      >
         <PaginationContent>
           <PaginationItem>
             <PaginationPreviousNoTitle href="#" />

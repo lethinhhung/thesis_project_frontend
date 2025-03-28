@@ -7,7 +7,6 @@ import {
   Image,
   MoreHorizontal,
   Search,
-  Settings,
   Sparkles,
   SquareLibrary,
   TableOfContents,
