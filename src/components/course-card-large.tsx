@@ -40,7 +40,7 @@ export function CourseCardLarge({
   const navigate = useNavigate();
   return (
     <Card
-      onClick={() => navigate("/course/hehe")}
+      onClick={() => navigate("/courses/hehe")}
       className={cn(
         "pt-0 duration-200 dark:border-dashed hover:shadow-lg dark:hover:border-solid cursor-pointer ",
         className

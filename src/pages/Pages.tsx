@@ -257,7 +257,7 @@ function Pages() {
           </CollapsibleContent>
         </Collapsible>
 
-        <TabsContent value="pages" className="w-full space-y-4">
+        <TabsContent value="pages" className="w-full">
           <div className="w-full flex justify-between items-center sticky top-18">
             <h4 className="scroll-m-20 text-xl font-semibold tracking-tight px-2">
               Pages ({pages.length})

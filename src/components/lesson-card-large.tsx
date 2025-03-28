@@ -25,7 +25,7 @@ export function LessonCardLarge({
         "duration-200 dark:border-dashed hover:shadow-lg dark:hover:border-solid cursor-pointer ",
         className
       )}
-      onClick={() => navigate("/course/hehe/lesson1")}
+      onClick={() => navigate("/courses/hehe/lessons/lesson1")}
     >
       <CardHeader>
         <CardTitle className="line-clamp-2">{lesson.title}</CardTitle>

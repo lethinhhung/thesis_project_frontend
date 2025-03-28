@@ -78,8 +78,11 @@ const AppRoutes = () => {
             <Route path="/inbox" element={<Inbox />} />
 
             <Route path="/pages/:pageId" element={<Page />} />
-            <Route path="/course/:courseId" element={<Course />} />
-            <Route path="/course/:courseId/:lessonId" element={<Lesson />} />
+            <Route path="/courses/:courseId" element={<Course />} />
+            <Route
+              path="/courses/:courseId/lessons/:lessonId"
+              element={<Lesson />}
+            />
 
             <Route path="/calendar" element={<Calendar />} />
           </Route>
