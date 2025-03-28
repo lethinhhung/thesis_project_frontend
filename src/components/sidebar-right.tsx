@@ -38,7 +38,9 @@ export function SidebarRight({
             isBadgeVisible={true}
             badgeColor="bg-sky-500"
             variant={"ghost"}
-          />
+          >
+            <Inbox />
+          </ButtonWithBadge>
           <Label>
             <Cloud />
           </Label>

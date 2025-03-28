@@ -28,7 +28,7 @@ export function LessonCardLarge({
       onClick={() => navigate("/course/hehe/lesson1")}
     >
       <CardHeader>
-        <CardTitle>{lesson.title}</CardTitle>
+        <CardTitle className="line-clamp-2">{lesson.title}</CardTitle>
         <CardDescription className="line-clamp-3 min-h-[4rem]">
           {lesson.description}
         </CardDescription>

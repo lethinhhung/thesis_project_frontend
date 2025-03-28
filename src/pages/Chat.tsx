@@ -1,13 +1,22 @@
+import ButtonWithBadge from "@/components/button-with-badge";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+
 import { Textarea } from "@/components/ui/textarea";
 import {
-  ArrowUp,
   ChevronDown,
-  FileText,
+  MessageCircleMoreIcon,
   Paperclip,
   Plus,
-  X,
+  Send,
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
@@ -81,15 +90,32 @@ function Chat() {
     scrollToBottom();
   }, [messages]);
 
+  const handleSendMessage = () => {
+    setMessages([
+      ...messages,
+      {
+        message: input.trim(),
+        sender: "user",
+        date: new Date().toLocaleDateString(),
+      },
+      {
+        message: "Sorry. I can't help with that yet.",
+        sender: "ai",
+        date: new Date().toLocaleDateString(),
+      },
+    ]);
+    setInput("");
+  };
+
   return (
     <div className="flex flex-col mx-auto space-y-4 items-center justify-between w-full h-[calc(100dvh-92px)] max-w-5xl rounded-xl">
       <div id="scroll" className="w-full overflow-y-auto md:p-4">
         {messages.map((message, index) =>
           message.sender === "user" ? (
             <div key={index} className="flex justify-end mb-5">
-              <div className="border border-dashed p-4 rounded-md border border-dashed">
+              <div className="p-4 rounded-md border border-dashed">
                 {message.message}
-                <p className="text-sm text-muted-foreground flex justify-end">
+                <p className="text-xs text-muted-foreground flex justify-end pt-4">
                   {message.date}
                 </p>
               </div>
@@ -98,16 +124,20 @@ function Chat() {
             <div key={index} className="flex">
               <div className="flex flex-col max-w-full p-4 mb-5 bg-secondary rounded-md">
                 {message.message}
-                <p className="text-sm text-muted-foreground flex">
+                <p className="text-xs text-muted-foreground flex pt-4">
                   {message.date}
                 </p>
               </div>
             </div>
           )
         )}
-
         <div ref={messagesEndRef}></div>
       </div>
+      {messages.length === 0 && (
+        <h4 className="flex gap-1 scroll-m-20 text-xl font-semibold tracking-tight">
+          <MessageCircleMoreIcon /> Ask for anything...
+        </h4>
+      )}
 
       <div className="flex flex-col items-center w-full rounded-2xl md:px-4 bg-background">
         <Textarea
@@ -117,10 +147,29 @@ function Chat() {
           placeholder="Ask anything..."
           className="resize-none max-h-[17rem] border-dashed scrollbar"
         ></Textarea>
-        <div className="w-full pt-1 md:pt-2 flex gap-1 md:gap-2 justify-end">
-          <Button size={"icon"} onClick={scrollToBottom} variant={"ghost"}>
-            <ChevronDown />
-          </Button>
+        <div className="w-full pt-1 md:pt-2 flex gap-1 md:gap-2 items-center justify-end">
+          <Badge variant="outline">2 content attched</Badge>
+
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <ButtonWithBadge
+                variant={"ghost"}
+                size={"icon"}
+                isBadgeVisible={true}
+                badgeColor="bg-sky-500"
+              >
+                <Paperclip />
+              </ButtonWithBadge>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuLabel>Attach content</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>Profile</DropdownMenuItem>
+              <DropdownMenuItem>Billing</DropdownMenuItem>
+              <DropdownMenuItem>Team</DropdownMenuItem>
+              <DropdownMenuItem>Subscription</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
           <Button
             onClick={() => setMessages([])}
             size={"icon"}
@@ -128,26 +177,18 @@ function Chat() {
           >
             <Plus />
           </Button>
-          <Button size={"icon"} variant={"ghost"}>
-            <Paperclip />
+          <Button size={"icon"} onClick={scrollToBottom} variant={"ghost"}>
+            <ChevronDown />
           </Button>
           <Button
             disabled={!input.trim()}
             onClick={() => {
               if (!input.trim()) return;
-              setMessages([
-                ...messages,
-                {
-                  message: input.trim(),
-                  sender: "user",
-                  date: new Date().toLocaleDateString(),
-                },
-              ]);
-              setInput("");
+              handleSendMessage();
             }}
             size={"icon"}
           >
-            <ArrowUp />
+            <Send />
           </Button>
         </div>
       </div>

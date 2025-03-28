@@ -96,22 +96,22 @@ function Lesson() {
           </div>
           <CardContent className="flex flex-col gap-4 border border-dashed mx-6 p-4 rounded-lg">
             <p className="text-sm text-muted-foreground">Reference documents</p>
-            <div className="grid grid-cols-3 gap-2">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
               <Button variant={"ghost"}>
                 <FileText />
-                Document.docx
+                <p className="line-clamp-1">Document.docx</p>
               </Button>
               <Button variant={"ghost"}>
                 <FileText />
-                Document.docx
+                <p className="line-clamp-1">Document.docx</p>
               </Button>
               <Button variant={"ghost"}>
                 <FileText />
-                Document.docx
+                <p className="line-clamp-1">Document.docx</p>
               </Button>
               <Button variant={"ghost"}>
                 <FileText />
-                Document.docx
+                <p className="line-clamp-1">Document.docx</p>
               </Button>
               {/* <Card className="p-3">
                 <CardHeader className="px-0 flex flex-row items-center gap-2">

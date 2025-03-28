@@ -77,7 +77,7 @@ const AppRoutes = () => {
             <Route path="/settings" element={<Settings />} />
             <Route path="/inbox" element={<Inbox />} />
 
-            <Route path="/page" element={<Page />} />
+            <Route path="/pages/:pageId" element={<Page />} />
             <Route path="/course/:courseId" element={<Course />} />
             <Route path="/course/:courseId/:lessonId" element={<Lesson />} />
 

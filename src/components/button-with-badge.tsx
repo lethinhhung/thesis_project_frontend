@@ -1,4 +1,3 @@
-import { Inbox } from "lucide-react";
 import { Button, buttonVariants } from "./ui/button";
 import { cn } from "@/lib/utils";
 import { VariantProps } from "class-variance-authority";
@@ -9,6 +8,7 @@ function ButtonWithBadge({
   size,
   variant,
   className,
+  children,
   ...props
 }: React.ComponentProps<"button"> &
   VariantProps<typeof buttonVariants> & {
@@ -22,7 +22,7 @@ function ButtonWithBadge({
       className={cn("relative", className)}
       {...props}
     >
-      <Inbox />
+      {children}
       <div
         hidden={!isBadgeVisible}
         className={cn(
