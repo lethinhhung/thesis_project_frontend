@@ -1,5 +1,4 @@
 import { useTranslation } from "react-i18next";
-import { Button } from "./ui/button";
 import { Languages } from "lucide-react";
 import { useState } from "react";
 import {
@@ -18,22 +17,12 @@ import {
   DropdownMenuRadioItem,
 } from "./ui/dropdown-menu";
 import { cn } from "@/lib/utils";
+import { Button, buttonVariants } from "./ui/button";
+import { VariantProps } from "class-variance-authority";
 
 const LanguageSwitcher = ({
-  variant,
-  className,
-}: {
-  variant?:
-    | "link"
-    | "default"
-    | "destructive"
-    | "outline"
-    | "secondary"
-    | "ghost"
-    | null
-    | undefined;
-  className?: string;
-}) => {
+  ...props
+}: React.ComponentProps<"button"> & VariantProps<typeof buttonVariants>) => {
   const { i18n, t } = useTranslation();
   const [language, setLanguage] = useState(i18n.language);
 
@@ -50,7 +39,7 @@ const LanguageSwitcher = ({
         <Tooltip>
           <TooltipTrigger asChild>
             <DropdownMenuTrigger asChild>
-              <Button className={cn(className)} size="icon" variant={variant}>
+              <Button {...props}>
                 <Languages />
               </Button>
             </DropdownMenuTrigger>

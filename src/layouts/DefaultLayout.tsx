@@ -16,7 +16,15 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { Book, Briefcase, LibraryBig, Plus, Sparkles } from "lucide-react";
+import {
+  Book,
+  Briefcase,
+  ChevronLeft,
+  ChevronRight,
+  LibraryBig,
+  Plus,
+  Sparkles,
+} from "lucide-react";
 import {
   Tooltip,
   TooltipContent,
@@ -26,6 +34,7 @@ import {
 import { Toaster } from "@/components/ui/sonner";
 import { useTheme } from "@/components/theme-provider";
 import Breadcrumbs from "@/components/breadcrumbs";
+import { useState } from "react";
 
 const createItems = [
   { title: "Course", url: "/course", icon: <Briefcase /> },
@@ -36,6 +45,7 @@ const createItems = [
 
 export default function DefaultLayout() {
   const { theme } = useTheme();
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <>
       <SidebarProvider>
@@ -59,7 +69,7 @@ export default function DefaultLayout() {
               <Separator orientation="vertical" className="mr-2 h-4" />
             </div>
 
-            <div className="flex items-center gap-2 px-3">
+            <div className="flex items-center gap-2 px-2">
               <TooltipProvider>
                 <DropdownMenu modal={false}>
                   <Tooltip>
@@ -84,13 +94,31 @@ export default function DefaultLayout() {
                   </DropdownMenuContent>
                 </DropdownMenu>
               </TooltipProvider>
+
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      size={"icon"}
+                      variant={"ghost"}
+                      onClick={() => setIsOpen(!isOpen)}
+                      className="hidden 2xl:flex"
+                    >
+                      {isOpen ? <ChevronRight /> : <ChevronLeft />}
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    {isOpen ? "Hide sidebar" : "Show sidebar"}
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
             </div>
           </header>
           <div className="flex flex-1 flex-col gap-4 p-4 max-w-full">
             <Outlet />
           </div>
         </SidebarInset>
-        <SidebarRight />
+        <SidebarRight hidden={!isOpen} className="hidden 2xl:flex" />
       </SidebarProvider>
       <Toaster theme={theme} />
     </>

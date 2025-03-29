@@ -280,7 +280,7 @@ export function SidebarLeft({
 }: React.ComponentProps<typeof Sidebar>) {
   const { isMobile } = useSidebar();
   return (
-    <Sidebar className="border-r-0 z-40" {...props}>
+    <Sidebar collapsible="icon" className="border-r-0 z-40" {...props}>
       <SidebarHeader className="md:gap-0">
         <NavUser user={data.user} />
         {!isMobile && <NavControls />}

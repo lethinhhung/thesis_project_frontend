@@ -27,11 +27,13 @@ import {
   Type,
 } from "lucide-react";
 import CustomEmojiPicker from "./blocks/emoji";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Quote } from "./blocks/quote";
 import { Heading4 } from "./blocks/heading4";
 import { InlineCode } from "./blocks/inline-code";
 import { Muted } from "./blocks/muted";
+import EditorMenubar from "./editor-menubar";
+import { useTheme } from "./theme-provider";
 
 const plainTheme = {
   light: lightDefaultTheme,
@@ -128,16 +130,64 @@ const insertMuted = (editor: typeof schema.BlockNoteEditor) => ({
 });
 
 const Editor = ({
-  isPlainBackground,
-  isDarkTheme,
+  isChatOpen,
+  setIsChatOpen,
 }: {
-  isPlainBackground: boolean;
-  isDarkTheme: boolean;
+  isChatOpen: boolean;
+  setIsChatOpen: (value: boolean) => void;
 }) => {
   const editor = useCreateBlockNote({
     schema,
   });
   const isMobile = useIsMobile();
+  const { theme } = useTheme();
+  const [isPlainBackground, setIsPlainBackground] = useState(false);
+  const [isSystemDark, setIsSystemDark] = useState(false);
+
+  async function loadInitialJSON() {
+    const content = localStorage.getItem("blocks");
+    if (!content) return;
+
+    try {
+      const blocks = JSON.parse(content);
+      setTimeout(() => {
+        editor.replaceBlocks(editor.document, blocks);
+      }, 0);
+    } catch (error) {
+      console.error("Failed to parse blocks JSON:", error);
+    }
+  }
+
+  async function saveContentAsJSON() {
+    const blocks = editor.document;
+    const selection = editor.getSelection();
+    try {
+      const blocksJSON = JSON.stringify(blocks);
+      localStorage.setItem("blocks", blocksJSON);
+      console.log(selection);
+    } catch (error) {
+      console.error("Failed to save blocks as JSON:", error);
+    }
+  }
+
+  // Kiểm tra hệ thống có đang ở dark mode không (chỉ khi theme = "system")
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    setIsSystemDark(mediaQuery.matches);
+
+    // Lắng nghe sự thay đổi theme của hệ thống
+    const handleChange = (e: MediaQueryListEvent) => {
+      setIsSystemDark(e.matches);
+    };
+
+    mediaQuery.addEventListener("change", handleChange);
+    loadInitialJSON();
+    console.log("Editor loaded");
+    return () => mediaQuery.removeEventListener("change", handleChange);
+  }, []);
+
+  // Xác định theme thực tế mà user đang dùng
+  const isDarkTheme = theme === "dark" || (theme === "system" && isSystemDark);
 
   // Xác định theme của editor
   const editorTheme =
@@ -146,55 +196,51 @@ const Editor = ({
       : isDarkTheme
       ? "dark"
       : "light";
-  async function loadInitialHTML() {
-    const content = await localStorage.getItem("content");
-    if (!content) return;
-    const blocks = await editor.tryParseHTMLToBlocks(content);
-    editor.replaceBlocks(editor.document, blocks);
-  }
-
-  async function saveContent() {
-    const html = await editor.blocksToFullHTML(editor.document);
-    localStorage.setItem("content", html);
-  }
-  useEffect(() => {
-    loadInitialHTML();
-  }, []);
 
   return (
-    <BlockNoteView
-      className="w-full col-span-full"
-      onChange={saveContent}
-      editor={editor}
-      theme={editorTheme}
-      slashMenu={false}
-      emojiPicker={false}
-      // onClick={() => console.log(editor.getSelection()?.blocks)}
-    >
-      <SuggestionMenuController
-        triggerCharacter={"/"}
-        getItems={async (query) =>
-          // Gets all default slash menu items and `insertAlert` item.
-          filterSuggestionItems(
-            [
-              ...getDefaultReactSlashMenuItems(editor),
-              insertDivider(editor),
-              insertQuote(editor),
-              insertHeading4(editor),
-              insertInlineCode(editor),
-              insertMuted(editor),
-            ],
-            query
-          )
-        }
+    <div className="col-span-full space-y-4">
+      <EditorMenubar
+        isDarkTheme={isDarkTheme}
+        isPlainBackground={isPlainBackground}
+        setIsPlainBackground={setIsPlainBackground}
+        isChatOpen={isChatOpen}
+        setIsChatOpen={setIsChatOpen}
       />
-      <GridSuggestionMenuController
-        triggerCharacter={":"}
-        gridSuggestionMenuComponent={CustomEmojiPicker}
-        columns={isMobile ? 6 : 10}
-        minQueryLength={2}
-      />
-    </BlockNoteView>
+      <BlockNoteView
+        className="w-full"
+        onChange={saveContentAsJSON}
+        editor={editor}
+        theme={editorTheme}
+        slashMenu={false}
+        emojiPicker={false}
+
+        // onClick={() => console.log(editor.getSelection()?.blocks)}
+      >
+        <SuggestionMenuController
+          triggerCharacter={"/"}
+          getItems={async (query) =>
+            // Gets all default slash menu items and `insertAlert` item.
+            filterSuggestionItems(
+              [
+                ...getDefaultReactSlashMenuItems(editor),
+                insertDivider(editor),
+                insertQuote(editor),
+                insertHeading4(editor),
+                insertInlineCode(editor),
+                insertMuted(editor),
+              ],
+              query
+            )
+          }
+        />
+        <GridSuggestionMenuController
+          triggerCharacter={":"}
+          gridSuggestionMenuComponent={CustomEmojiPicker}
+          columns={isMobile ? 6 : 10}
+          minQueryLength={2}
+        />
+      </BlockNoteView>
+    </div>
   );
 };
 

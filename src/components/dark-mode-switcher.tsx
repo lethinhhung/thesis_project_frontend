@@ -1,7 +1,7 @@
 "use client";
 
 import { Moon, Sun, SunMoon } from "lucide-react";
-import { Button } from "./ui/button";
+import { Button, buttonVariants } from "./ui/button";
 import { useEffect, useState } from "react";
 import { useTheme } from "./theme-provider";
 import {
@@ -10,20 +10,11 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { VariantProps } from "class-variance-authority";
 
 export function DarkModeSwitcher({
-  variant,
-}: {
-  variant?:
-    | "link"
-    | "default"
-    | "destructive"
-    | "outline"
-    | "secondary"
-    | "ghost"
-    | null
-    | undefined;
-}) {
+  ...props
+}: React.ComponentProps<"button"> & VariantProps<typeof buttonVariants>) {
   const [icon, setIcon] = useState(<Sun />);
   const { theme, setTheme } = useTheme();
 
@@ -42,7 +33,7 @@ export function DarkModeSwitcher({
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger asChild>
-          <Button onClick={handleSwitch} size={"icon"} variant={variant}>
+          <Button {...props} onClick={handleSwitch}>
             {icon}
           </Button>
         </TooltipTrigger>

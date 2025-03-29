@@ -1,5 +1,5 @@
+import ChatMedium from "@/components/chat-medium";
 import Editor from "@/components/editor";
-import { useTheme } from "@/components/theme-provider";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -17,34 +17,11 @@ import {
   MoreHorizontal,
   Sparkles,
 } from "lucide-react";
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import EditorMenubar from "@/components/editor-menubar";
+import { useState } from "react";
 import { toast } from "sonner";
 
 function Lesson() {
-  const { theme } = useTheme();
-  const navigate = useNavigate();
-  const [isPlainBackground, setIsPlainBackground] = useState(false);
-  const [isSystemDark, setIsSystemDark] = useState(false);
-
-  // Kiểm tra hệ thống có đang ở dark mode không (chỉ khi theme = "system")
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    setIsSystemDark(mediaQuery.matches);
-
-    // Lắng nghe sự thay đổi theme của hệ thống
-    const handleChange = (e: MediaQueryListEvent) => {
-      setIsSystemDark(e.matches);
-    };
-
-    mediaQuery.addEventListener("change", handleChange);
-    return () => mediaQuery.removeEventListener("change", handleChange);
-  }, []);
-
-  // Xác định theme thực tế mà user đang dùng
-  const isDarkTheme = theme === "dark" || (theme === "system" && isSystemDark);
-
+  const [isChatOpen, setIsChatOpen] = useState(false);
   const copyText = () => {
     const text = document?.getElementById("summary")?.innerText;
     navigator.clipboard
@@ -56,90 +33,105 @@ function Lesson() {
   };
 
   return (
-    <div className="flex flex-col items-center h-full w-full">
+    <div className="flex justify-center h-full w-full gap-4">
       <div
         className="w-full grid grid-cols-2 gap-4 max-w-5xl font-inherit relative"
         spellCheck="false"
       >
-        <Card className="dark:border-dashed col-span-2 lg:col-span-1">
-          <div className="flex justify-between">
-            <CardHeader>
-              <CardTitle>Lesson 1 📄</CardTitle>
-              <CardDescription>22/12/2013</CardDescription>
-              <CardDescription>User's lesson note</CardDescription>
-            </CardHeader>
-            <div className="px-4">
-              <Button size={"sm"} variant={"ghost"}>
-                <MoreHorizontal />
-              </Button>
+        <div className="col-span-2 gap-4 columns-md space-y-4">
+          <Card className="dark:border-dashed break-inside-avoid-column">
+            <div className="flex justify-between">
+              <CardHeader>
+                <CardTitle>Lesson 1 📄</CardTitle>
+                <CardDescription>22/12/2013</CardDescription>
+                <CardDescription>User's lesson note</CardDescription>
+              </CardHeader>
+              <div className="px-4">
+                <Button size={"sm"} variant={"ghost"}>
+                  <MoreHorizontal />
+                </Button>
+              </div>
             </div>
-          </div>
-          <CardContent className="flex flex-col gap-4 border border-dashed mx-6 p-4 rounded-lg">
-            <p className="text-sm text-muted-foreground">Reference documents</p>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-              <Button variant={"ghost"}>
-                <FileText />
-                <p className="line-clamp-1">Document.docx</p>
-              </Button>
-              <Button variant={"ghost"}>
-                <FileText />
-                <p className="line-clamp-1">Document.docx</p>
-              </Button>
-              <Button variant={"ghost"}>
-                <FileText />
-                <p className="line-clamp-1">Document.docx</p>
-              </Button>
-              <Button variant={"ghost"}>
-                <FileText />
-                <p className="line-clamp-1">Document.docx</p>
-              </Button>
+            <CardContent className="border border-dashed mx-6 p-4 rounded-lg">
+              <div className="w-full grid grid-cols-2 md:grid-cols-3 gap-2">
+                <p className="col-span-2 md:col-span-3 text-sm text-muted-foreground">
+                  Reference documents
+                </p>
+                <Button variant={"ghost"}>
+                  <FileText />
+                  <p className="line-clamp-1">Document.docx</p>
+                </Button>
+                <Button variant={"ghost"}>
+                  <FileText />
+                  <p className="line-clamp-1">Document.docx</p>
+                </Button>
+                <Button variant={"ghost"}>
+                  <FileText />
+                  <p className="line-clamp-1">Document.docx</p>
+                </Button>
+                <Button variant={"ghost"}>
+                  <FileText />
+                  <p className="line-clamp-1">Document.docx</p>
+                </Button>
+                <Button variant={"ghost"}>
+                  <FileText />
+                  <p className="line-clamp-1">Document.docx</p>
+                </Button>
+                <Button variant={"ghost"}>
+                  <FileText />
+                  <p className="line-clamp-1">Document.docx</p>
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+          <Card
+            className={
+              "dark:border-dashed justify-between break-inside-avoid-column"
+            }
+          >
+            <div className="flex justify-between">
+              <CardHeader>
+                <CardTitle>Summary</CardTitle>
+                <CardDescription id="summary">
+                  This is the summary of this lesson. It can be a brief
+                  description of the lesson content. It can be a brief
+                  description of the lesson content.
+                </CardDescription>
+              </CardHeader>
+              <div className="px-4">
+                <Button size={"sm"} variant={"ghost"} onClick={copyText}>
+                  <Copy />
+                </Button>
+              </div>
             </div>
-          </CardContent>
-        </Card>
-        <Card
-          className={
-            "dark:border-dashed justify-between col-span-2 lg:col-span-1"
-          }
-        >
-          <div className="flex justify-between">
-            <CardHeader>
-              <CardTitle>Summary</CardTitle>
-              <CardDescription id="summary">
-                This is the summary of this lesson. It can be a brief
-                description of the lesson content. It can be a brief description
-                of the lesson content.
-              </CardDescription>
-            </CardHeader>
-            <div className="px-4">
-              <Button size={"sm"} variant={"ghost"} onClick={copyText}>
-                <Copy />
+            <CardFooter className="flex flex-wrap justify-end gap-2">
+              <Button
+                size={"sm"}
+                variant={"ghost"}
+                onClick={() => window.open("/chat", "_blank")}
+              >
+                <ArrowUpRight /> Chat with AI
               </Button>
-            </div>
-          </div>
-          <CardFooter className="flex flex-wrap justify-end gap-2">
-            <Button
-              size={"sm"}
-              variant={"ghost"}
-              onClick={() => window.open("/chat", "_blank")}
-            >
-              <ArrowUpRight /> Chat with AI
-            </Button>
-            <Button size={"sm"} variant={"secondary"}>
-              <Sparkles /> Re-summarize
-            </Button>
-          </CardFooter>
-        </Card>
+              <Button size={"sm"} variant={"secondary"}>
+                <Sparkles /> Re-summarize
+              </Button>
+            </CardFooter>
+          </Card>
+        </div>
 
-        <EditorMenubar
+        {/* <EditorMenubar
           isDarkTheme={isDarkTheme}
           isPlainBackground={isPlainBackground}
           setIsPlainBackground={setIsPlainBackground}
-        />
+        /> */}
 
-        <Editor
-          isPlainBackground={isPlainBackground}
-          isDarkTheme={isDarkTheme}
-        />
+        <Editor isChatOpen={isChatOpen} setIsChatOpen={setIsChatOpen} />
+      </div>
+      <div
+        hidden={!isChatOpen}
+        className="hidden 2xl:flex sticky dark:border-dashed h-[calc(100svh-92px)] w-full min-w-100 flex-1 top-16"
+      >
+        <ChatMedium />
       </div>
     </div>
   );
