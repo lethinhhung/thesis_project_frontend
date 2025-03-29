@@ -32,7 +32,7 @@ html::-webkit-scrollbar-track {
 
 .bn-editor {
   padding-top: 1rem;
-  padding-bottom: calc(100dvh - 110px);
+  padding-bottom: calc(100dvh - 150px);
   max-width: 100% !important;
   word-break: keep-all !important;
 }

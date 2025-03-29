@@ -18,13 +18,13 @@ import {
 } from "./ui/collapsible";
 import ChatSmall from "./chat-small";
 import ButtonWithBadge from "./button-with-badge";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export function SidebarRight({
   ...props
 }: React.ComponentProps<typeof Sidebar>) {
   const navigate = useNavigate();
-  const { lessonId } = useParams();
+
   return (
     <Sidebar
       collapsible="none"
@@ -61,7 +61,7 @@ export function SidebarRight({
             <CollapsibleTrigger className="gap-2">
               <Sparkles />
               <div className=" line-clamp-1 word-break break-all">
-                Ask AI {lessonId && `about ${lessonId?.toString()}`}
+                Quick chat
               </div>
               <ChevronRight className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-90" />
             </CollapsibleTrigger>

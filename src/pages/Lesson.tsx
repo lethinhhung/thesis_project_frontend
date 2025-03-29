@@ -9,27 +9,24 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+
 import {
   ArrowUpRight,
+  Copy,
   FileText,
   MoreHorizontal,
   Sparkles,
-  Square,
-  SquareDashed,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import EditorMenubar from "@/components/editor-menubar";
+import { toast } from "sonner";
 
 function Lesson() {
-  const [isPlainBackground, setIsPlainBackground] = useState(false);
   const { theme } = useTheme();
-  const [isSystemDark, setIsSystemDark] = useState(false);
   const navigate = useNavigate();
+  const [isPlainBackground, setIsPlainBackground] = useState(false);
+  const [isSystemDark, setIsSystemDark] = useState(false);
 
   // Kiểm tra hệ thống có đang ở dark mode không (chỉ khi theme = "system")
   useEffect(() => {
@@ -48,35 +45,18 @@ function Lesson() {
   // Xác định theme thực tế mà user đang dùng
   const isDarkTheme = theme === "dark" || (theme === "system" && isSystemDark);
 
-  const handlePlainBackground = () => {
-    setIsPlainBackground(!isPlainBackground);
+  const copyText = () => {
+    const text = document?.getElementById("summary")?.innerText;
+    navigator.clipboard
+      .writeText(text?.toString() || "")
+      .then(() => toast.success("Copied to clipboard!"))
+      .catch((err) => {
+        console.error("Err:", err);
+      });
   };
 
   return (
     <div className="flex flex-col items-center h-full w-full">
-      {isDarkTheme && (
-        <div className="flex flex-col gap-2 fixed right-3 bottom-4 xl:bottom-4 2xl:right-[17rem] z-50">
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button
-                onClick={handlePlainBackground}
-                size="icon"
-                variant={isPlainBackground ? "ghost" : "default"}
-              >
-                {isPlainBackground ? <Square /> : <SquareDashed />}
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent side="left">
-              <p>
-                {"Switch to " +
-                  (isPlainBackground
-                    ? "default background"
-                    : "transparent background")}
-              </p>
-            </TooltipContent>
-          </Tooltip>
-        </div>
-      )}
       <div
         className="w-full grid grid-cols-2 gap-4 max-w-5xl font-inherit relative"
         spellCheck="false"
@@ -113,71 +93,49 @@ function Lesson() {
                 <FileText />
                 <p className="line-clamp-1">Document.docx</p>
               </Button>
-              {/* <Card className="p-3">
-                <CardHeader className="px-0 flex flex-row items-center gap-2">
-                  <CardDescription>
-                    <FileText />
-                  </CardDescription>
-                  <CardDescription className="line-clamp-1">
-                    Document.docx
-                  </CardDescription>
-                </CardHeader>
-              </Card>
-              <Card className="p-3">
-                <CardHeader className="px-0 flex flex-row items-center gap-2">
-                  <CardDescription>
-                    <FileText />
-                  </CardDescription>
-                  <CardDescription className="line-clamp-1">
-                    Document.docx
-                  </CardDescription>
-                </CardHeader>
-              </Card>
-              <Card className="p-3">
-                <CardHeader className="px-0 flex flex-row items-center gap-2">
-                  <CardDescription>
-                    <FileText />
-                  </CardDescription>
-                  <CardDescription className="line-clamp-1">
-                    Document.docx
-                  </CardDescription>
-                </CardHeader>
-              </Card>
-              <Card className="p-3">
-                <CardHeader className="px-0 flex flex-row items-center gap-2">
-                  <CardDescription>
-                    <FileText />
-                  </CardDescription>
-                  <CardDescription className="line-clamp-1">
-                    Document.docx
-                  </CardDescription>
-                </CardHeader>
-              </Card> */}
             </div>
           </CardContent>
         </Card>
-        <Card className="dark:border-dashed justify-between col-span-2 lg:col-span-1">
-          <CardHeader>
-            <CardTitle>Summary</CardTitle>
-            <CardDescription>
-              This is the summary of this lesson. It can be a brief description
-              of the lesson content. It can be a brief description of the lesson
-              content.
-            </CardDescription>
-          </CardHeader>
+        <Card
+          className={
+            "dark:border-dashed justify-between col-span-2 lg:col-span-1"
+          }
+        >
+          <div className="flex justify-between">
+            <CardHeader>
+              <CardTitle>Summary</CardTitle>
+              <CardDescription id="summary">
+                This is the summary of this lesson. It can be a brief
+                description of the lesson content. It can be a brief description
+                of the lesson content.
+              </CardDescription>
+            </CardHeader>
+            <div className="px-4">
+              <Button size={"sm"} variant={"ghost"} onClick={copyText}>
+                <Copy />
+              </Button>
+            </div>
+          </div>
           <CardFooter className="flex flex-wrap justify-end gap-2">
             <Button
               size={"sm"}
               variant={"ghost"}
-              onClick={() => navigate("/chat")}
+              onClick={() => window.open("/chat", "_blank")}
             >
               <ArrowUpRight /> Chat with AI
             </Button>
             <Button size={"sm"} variant={"secondary"}>
-              <Sparkles /> Re-summerize
+              <Sparkles /> Re-summarize
             </Button>
           </CardFooter>
         </Card>
+
+        <EditorMenubar
+          isDarkTheme={isDarkTheme}
+          isPlainBackground={isPlainBackground}
+          setIsPlainBackground={setIsPlainBackground}
+        />
+
         <Editor
           isPlainBackground={isPlainBackground}
           isDarkTheme={isDarkTheme}
