@@ -1,22 +1,13 @@
-import { ChevronRight, MoreHorizontal, Plus } from "lucide-react";
-
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
+import { MoreHorizontal } from "lucide-react";
 import {
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
   SidebarMenu,
-  SidebarMenuAction,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarMenuSub,
-  SidebarMenuSubButton,
-  SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
+import { Link, useNavigate } from "react-router-dom";
 
 export function NavConversations({
   conversations,
@@ -30,52 +21,27 @@ export function NavConversations({
     }[];
   }[];
 }) {
+  const navigate = useNavigate();
   return (
     <SidebarGroup>
       <SidebarGroupLabel>Recent conversations</SidebarGroupLabel>
       <SidebarGroupContent>
         <SidebarMenu>
           {conversations.map((conversation) => (
-            <Collapsible key={conversation.name}>
-              <SidebarMenuItem>
-                <SidebarMenuButton asChild>
-                  <a href="#">
-                    <span>{conversation.emoji}</span>
-                    <span>{conversation.name}</span>
-                  </a>
-                </SidebarMenuButton>
-                <CollapsibleTrigger asChild>
-                  <SidebarMenuAction
-                    className="left-2 bg-sidebar-accent text-sidebar-accent-foreground data-[state=open]:rotate-90"
-                    showOnHover
-                  >
-                    <ChevronRight />
-                  </SidebarMenuAction>
-                </CollapsibleTrigger>
-                <SidebarMenuAction showOnHover>
-                  <Plus />
-                </SidebarMenuAction>
-                <CollapsibleContent>
-                  <SidebarMenuSub>
-                    {conversation.pages.map((page) => (
-                      <SidebarMenuSubItem key={page.name}>
-                        <SidebarMenuSubButton asChild>
-                          <a href="#">
-                            <span>{page.emoji}</span>
-                            <span>{page.name}</span>
-                          </a>
-                        </SidebarMenuSubButton>
-                      </SidebarMenuSubItem>
-                    ))}
-                  </SidebarMenuSub>
-                </CollapsibleContent>
-              </SidebarMenuItem>
-            </Collapsible>
+            <SidebarMenuItem key={conversation.name}>
+              <SidebarMenuButton onClick={() => navigate("/chat")}>
+                <span>{conversation.emoji}</span>
+                <span>{conversation.name}</span>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
           ))}
           <SidebarMenuItem>
-            <SidebarMenuButton className="text-sidebar-foreground/70">
+            <SidebarMenuButton
+              onClick={() => navigate("/chat")}
+              className="text-sidebar-foreground/70"
+            >
               <MoreHorizontal />
-              <span>More</span>
+              More
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>

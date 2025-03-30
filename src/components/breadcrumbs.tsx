@@ -38,11 +38,13 @@ const breadcrumbMap: Record<string, string> = {
 
 export default function Breadcrumbs() {
   const location = useLocation();
-  const pathSegments = location.pathname.split("/").filter(Boolean);
+  let pathSegments = location.pathname.split("/").filter(Boolean);
+  // Remove "lessons" from pathSegments if it exists
+  pathSegments = pathSegments.filter((segment) => segment !== "lessons");
   const isTablet = useIsTablet();
   const shouldShorten = isTablet
-    ? pathSegments.length > 3
-    : pathSegments.length > 5;
+    ? pathSegments.length >= 3
+    : pathSegments.length >= 5;
 
   return (
     <Breadcrumb>
@@ -65,9 +67,10 @@ export default function Breadcrumbs() {
                   <span className="sr-only">Toggle menu</span>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="start">
-                  {pathSegments.slice(1, -1).map((segment, index) => {
+                  {pathSegments.slice(0, -1).map((segment, index) => {
+                    // 🔥 Fix: thay đổi slice(1, -1) -> slice(0, -1)
                     const path = `/${pathSegments
-                      .slice(0, index + 2)
+                      .slice(0, index + 1)
                       .join("/")}`;
                     return (
                       <DropdownMenuItem key={path}>
@@ -82,8 +85,9 @@ export default function Breadcrumbs() {
             </BreadcrumbItem>
           </div>
         ) : (
-          pathSegments.slice(1, -1).map((segment, index) => {
-            const path = `/${pathSegments.slice(0, index + 2).join("/")}`;
+          pathSegments.slice(0, -1).map((segment, index) => {
+            // 🔥 Fix: slice(1, -1) -> slice(0, -1)
+            const path = `/${pathSegments.slice(0, index + 1).join("/")}`;
             return (
               <div key={path} className="hidden sm:flex items-center gap-2">
                 <BreadcrumbSeparator />
@@ -98,7 +102,7 @@ export default function Breadcrumbs() {
         )}
 
         {/* Mục cuối cùng */}
-        {pathSegments.length > 1 && (
+        {pathSegments.length >= 1 && (
           <>
             <BreadcrumbSeparator />
             <BreadcrumbItem>

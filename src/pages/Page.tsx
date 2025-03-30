@@ -1,72 +1,137 @@
+import ChatMedium from "@/components/chat-medium";
 import Editor from "@/components/editor";
-import { useTheme } from "@/components/theme-provider";
 import { Button } from "@/components/ui/button";
 import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { Square, SquareDashed } from "lucide-react";
-import { useState, useEffect } from "react";
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+
+import {
+  ArrowUpRight,
+  Copy,
+  FileText,
+  MoreHorizontal,
+  Sparkles,
+} from "lucide-react";
+import { useState } from "react";
+import { toast } from "sonner";
 
 function Page() {
-  const [isPlainBackground, setIsPlainBackground] = useState(false);
-  const { theme } = useTheme();
-  const [isSystemDark, setIsSystemDark] = useState(false);
-
-  // Kiểm tra hệ thống có đang ở dark mode không (chỉ khi theme = "system")
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    setIsSystemDark(mediaQuery.matches);
-
-    // Lắng nghe sự thay đổi theme của hệ thống
-    const handleChange = (e: MediaQueryListEvent) => {
-      setIsSystemDark(e.matches);
-    };
-
-    mediaQuery.addEventListener("change", handleChange);
-    return () => mediaQuery.removeEventListener("change", handleChange);
-  }, []);
-
-  // Xác định theme thực tế mà user đang dùng
-  const isDarkTheme = theme === "dark" || (theme === "system" && isSystemDark);
-
-  const handlePlainBackground = () => {
-    setIsPlainBackground(!isPlainBackground);
+  const [isChatOpen, setIsChatOpen] = useState(false);
+  const copyText = () => {
+    const text = document?.getElementById("summary")?.innerText;
+    navigator.clipboard
+      .writeText(text?.toString() || "")
+      .then(() => toast.success("Copied to clipboard!"))
+      .catch((err) => {
+        console.error("Err:", err);
+      });
   };
 
   return (
-    <div className="flex flex-col items-center h-full w-full">
-      {isDarkTheme && (
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button
-              className="fixed right-3 bottom-4 xl:bottom-4 xl:right-[17rem] z-50"
-              onClick={handlePlainBackground}
-              size="icon"
-              variant="outline"
-            >
-              {isPlainBackground ? <SquareDashed /> : <Square />}
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent>
-            <p>
-              {"Switch to " +
-                (isPlainBackground
-                  ? "default background"
-                  : "transparent background")}
-            </p>
-          </TooltipContent>
-        </Tooltip>
-      )}
+    <div className="flex justify-center h-full w-full gap-4">
       <div
-        className="w-full max-w-5xl font-inherit relative"
+        className="w-full grid grid-cols-2 gap-4 max-w-5xl font-inherit relative"
         spellCheck="false"
       >
-        <Editor
-          isPlainBackground={isPlainBackground}
+        <div className="col-span-2 gap-4 columns-md space-y-4">
+          <Card className="dark:border-dashed break-inside-avoid-column">
+            <div className="flex justify-between">
+              <CardHeader>
+                <CardTitle>Page 1 📄</CardTitle>
+                <CardDescription>22/12/2013</CardDescription>
+                <CardDescription>User's Page note</CardDescription>
+              </CardHeader>
+              <div className="px-4">
+                <Button size={"sm"} variant={"ghost"}>
+                  <MoreHorizontal />
+                </Button>
+              </div>
+            </div>
+            <CardContent className="border border-dashed mx-6 p-4 rounded-lg">
+              <div className="w-full grid grid-cols-2 md:grid-cols-3 gap-2">
+                <p className="col-span-2 md:col-span-3 text-sm text-muted-foreground">
+                  Reference documents
+                </p>
+                <Button variant={"ghost"}>
+                  <FileText />
+                  <p className="line-clamp-1">Document.docx</p>
+                </Button>
+                <Button variant={"ghost"}>
+                  <FileText />
+                  <p className="line-clamp-1">Document.docx</p>
+                </Button>
+                <Button variant={"ghost"}>
+                  <FileText />
+                  <p className="line-clamp-1">Document.docx</p>
+                </Button>
+                <Button variant={"ghost"}>
+                  <FileText />
+                  <p className="line-clamp-1">Document.docx</p>
+                </Button>
+                <Button variant={"ghost"}>
+                  <FileText />
+                  <p className="line-clamp-1">Document.docx</p>
+                </Button>
+                <Button variant={"ghost"}>
+                  <FileText />
+                  <p className="line-clamp-1">Document.docx</p>
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+          <Card
+            className={
+              "dark:border-dashed justify-between break-inside-avoid-column"
+            }
+          >
+            <div className="flex justify-between">
+              <CardHeader>
+                <CardTitle>Summary</CardTitle>
+                <CardDescription id="summary">
+                  This is the summary of this Page. It can be a brief
+                  description of the Page content. It can be a brief description
+                  of the Page content.
+                </CardDescription>
+              </CardHeader>
+              <div className="px-4">
+                <Button size={"sm"} variant={"ghost"} onClick={copyText}>
+                  <Copy />
+                </Button>
+              </div>
+            </div>
+            <CardFooter className="flex flex-wrap justify-end gap-2">
+              <Button
+                size={"sm"}
+                variant={"ghost"}
+                onClick={() => window.open("/chat", "_blank")}
+              >
+                <ArrowUpRight /> Chat with AI
+              </Button>
+              <Button size={"sm"} variant={"secondary"}>
+                <Sparkles /> Re-summarize
+              </Button>
+            </CardFooter>
+          </Card>
+        </div>
+
+        {/* <EditorMenubar
           isDarkTheme={isDarkTheme}
-        />
+          isPlainBackground={isPlainBackground}
+          setIsPlainBackground={setIsPlainBackground}
+        /> */}
+
+        <Editor isChatOpen={isChatOpen} setIsChatOpen={setIsChatOpen} />
+      </div>
+      <div
+        hidden={!isChatOpen}
+        className="hidden 2xl:flex sticky dark:border-dashed h-[calc(100svh-92px)] w-full min-w-100 flex-1 top-16"
+      >
+        <ChatMedium />
       </div>
     </div>
   );
