@@ -138,7 +138,7 @@ function Lesson() {
         animate={{ opacity: isChatOpen ? 1 : 0, x: isChatOpen ? 0 : 50 }} // Hiện ra khi mở chat
         transition={{ duration: 0.3, ease: "easeOut" }}
         className={
-          "hidden 2xl:flex sticky dark:border-dashed h-[calc(100svh-92px)] w-full min-w-100 flex-1 top-16"
+          "hidden 2xl:flex sticky dark:border-dashed h-[calc(100svh-92px)] w-full min-w-100 max-w-5xl flex-1 top-16"
         }
       >
         <ChatMedium />

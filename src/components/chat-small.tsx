@@ -5,7 +5,7 @@ import { Button } from "./ui/button";
 
 function ChatSmall() {
   return (
-    <div>
+    <div className="bg-secondary">
       <ScrollArea className="h-80 px-2">
         <div className="flex flex-col gap-2 py-2 space-y-2">
           <div className="w-full pl-6 flex justify-end">

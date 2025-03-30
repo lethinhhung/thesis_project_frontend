@@ -78,7 +78,7 @@ function EditorMenubar({
             setIsChatOpen(!isChatOpen);
           }}
         >
-          Open ask AI
+          {isChatOpen ? "Close ask AI" : "Open ask AI"}
         </MenubarTrigger>
       </MenubarMenu>
       {isDarkTheme && (
@@ -97,7 +97,7 @@ function EditorMenubar({
                   {isPlainBackground ? <SquareDashed /> : <Square />}
                 </Button>
               </TooltipTrigger>
-              <TooltipContent side="bottom">
+              <TooltipContent side="top">
                 <p>
                   {"Switch to " +
                     (isPlainBackground
