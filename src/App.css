@@ -94,5 +94,6 @@ html::-webkit-scrollbar-track {
   padding: 10px 0px !important;
 }
 
-.bn-container .bn-side-menu .bn-button {
+div[tabindex="-1"][data-floating-ui-focusable] {
+  z-index: 10 !important;
 }

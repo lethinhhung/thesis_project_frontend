@@ -16,13 +16,14 @@ import {
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
 } from "./ui/dropdown-menu";
-import { cn } from "@/lib/utils";
 import { Button, buttonVariants } from "./ui/button";
 import { VariantProps } from "class-variance-authority";
 
 const LanguageSwitcher = ({
+  isSidebarOpen = true,
   ...props
-}: React.ComponentProps<"button"> & VariantProps<typeof buttonVariants>) => {
+}: React.ComponentProps<"button"> &
+  VariantProps<typeof buttonVariants> & { isSidebarOpen?: boolean }) => {
   const { i18n, t } = useTranslation();
   const [language, setLanguage] = useState(i18n.language);
 
@@ -44,7 +45,9 @@ const LanguageSwitcher = ({
               </Button>
             </DropdownMenuTrigger>
           </TooltipTrigger>
-          <TooltipContent side="top">Change language</TooltipContent>
+          <TooltipContent side={isSidebarOpen ? "top" : "right"}>
+            Change language
+          </TooltipContent>
         </Tooltip>
         <DropdownMenuContent side="right" className="w-56">
           <DropdownMenuLabel>Languages</DropdownMenuLabel>

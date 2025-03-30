@@ -13,8 +13,10 @@ import {
 import { VariantProps } from "class-variance-authority";
 
 export function DarkModeSwitcher({
+  isSidebarOpen = true,
   ...props
-}: React.ComponentProps<"button"> & VariantProps<typeof buttonVariants>) {
+}: React.ComponentProps<"button"> &
+  VariantProps<typeof buttonVariants> & { isSidebarOpen?: boolean }) {
   const [icon, setIcon] = useState(<Sun />);
   const { theme, setTheme } = useTheme();
 
@@ -37,7 +39,7 @@ export function DarkModeSwitcher({
             {icon}
           </Button>
         </TooltipTrigger>
-        <TooltipContent>
+        <TooltipContent side={isSidebarOpen ? "top" : "right"}>
           <p>Change appearance</p>
         </TooltipContent>
       </Tooltip>

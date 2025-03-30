@@ -20,23 +20,24 @@ import ChatSmall from "./chat-small";
 import ButtonWithBadge from "./button-with-badge";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useDelayedHidden } from "@/hooks/use-delay-hidden";
 
 export function SidebarRight({
   hidden,
   ...props
 }: React.ComponentProps<typeof Sidebar> & { hidden: boolean }) {
   const navigate = useNavigate();
-  const [isFullyHidden, setIsFullyHidden] = useState(hidden);
+  const isFullyHidden = useDelayedHidden(hidden, 75);
+  // const [isFullyHidden, setIsFullyHidden] = useState(hidden);
 
-  useEffect(() => {
-    if (!hidden) {
-      setIsFullyHidden(false); // Hiển thị lại sidebar khi `hidden` là `false`
-    } else {
-      const timeout = setTimeout(() => setIsFullyHidden(true), 75); // Ẩn hoàn toàn sau 75ms (thời gian hoạt ảnh)
-      return () => clearTimeout(timeout); // Dọn dẹp timeout khi component unmount
-    }
-  }, [hidden]);
+  // useEffect(() => {
+  //   if (!hidden) {
+  //     setIsFullyHidden(false); // Hiển thị lại sidebar khi `hidden` là `false`
+  //   } else {
+  //     const timeout = setTimeout(() => setIsFullyHidden(true), 75); // Ẩn hoàn toàn sau 75ms (thời gian hoạt ảnh)
+  //     return () => clearTimeout(timeout); // Dọn dẹp timeout khi component unmount
+  //   }
+  // }, [hidden]);
 
   if (isFullyHidden && hidden) {
     return null; // Không render sidebar khi nó đã hoàn toàn ẩn

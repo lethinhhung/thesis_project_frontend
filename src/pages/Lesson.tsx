@@ -19,9 +19,13 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
+import { useDelayedHidden } from "@/hooks/use-delay-hidden";
+import { motion } from "framer-motion";
 
 function Lesson() {
   const [isChatOpen, setIsChatOpen] = useState(false);
+  const isFullyHidden = useDelayedHidden(!isChatOpen, 75);
+
   const copyText = () => {
     const text = document?.getElementById("summary")?.innerText;
     navigator.clipboard
@@ -127,12 +131,18 @@ function Lesson() {
 
         <Editor isChatOpen={isChatOpen} setIsChatOpen={setIsChatOpen} />
       </div>
-      <div
-        hidden={!isChatOpen}
-        className="hidden 2xl:flex sticky dark:border-dashed h-[calc(100svh-92px)] w-full min-w-100 flex-1 top-16"
+
+      <motion.div
+        hidden={isFullyHidden} // Ẩn khi không cần thiết
+        initial={{ opacity: 0, x: 50 }} // Bắt đầu từ bên phải và mờ đi
+        animate={{ opacity: isChatOpen ? 1 : 0, x: isChatOpen ? 0 : 50 }} // Hiện ra khi mở chat
+        transition={{ duration: 0.3, ease: "easeOut" }}
+        className={
+          "hidden 2xl:flex sticky dark:border-dashed h-[calc(100svh-92px)] w-full min-w-100 flex-1 top-16"
+        }
       >
         <ChatMedium />
-      </div>
+      </motion.div>
     </div>
   );
 }

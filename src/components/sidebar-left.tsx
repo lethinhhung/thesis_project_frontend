@@ -250,12 +250,12 @@ const data = {
 export function SidebarLeft({
   ...props
 }: React.ComponentProps<typeof Sidebar>) {
-  const { isMobile } = useSidebar();
+  const { isMobile, open } = useSidebar();
   return (
     <Sidebar collapsible="icon" className="border-r-0 z-40" {...props}>
       <SidebarHeader className="md:gap-0">
         <NavUser user={data.user} />
-        {!isMobile && <NavControls />}
+        {!isMobile && <NavControls isSidebarOpen={open} />}
         <NavMain items={data.navMain} />
       </SidebarHeader>
       {
