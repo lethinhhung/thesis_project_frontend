@@ -13,6 +13,42 @@ import { Input } from "@/components/ui/input";
 import { useNavigate } from "react-router-dom";
 import { FoldersCard } from "@/components/folders-card";
 
+const recentPages: Page[] = [
+  {
+    id: "1",
+    title: "JavaScript Basics",
+    description:
+      "This document provides a fundamental introduction to JavaScript, covering essential topics such as basic syntax, data types, control structures including loops and conditionals, functions, and event handling. Additionally, it explores how JavaScript interacts with the DOM and how it plays a crucial role in the web development ecosystem. This resource is ideal for beginners looking to develop a strong foundation in JavaScript and start building interactive web applications.",
+    summary:
+      "Comprehensive introduction to JavaScript covering syntax, data types, loops, functions, event handling, and DOM manipulation.",
+    tags: ["JavaScript", "Programming", "Beginner"],
+    date: "2023-06-10",
+    status: true,
+  },
+  {
+    id: "2",
+    title: "React Guide",
+    description:
+      "A comprehensive guide to the React framework, explaining its core concepts such as components, props, state management, lifecycle methods, and the importance of hooks. The document also covers best practices for structuring React applications, optimizing performance, and leveraging React Router for navigation. Whether you are a beginner or an experienced developer, this guide will help you build efficient and scalable web applications using React.",
+    summary:
+      "In-depth guide to React, covering components, state management, lifecycle methods, hooks, and best practices for building scalable web applications.",
+    tags: ["Frontend", "Web Development"],
+    date: "2023-07-15",
+    status: true,
+  },
+  {
+    id: "3",
+    title: "Node.js for Backend",
+    description:
+      "An extensive resource on Node.js for backend development, introducing server-side programming concepts, asynchronous JavaScript, event-driven architecture, and working with the Express.js framework. The document also covers database interactions with MongoDB and SQL, REST API development, authentication strategies, and performance optimization techniques. Ideal for developers seeking to build efficient, scalable, and high-performing web applications with Node.js.",
+    summary:
+      "Comprehensive guide to Node.js covering Express.js, REST API development, authentication, and performance optimization.",
+    tags: ["Node.js", "Backend", "API"],
+    date: "2023-08-20",
+    status: false,
+  },
+];
+
 const pages: Page[] = [
   {
     id: "1",
@@ -258,7 +294,7 @@ function Pages() {
           </CollapsibleContent>
         </Collapsible>
 
-        <TabsContent value="pages" className="w-full">
+        <TabsContent value="pages" className="w-full space-y-4">
           <div className="w-full flex justify-between items-center sticky top-18">
             <h4 className="scroll-m-20 text-xl font-semibold tracking-tight px-2">
               Pages ({pages.length})
@@ -269,6 +305,26 @@ function Pages() {
               <Button>new</Button>
             </div>
           </div>
+          <div className="w-full p-2 pb-4 md:p-4 border-b md:border-none">
+            <div className="w-full md:p-4 md:border md:border-dashed rounded-lg">
+              <p className="text-sm text-muted-foreground pb-2 md:p-0">
+                Recent
+              </p>
+              <div className="columns-3xs space-y-4 md:p-4">
+                {recentPages.map((page) => (
+                  <PageCard
+                    key={page.id}
+                    page={page}
+                    onClick={() => {
+                      navigate(`/pages/${page.id}`);
+                    }}
+                    className="break-inside-avoid-column"
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+
           <div className="columns-3xs space-y-4 p-2 md:p-4">
             {pages.map((page) => (
               <PageCard

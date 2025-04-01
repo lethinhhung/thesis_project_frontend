@@ -7,6 +7,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 
 function Home() {
   const navigate = useNavigate();
@@ -14,13 +16,11 @@ function Home() {
   return (
     <div className="flex flex-col gap-4 items-center mx-auto h-2000 w-full max-w-7xl rounded-xl">
       <div className="w-full flex">
-        <Card className="w-full">
-          <CardHeader>
-            <CardTitle>Card Title</CardTitle>
-            <CardDescription>Card Description</CardDescription>
-          </CardHeader>
+        <Card className="w-full dark:border-dashed">
           <CardContent>
-            <p>Card Content</p>
+            <h2 className="text-3xl font-extrabold tracking-tight">
+              Welcome back to Notebok.
+            </h2>
           </CardContent>
           <CardFooter>
             <p>Card Footer</p>
@@ -28,13 +28,18 @@ function Home() {
         </Card>
       </div>
       <div className="w-full columns-sm space-y-4">
-        <Card className="w-full break-inside-avoid-column">
-          <CardHeader>
-            <CardTitle>Card Title</CardTitle>
-            <CardDescription>
-              Card DescriptionCard DescriptionCard DescriptionCard Description
-            </CardDescription>
-          </CardHeader>
+        <Card className="w-full break-inside-avoid-column dark:border-dashed">
+          <div className="flex justify-between items-center">
+            <CardHeader>
+              <CardTitle>Courses</CardTitle>
+              <CardDescription>5 ongoing courses, 2 completed</CardDescription>
+            </CardHeader>
+            <div className="px-6">
+              <Button size={"icon"} variant={"ghost"}>
+                <ArrowRight />
+              </Button>
+            </div>
+          </div>
           <CardContent>
             <p>Card Content</p>
           </CardContent>
@@ -43,10 +48,17 @@ function Home() {
           </CardFooter>
         </Card>
         <Card className="w-full break-inside-avoid-column">
-          <CardHeader>
-            <CardTitle>Card TitlCard TitlCard Title</CardTitle>
-            <CardDescription>Card Description</CardDescription>
-          </CardHeader>
+          <div className="flex justify-between items-center">
+            <CardHeader>
+              <CardTitle>Pages</CardTitle>
+              <CardDescription>20 pages, 5 folders</CardDescription>
+            </CardHeader>
+            <div className="px-6">
+              <Button size={"icon"} variant={"ghost"}>
+                <ArrowRight />
+              </Button>
+            </div>
+          </div>
           <CardContent>
             <p>Card Content</p>
           </CardContent>
@@ -55,10 +67,17 @@ function Home() {
           </CardFooter>
         </Card>
         <Card className="w-full break-inside-avoid-column">
-          <CardHeader>
-            <CardTitle>Card Title</CardTitle>
-            <CardDescription>dwdwadwa</CardDescription>
-          </CardHeader>
+          <div className="flex justify-between items-center">
+            <CardHeader>
+              <CardTitle>Chat</CardTitle>
+              <CardDescription></CardDescription>
+            </CardHeader>
+            <div className="px-6">
+              <Button size={"icon"} variant={"ghost"}>
+                <ArrowRight />
+              </Button>
+            </div>
+          </div>
           <CardContent>
             <p>Card Content</p>
           </CardContent>
@@ -67,13 +86,17 @@ function Home() {
           </CardFooter>
         </Card>
         <Card className="w-full break-inside-avoid-column">
-          <CardHeader>
-            <CardTitle>Card Title</CardTitle>
-            <CardDescription>
-              Card Card DescrDescrD escrDescrDesc rDesc rDescrDes crDescrDes
-              cription Description
-            </CardDescription>
-          </CardHeader>
+          <div className="flex justify-between items-center">
+            <CardHeader>
+              <CardTitle>Library</CardTitle>
+              <CardDescription>10 documents processed</CardDescription>
+            </CardHeader>
+            <div className="px-6">
+              <Button size={"icon"} variant={"ghost"}>
+                <ArrowRight />
+              </Button>
+            </div>
+          </div>
           <CardContent>
             <p>Card Content</p>
           </CardContent>
