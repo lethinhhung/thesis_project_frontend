@@ -206,6 +206,7 @@ const Editor = ({
         isChatOpen={isChatOpen}
         setIsChatOpen={setIsChatOpen}
       />
+
       <BlockNoteView
         className="w-full"
         onChange={saveContentAsJSON}

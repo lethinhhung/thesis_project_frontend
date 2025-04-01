@@ -117,17 +117,14 @@ export default function SearchBarDialog({
           <CommandItem>
             <User />
             <span>Javascript</span>
-            <CommandShortcut>⌘P</CommandShortcut>
           </CommandItem>
           <CommandItem>
             <CreditCard />
             <span>Embedding vectors</span>
-            <CommandShortcut>⌘B</CommandShortcut>
           </CommandItem>
           <CommandItem>
             <Settings />
             <span>Blockchain</span>
-            <CommandShortcut>⌘S</CommandShortcut>
           </CommandItem>
         </CommandGroup>
         <CommandSeparator />
@@ -135,17 +132,14 @@ export default function SearchBarDialog({
           <CommandItem>
             <User />
             <span>Javascript basics</span>
-            <CommandShortcut>⌘P</CommandShortcut>
           </CommandItem>
           <CommandItem>
             <CreditCard />
             <span>Chapter 2: Digged in</span>
-            <CommandShortcut>⌘B</CommandShortcut>
           </CommandItem>
           <CommandItem>
             <Settings />
             <span>Chapter 1: Introduction</span>
-            <CommandShortcut>⌘S</CommandShortcut>
           </CommandItem>
         </CommandGroup>
         <CommandSeparator />
@@ -164,6 +158,7 @@ export default function SearchBarDialog({
             <CommandItem onSelect={() => handleClick(item.url)} key={item.url}>
               <item.icon />
               <span>{item.title}</span>
+              <CommandShortcut>{item.url}</CommandShortcut>
             </CommandItem>
           ))}
         </CommandGroup>
@@ -171,14 +166,14 @@ export default function SearchBarDialog({
         <CommandGroup heading="Controls">
           <CommandItem value="appearance dark light mode">
             <span>Appearance</span>
-            <CommandShortcut>
-              <DarkModeSwitcher variant={"ghost"} />
+            <CommandShortcut className="flex items-center">
+              <DarkModeSwitcher className="w-4 h-4" variant={"ghost"} />
             </CommandShortcut>
           </CommandItem>
           <CommandItem value="languages english vietnamese">
             <span>Languagues</span>
-            <CommandShortcut>
-              <LanguageSwitcher variant={"ghost"} />
+            <CommandShortcut className="flex items-center">
+              <LanguageSwitcher className="w-4 h-4" variant={"ghost"} />
             </CommandShortcut>
           </CommandItem>
         </CommandGroup>

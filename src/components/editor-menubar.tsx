@@ -81,6 +81,12 @@ function EditorMenubar({
           {isChatOpen ? "Close ask AI" : "Open ask AI"}
         </MenubarTrigger>
       </MenubarMenu>
+      <MenubarMenu>
+        <MenubarTrigger>Help</MenubarTrigger>
+        <MenubarContent>
+          <MenubarItem disabled>Type / to insert</MenubarItem>
+        </MenubarContent>
+      </MenubarMenu>
       {isDarkTheme && (
         <MenubarMenu>
           <MenubarTrigger asChild>
