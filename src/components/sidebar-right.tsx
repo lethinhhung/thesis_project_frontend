@@ -26,10 +26,9 @@ import {
 import ChatSmall from "./chat-small";
 import ButtonWithBadge from "./button-with-badge";
 import { useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
-import { useDelayedHidden } from "@/hooks/use-delay-hidden";
 import { Textarea } from "./ui/textarea";
 import TodoList from "./todo-list";
+import SlideInFromRight from "./slide-in-from-right";
 
 export function SidebarRight({
   hidden,
@@ -37,28 +36,9 @@ export function SidebarRight({
 }: React.ComponentProps<typeof Sidebar> & { hidden: boolean }) {
   const navigate = useNavigate();
 
-  const isFullyHidden = useDelayedHidden(hidden, 75);
-  // const [isFullyHidden, setIsFullyHidden] = useState(hidden);
-
-  // useEffect(() => {
-  //   if (!hidden) {
-  //     setIsFullyHidden(false); // Hiển thị lại sidebar khi `hidden` là `false`
-  //   } else {
-  //     const timeout = setTimeout(() => setIsFullyHidden(true), 75); // Ẩn hoàn toàn sau 75ms (thời gian hoạt ảnh)
-  //     return () => clearTimeout(timeout); // Dọn dẹp timeout khi component unmount
-  //   }
-  // }, [hidden]);
-
-  if (isFullyHidden && hidden) {
-    return null; // Không render sidebar khi nó đã hoàn toàn ẩn
-  }
-
   return (
-    <motion.div
-      initial={{ x: "100%" }}
-      animate={{ x: hidden ? "100%" : "0%" }}
-      exit={{ x: "100%" }}
-      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+    <SlideInFromRight
+      hidden={hidden}
       className="sticky top-0 h-svh border-l 2xl:flex"
     >
       <Sidebar collapsible="none" {...props}>
@@ -150,6 +130,6 @@ export function SidebarRight({
           </Collapsible>
         </SidebarFooter>
       </Sidebar>
-    </motion.div>
+    </SlideInFromRight>
   );
 }
