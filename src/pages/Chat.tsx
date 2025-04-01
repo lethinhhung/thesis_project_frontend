@@ -9,8 +9,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Skeleton } from "@/components/ui/skeleton";
 
 import { Textarea } from "@/components/ui/textarea";
+import { Message } from "@/interfaces/message";
+import { chatCompletions } from "@/utils/api";
 import {
   ChevronDown,
   MessageCircleMoreIcon,
@@ -20,65 +23,10 @@ import {
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
-interface Message {
-  message: string;
-  sender: string;
-  date: string;
-}
-
 function Chat() {
   const [input, setInput] = useState<string>("");
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      message: "Hello! How can I assist you today?",
-      sender: "ai",
-      date: "3/21/2025",
-    },
-    {
-      message: "Hi! Can you help me understand recursion?",
-      sender: "user",
-      date: "3/21/2025",
-    },
-    {
-      message:
-        "Of course! Recursion is a technique where a function calls itself to solve a problem. Do you need an example?",
-      sender: "ai",
-      date: "3/21/2025",
-    },
-    {
-      message: "Yes, please show me an example using JavaScript.",
-      sender: "user",
-      date: "3/21/2025",
-    },
-    {
-      message:
-        "Sure! Here's a simple recursive function to calculate the factorial of a number:\n\n```javascript\nfunction factorial(n) {\n  if (n === 0) return 1;\n  return n * factorial(n - 1);\n}\nconsole.log(factorial(5)); // Output: 120\n```",
-      sender: "ai",
-      date: "3/21/2025",
-    },
-    {
-      message:
-        "Got it! So the function keeps calling itself until n reaches 0?",
-      sender: "user",
-      date: "3/21/2025",
-    },
-    {
-      message:
-        "Exactly! The base case (n === 0) stops the recursion, preventing infinite loops.",
-      sender: "ai",
-      date: "3/21/2025",
-    },
-    {
-      message: "That makes sense. Thanks a lot!",
-      sender: "user",
-      date: "3/21/2025",
-    },
-    {
-      message: "You're welcome! Let me know if you have any other questions.",
-      sender: "ai",
-      date: "3/21/2025",
-    },
-  ]);
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
@@ -86,54 +34,70 @@ function Chat() {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const getChatCompletions = async (updatedMessages: Message[]) => {
+    setLoading(true);
+    try {
+      const res = await chatCompletions(updatedMessages);
+
+      console.log(res);
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        {
+          role: "assistant",
+          content: res?.data.choices[0]?.message?.content,
+        },
+      ]);
+    } catch (error) {
+      console.error("Error fetching chat completions:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleSendMessage = () => {
+    if (!input.trim()) return;
+
+    const newMessage: Message = { role: "user", content: input.trim() };
+    const updatedMessages = [...messages, newMessage];
+
+    setMessages(updatedMessages);
+    setInput("");
+
+    // Gọi API sau khi `messages` cập nhật
+    getChatCompletions(updatedMessages);
+  };
+
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
 
-  const handleSendMessage = () => {
-    setMessages([
-      ...messages,
-      {
-        message: input.trim(),
-        sender: "user",
-        date: new Date().toLocaleDateString(),
-      },
-      {
-        message: "Sorry. I can't help with that yet.",
-        sender: "ai",
-        date: new Date().toLocaleDateString(),
-      },
-    ]);
-    setInput("");
-  };
-
   return (
     <div className="flex flex-col mx-auto space-y-4 items-center justify-between w-full h-[calc(100dvh-92px)] max-w-5xl rounded-xl">
       <div id="scroll" className="w-full overflow-y-auto md:p-4 scrollbar">
-        {messages.map((message, index) =>
-          message.sender === "user" ? (
+        {messages?.map((message, index) =>
+          message?.role === "user" ? (
             <div key={index} className="flex justify-end mb-5">
               <div className="p-4 rounded-md border border-dashed">
-                {message.message}
-                <p className="text-xs text-muted-foreground flex justify-end pt-4">
-                  {message.date}
-                </p>
+                {message?.content}
               </div>
             </div>
           ) : (
             <div key={index} className="flex">
               <div className="flex flex-col max-w-full p-4 mb-5 bg-secondary rounded-md">
-                {message.message}
-                <p className="text-xs text-muted-foreground flex pt-4">
-                  {message.date}
-                </p>
+                {message?.content}
               </div>
             </div>
           )
         )}
+        {loading && (
+          <div className="flex">
+            <Skeleton className="flex flex-col w-100 p-4 mb-5 bg-secondary rounded-md h-10" />
+          </div>
+        )}
         <div ref={messagesEndRef}></div>
       </div>
-      {messages.length === 0 && (
+
+      {messages?.length === 0 && (
         <h4 className="flex gap-1 scroll-m-20 text-xl font-semibold tracking-tight">
           <MessageCircleMoreIcon /> Ask for anything...
         </h4>
@@ -184,6 +148,14 @@ function Chat() {
             disabled={!input.trim()}
             onClick={() => {
               if (!input.trim()) return;
+              setMessages([
+                ...messages,
+                {
+                  role: "user",
+                  content: input.trim(),
+                },
+              ]);
+              setInput("");
               handleSendMessage();
             }}
             size={"icon"}

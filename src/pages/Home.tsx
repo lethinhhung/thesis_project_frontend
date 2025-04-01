@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import {
   Card,
   CardContent,
@@ -8,11 +7,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 function Home() {
-  const navigate = useNavigate();
-
   return (
     <div className="flex flex-col gap-4 items-center mx-auto h-2000 w-full max-w-7xl rounded-xl">
       <div className="w-full flex">
