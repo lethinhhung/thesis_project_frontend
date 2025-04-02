@@ -140,7 +140,7 @@ function Lesson() {
         hidden={!isChatOpen}
         className="hidden 2xl:flex sticky border py-4 dark:border-dashed rounded-xl shadow-md h-[calc(100svh-92px)] w-full min-w-100 max-w-5xl flex-1 top-16"
       >
-        <ChatBox attachContent={markDown} />
+        <ChatBox attachContent={markDown} title="lesson" />
       </SlideInFromRight>
     </div>
   );

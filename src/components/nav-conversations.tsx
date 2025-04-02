@@ -1,4 +1,4 @@
-import { MoreHorizontal } from "lucide-react";
+import { MessageCircleMore, MoreHorizontal } from "lucide-react";
 import {
   SidebarGroup,
   SidebarGroupContent,
@@ -7,10 +7,11 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export function NavConversations({
   conversations,
+  isChatPage = false,
 }: {
   conversations: {
     name: string;
@@ -20,10 +21,16 @@ export function NavConversations({
       emoji: React.ReactNode;
     }[];
   }[];
+  isChatPage?: boolean;
 }) {
   const navigate = useNavigate();
   return (
-    <SidebarGroup>
+    <SidebarGroup
+      className={
+        "group-data-[collapsible=icon]:hidden" +
+        (isChatPage && " border-2 border-dashed")
+      }
+    >
       <SidebarGroupLabel>Recent conversations</SidebarGroupLabel>
       <SidebarGroupContent>
         <SidebarMenu>

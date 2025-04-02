@@ -37,7 +37,7 @@ export function NavPinned({
 }) {
   const { isMobile } = useSidebar();
   return (
-    <SidebarGroup className="group-data-[collapsible=icon]:hidden">
+    <SidebarGroup>
       <SidebarGroupLabel>Pinned</SidebarGroupLabel>
       <SidebarGroupContent>
         <SidebarMenu>

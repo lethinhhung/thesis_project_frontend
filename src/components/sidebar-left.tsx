@@ -23,6 +23,7 @@ import { NavUser } from "./nav-user";
 import { NavControls } from "./nav-controls";
 import { NavCourses } from "./nav-courses";
 import { NavPinned } from "./nav-pinned";
+import { useLocation } from "react-router-dom";
 
 // This is sample data.
 const data = {
@@ -251,6 +252,8 @@ export function SidebarLeft({
   ...props
 }: React.ComponentProps<typeof Sidebar>) {
   const { isMobile, open } = useSidebar();
+  const location = useLocation();
+  const isChatPage = location.pathname.startsWith("/chat");
   return (
     <Sidebar collapsible="icon" className="border-r-0 z-40" {...props}>
       <SidebarHeader className="md:gap-0">
@@ -260,9 +263,14 @@ export function SidebarLeft({
       </SidebarHeader>
       {
         <SidebarContent className="scrollbar">
+          {isChatPage && (
+            <NavConversations isChatPage conversations={data.conversations} />
+          )}
           <NavPinned conversations={data.conversations} />
           <NavCourses courses={data.courses} />
-          <NavConversations conversations={data.conversations} />
+          {!isChatPage && (
+            <NavConversations conversations={data.conversations} />
+          )}
         </SidebarContent>
       }
       <SidebarRail />

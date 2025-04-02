@@ -14,11 +14,27 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Textarea } from "@/components/ui/textarea";
 import { Message } from "@/interfaces/message";
 import { chatCompletions } from "@/utils/api";
-import { ChevronDown, MessageCircleMoreIcon, Plus, Send } from "lucide-react";
+import {
+  ChevronDown,
+  MessageCircleMoreIcon,
+  Paperclip,
+  Plus,
+  Send,
+} from "lucide-react";
 import { useEffect, useState } from "react";
 import { CardDescription, CardHeader, CardTitle } from "./ui/card";
+import { motion } from "framer-motion";
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 
-function ChatBox({ attachContent }: { attachContent?: string }) {
+function ChatBox({
+  attachContent,
+  title,
+  extraOptions = false,
+}: {
+  attachContent?: string;
+  title?: string;
+  extraOptions?: boolean;
+}) {
   const [input, setInput] = useState<string>("");
   const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
@@ -80,10 +96,12 @@ function ChatBox({ attachContent }: { attachContent?: string }) {
   }, [messages]);
   return (
     <div className="flex flex-col w-full h-full space-y-4 items-center">
-      <CardHeader className="w-full">
-        <CardTitle>Ask AI</CardTitle>
-        <CardDescription>about this lessson</CardDescription>
-      </CardHeader>
+      {title && (
+        <CardHeader className="w-full">
+          <CardTitle>Ask AI</CardTitle>
+          <CardDescription>about this {title}</CardDescription>
+        </CardHeader>
+      )}
       {messages?.length > 0 && (
         <div
           id="scroll"
@@ -91,23 +109,46 @@ function ChatBox({ attachContent }: { attachContent?: string }) {
         >
           {messages?.map((message, index) =>
             message?.role === "user" ? (
-              <div key={index} className="flex justify-end mb-5 pl-16">
-                <div className="p-4 rounded-md border border-dashed">
-                  {message?.content}
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+              >
+                <div key={index} className="flex justify-end mb-5 pl-16">
+                  <div className="p-4 rounded-md border border-dashed">
+                    {message?.content}
+                  </div>
                 </div>
-              </div>
+              </motion.div>
             ) : (
-              <div key={index} className="flex">
-                <div className="flex flex-col max-w-full p-4 mb-5 bg-secondary rounded-md">
-                  {message?.content}
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+              >
+                <div key={index} className="flex">
+                  <div className="flex flex-col max-w-full p-4 mb-5 bg-secondary rounded-md">
+                    {message?.content}
+                  </div>
                 </div>
-              </div>
+              </motion.div>
             )
           )}
           {loading && (
-            <div className="flex">
-              <Skeleton className="flex flex-col w-100 p-4 mb-5 bg-secondary rounded-md h-10" />
-            </div>
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+            >
+              <div className="flex flex-col gap-2">
+                <small className="text-sm font-medium leading-none">
+                  Thinking...
+                </small>
+                <Skeleton className="w-100 p-4 mb-5 bg-secondary rounded-md h-15" />
+              </div>
+            </motion.div>
           )}
         </div>
       )}
@@ -125,38 +166,56 @@ function ChatBox({ attachContent }: { attachContent?: string }) {
           className="resize-none max-h-[17rem] border-dashed scrollbar"
         ></Textarea>
         <div className="w-full pt-1 md:pt-2 flex gap-1 md:gap-2 items-center justify-end">
-          {/* <Badge variant="outline">2 content attched</Badge>
-
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <ButtonWithBadge
-                variant={"ghost"}
+          {extraOptions && (
+            <div className="flex items-center gap-2">
+              <Badge variant="outline">2 content attched</Badge>
+              <Tooltip>
+                <DropdownMenu>
+                  <TooltipTrigger asChild>
+                    <DropdownMenuTrigger asChild>
+                      <ButtonWithBadge
+                        variant={"ghost"}
+                        size={"icon"}
+                        isBadgeVisible={true}
+                        badgeColor="bg-sky-500"
+                      >
+                        <Paperclip />
+                      </ButtonWithBadge>
+                    </DropdownMenuTrigger>
+                  </TooltipTrigger>
+                  <TooltipContent>Attach files</TooltipContent>
+                  <DropdownMenuContent>
+                    <DropdownMenuLabel>Attach content</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem>Profile</DropdownMenuItem>
+                    <DropdownMenuItem>Billing</DropdownMenuItem>
+                    <DropdownMenuItem>Team</DropdownMenuItem>
+                    <DropdownMenuItem>Subscription</DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </Tooltip>
+            </div>
+          )}
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button
+                onClick={() => setMessages([])}
                 size={"icon"}
-                isBadgeVisible={true}
-                badgeColor="bg-sky-500"
+                variant={"ghost"}
               >
-                <Paperclip />
-              </ButtonWithBadge>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuLabel>Attach content</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>Profile</DropdownMenuItem>
-              <DropdownMenuItem>Billing</DropdownMenuItem>
-              <DropdownMenuItem>Team</DropdownMenuItem>
-              <DropdownMenuItem>Subscription</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu> */}
-          <Button
-            onClick={() => setMessages([])}
-            size={"icon"}
-            variant={"ghost"}
-          >
-            <Plus />
-          </Button>
-          <Button size={"icon"} onClick={scrollToBottom} variant={"ghost"}>
-            <ChevronDown />
-          </Button>
+                <Plus />
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>New chat</TooltipContent>
+          </Tooltip>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button size={"icon"} onClick={scrollToBottom} variant={"ghost"}>
+                <ChevronDown />
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>Scroll to bottom</TooltipContent>
+          </Tooltip>
           <Button
             disabled={!input.trim()}
             onClick={() => {

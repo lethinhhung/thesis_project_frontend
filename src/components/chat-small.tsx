@@ -59,7 +59,7 @@ function ChatSmall() {
         </div>
       </ScrollArea>
       <div className="flex gap-1 px-2 pt-2">
-        <Input />
+        <Input className="border-foreground" />
         <Button size={"icon"}>
           <Send />
         </Button>
