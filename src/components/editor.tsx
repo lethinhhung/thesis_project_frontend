@@ -132,9 +132,13 @@ const insertMuted = (editor: typeof schema.BlockNoteEditor) => ({
 const Editor = ({
   isChatOpen,
   setIsChatOpen,
+  markDown,
+  setMarkDown,
 }: {
   isChatOpen: boolean;
   setIsChatOpen: (value: boolean) => void;
+  markDown: string;
+  setMarkDown: (value: string) => void;
 }) => {
   const editor = useCreateBlockNote({
     schema,
@@ -160,11 +164,11 @@ const Editor = ({
 
   async function saveContentAsJSON() {
     const blocks = editor.document;
-    const selection = editor.getSelection();
+    setMarkDown(await editor.blocksToMarkdownLossy());
     try {
       const blocksJSON = JSON.stringify(blocks);
       localStorage.setItem("blocks", blocksJSON);
-      console.log(selection);
+      console.log(markDown);
     } catch (error) {
       console.error("Failed to save blocks as JSON:", error);
     }
@@ -182,7 +186,7 @@ const Editor = ({
 
     mediaQuery.addEventListener("change", handleChange);
     loadInitialJSON();
-    console.log("Editor loaded");
+
     return () => mediaQuery.removeEventListener("change", handleChange);
   }, []);
 

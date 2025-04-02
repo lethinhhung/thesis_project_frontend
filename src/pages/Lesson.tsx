@@ -1,4 +1,3 @@
-import ChatMedium from "@/components/chat-medium";
 import Editor from "@/components/editor";
 import { Button } from "@/components/ui/button";
 import {
@@ -20,9 +19,11 @@ import {
 import { useState } from "react";
 import { toast } from "sonner";
 import SlideInFromRight from "@/components/slide-in-from-right";
+import ChatBox from "@/components/chat-box";
 
 function Lesson() {
   const [isChatOpen, setIsChatOpen] = useState(false);
+  const [markDown, setMarkDown] = useState<string>("");
 
   const copyText = () => {
     const text = document?.getElementById("summary")?.innerText;
@@ -127,14 +128,19 @@ function Lesson() {
           setIsPlainBackground={setIsPlainBackground}
         /> */}
 
-        <Editor isChatOpen={isChatOpen} setIsChatOpen={setIsChatOpen} />
+        <Editor
+          isChatOpen={isChatOpen}
+          setIsChatOpen={setIsChatOpen}
+          markDown={markDown}
+          setMarkDown={setMarkDown}
+        />
       </div>
 
       <SlideInFromRight
         hidden={!isChatOpen}
-        className="hidden 2xl:flex sticky dark:border-dashed h-[calc(100svh-92px)] w-full min-w-100 max-w-5xl flex-1 top-16"
+        className="hidden 2xl:flex sticky border py-4 dark:border-dashed rounded-xl shadow-md h-[calc(100svh-92px)] w-full min-w-100 max-w-5xl flex-1 top-16"
       >
-        <ChatMedium />
+        <ChatBox attachContent={markDown} />
       </SlideInFromRight>
     </div>
   );

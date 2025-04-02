@@ -1,4 +1,3 @@
-import ChatMedium from "@/components/chat-medium";
 import Editor from "@/components/editor";
 import { Button } from "@/components/ui/button";
 import {
@@ -131,7 +130,7 @@ function Page() {
         hidden={!isChatOpen}
         className="hidden 2xl:flex sticky dark:border-dashed h-[calc(100svh-92px)] w-full min-w-100 flex-1 top-16"
       >
-        <ChatMedium />
+        chat
       </div>
     </div>
   );
