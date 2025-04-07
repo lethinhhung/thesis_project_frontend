@@ -3,6 +3,7 @@ import {
   Cloud,
   Inbox,
   ListTodo,
+  Plus,
   Sparkles,
   StickyNote,
 } from "lucide-react";
@@ -119,7 +120,7 @@ export function SidebarRight({
                 <div className=" line-clamp-1 word-break break-all">
                   Quick chat
                 </div>
-                <ChevronRight className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-90" />
+                <Plus className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-45" />
               </CollapsibleTrigger>
             </SidebarGroupLabel>
             <CollapsibleContent>
