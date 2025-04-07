@@ -2,8 +2,6 @@ import { DocumentCard } from "@/components/document-card";
 import DocumentPreview from "@/components/document-preview";
 import DocumentPreviewMobile from "@/components/document-preview-mobile";
 import SearchBarWithTags from "@/components/search-bar-with-tags";
-
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { useState } from "react";
 import { Document } from "@/interfaces/document";
 import { useIsTablet } from "@/hooks/use-tablet";

@@ -34,6 +34,7 @@ const breadcrumbMap: Record<string, string> = {
   course: "Course Details",
   lessons: "Lessons",
   page: "Page Details",
+  documents: "Documents",
 };
 
 export default function Breadcrumbs() {

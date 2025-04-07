@@ -17,14 +17,15 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 import { Document } from "@/interfaces/document";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Lesson } from "@/interfaces/lesson";
 import { Input } from "@/components/ui/input";
 import SortButton from "@/components/sort-button";
-import CourseDashboard from "@/components/ui/course-dashboard";
+import CourseDashboard from "@/components/course-dashboard";
 import CourseLessons from "@/components/course-lessons";
 import CourseDocument from "@/components/course-document";
 import CourseTestsProjects from "@/components/course-tests-projects";
+import { useSearchParams } from "react-router-dom";
 
 const badges = [
   { title: "Math" },
@@ -297,9 +298,11 @@ const documents: Document[] = [
 
 function Course() {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const queryTab = searchParams.get("tab") || "dashboard";
+  const [tab, setTab] = useState(queryTab);
 
   const tabTop = useRef<HTMLDivElement | null>(null);
-  const [tab, setTab] = useState("dashboard");
 
   const scrollToTabTop = () => {
     const navbarHeight = 56;
@@ -312,6 +315,17 @@ function Course() {
       window.scrollTo({ top: topOffset, behavior: "smooth" });
     }
   };
+
+  const handleTabChange = (newTab: string) => {
+    setTab(newTab);
+    setSearchParams({ tab: newTab });
+    scrollToTabTop();
+  };
+
+  useEffect(() => {
+    const currentTab = searchParams.get("tab") || "dashboard";
+    setTab(currentTab);
+  }, [searchParams]);
 
   return (
     <div className="flex flex-col items-center mx-auto h-full w-full max-w-7xl rounded-xl">
@@ -365,26 +379,26 @@ function Course() {
 
       <Tabs
         value={tab}
-        onValueChange={setTab}
+        onValueChange={handleTabChange}
         ref={tabTop}
         defaultValue="dashboard"
         className="w-full py-4"
       >
         <Collapsible className="flex flex-wrap gap-1 sm:gap-2 items-center mx-2 md:mx-4 sticky top-16 z-10 transition-all duration-300 pr-26">
           <TabsList>
-            <TabsTrigger onClick={scrollToTabTop} value="dashboard">
+            <TabsTrigger value="dashboard">
               <ChartColumnIncreasing />
               <div className="hidden lg:flex">Dashboard</div>
             </TabsTrigger>
-            <TabsTrigger onClick={scrollToTabTop} value="lessons">
+            <TabsTrigger value="lessons">
               <TableOfContents />
               <div className="hidden lg:flex">Lessons</div>
             </TabsTrigger>
-            <TabsTrigger onClick={scrollToTabTop} value="documents">
+            <TabsTrigger value="documents">
               <SquareLibrary />
               <div className="hidden lg:flex">Documents</div>
             </TabsTrigger>
-            <TabsTrigger onClick={scrollToTabTop} value="tests">
+            <TabsTrigger value="tests">
               <Folder />
               <div className="hidden lg:flex">Tests & Projects</div>
             </TabsTrigger>
