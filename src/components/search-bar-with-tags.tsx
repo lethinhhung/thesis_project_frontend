@@ -77,7 +77,7 @@ function SearchBarWithTags({
     >
       <div className="flex flex-row flex-wrap gap-2 p-2 w-full">
         <Input
-          onChange={(e) => navigate(`/courses/search`)}
+          onChange={() => navigate(`/courses/search`)}
           className="flex-1 border border-dashed"
           placeholder={placeholder}
         />

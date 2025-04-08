@@ -1,12 +1,13 @@
 import { useTranslation } from "react-i18next";
-import { ThemeProvider } from "./components/theme-provider";
+import { ThemeProvider, useTheme } from "./components/theme-provider";
 import { useEffect } from "react";
 import AppRoutes from "./route/routes";
 import "./App.css";
-import { Toaster } from "./components/ui/sonner";
+import { Toaster } from "sonner";
 
 function App() {
   const { i18n } = useTranslation();
+  const { theme } = useTheme();
 
   useEffect(() => {
     if (i18n.language === "vi") {
@@ -23,7 +24,7 @@ function App() {
       <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
         <AppRoutes />
       </ThemeProvider>
-      {/* <Toaster theme="light" /> */}
+      <Toaster theme={theme} />
     </>
   );
 }

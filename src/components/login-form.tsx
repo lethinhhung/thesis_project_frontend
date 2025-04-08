@@ -17,6 +17,8 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { toast } from "sonner";
+import { loginAPI } from "@/utils/auth.api";
 
 export function LoginForm({
   className,
@@ -35,9 +37,12 @@ export function LoginForm({
   }, []);
 
   const formSchema = z.object({
-    email: z.string().email({
-      message: t("email_required"),
+    username: z.string().min(1, {
+      message: t("username_required"),
     }),
+    // email: z.string().email({
+    //   message: t("email_required"),
+    // }),
     password: z.string().min(8, {
       message: t("password_required"),
     }),
@@ -47,19 +52,44 @@ export function LoginForm({
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: "",
+      username: "",
+      // email: "",
       password: "",
     },
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    localStorage.setItem(
-      "user",
-      JSON.stringify({ ...values, name: "Name", avatar: "/placeholder.svg" })
-    );
-    console.log(values);
-    navigate("/home");
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    try {
+      const { username, password } = values;
+      const response = await loginAPI(username, password);
+      console.log(response);
+      if (response) {
+        if (response.status == 401 || response.status == 404) {
+          if (response.data.error.code == "INVALID_CREDENTIALS") {
+            toast.error("Invalid credentials", {
+              description: "Please check your username and password",
+            });
+          } else if (response.status == 404) {
+            toast.error("User not found", {
+              description: "Please check your username and password",
+            });
+          }
+        } else if (response.status == 200) {
+          toast.success("Login successful", {
+            description: "Welcome back!",
+          });
+          localStorage.setItem("access_token", response.data.access_token);
+          navigate("/home");
+        } else {
+          toast.error("Login failed", {
+            description: "Please try again later",
+          });
+        }
+      }
+    } catch (error: unknown) {
+      console.error("Login failed", error);
+    }
   }
 
   const handleSignUp = (e: ReactMouseEvent<HTMLAnchorElement>) => {
@@ -79,7 +109,7 @@ export function LoginForm({
                     {t("login_to")}
                   </p>
                 </div>
-                <FormField
+                {/* <FormField
                   control={form.control}
                   name="email"
                   render={({ field }) => (
@@ -87,6 +117,19 @@ export function LoginForm({
                       <FormLabel>Email</FormLabel>
                       <FormControl>
                         <Input placeholder="example@example.com" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                /> */}
+                <FormField
+                  control={form.control}
+                  name="username"
+                  render={({ field }) => (
+                    <FormItem className="grid gap-3">
+                      <FormLabel>Username</FormLabel>
+                      <FormControl>
+                        <Input placeholder="user" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>

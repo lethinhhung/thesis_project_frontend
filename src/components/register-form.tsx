@@ -18,6 +18,7 @@ import { Card, CardContent } from "./ui/card";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { MouseEvent as ReactMouseEvent } from "react";
+import { registerAPI } from "@/utils/auth.api";
 
 export function RegisterForm({
   className,
@@ -71,10 +72,10 @@ export function RegisterForm({
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    const { username, email, password } = values;
+    const response = await registerAPI(username, password, email);
+    console.log(response.data);
   }
 
   const handleBack = (

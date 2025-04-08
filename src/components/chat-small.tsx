@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Message } from "@/interfaces/message";
-import { chatCompletions } from "@/utils/api";
+import { chatCompletions } from "@/utils/test.api";
 import { ChevronDown, Plus, Send, Sparkles } from "lucide-react";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";

@@ -13,7 +13,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 import { Textarea } from "@/components/ui/textarea";
 import { Message } from "@/interfaces/message";
-import { chatCompletions } from "@/utils/api";
+import { chatCompletions } from "@/utils/test.api";
 import {
   ChevronDown,
   MessageCircleMoreIcon,

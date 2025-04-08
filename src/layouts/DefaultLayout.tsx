@@ -31,8 +31,6 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { Toaster } from "@/components/ui/sonner";
-import { useTheme } from "@/components/theme-provider";
 import Breadcrumbs from "@/components/breadcrumbs";
 import { useState } from "react";
 
@@ -44,19 +42,17 @@ const createItems = [
 ];
 
 export default function DefaultLayout() {
-  const { theme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <>
-      <SidebarProvider>
-        <SidebarLeft />
-        <SidebarInset>
-          <header className="z-30 sticky top-0 flex h-14 shrink-0 items-center gap-2 border-b border-dashed bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-            {/* <header className="sticky top-0 flex h-14 shrink-0 items-center gap-2 bg-background"> */}
-            <div className="flex flex-1 items-center gap-2 px-3">
-              <SidebarTrigger />
-              <Separator orientation="vertical" className="h-4" />
-              {/* <Breadcrumb>
+    <SidebarProvider>
+      <SidebarLeft />
+      <SidebarInset>
+        <header className="z-30 sticky top-0 flex h-14 shrink-0 items-center gap-2 border-b border-dashed bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+          {/* <header className="sticky top-0 flex h-14 shrink-0 items-center gap-2 bg-background"> */}
+          <div className="flex flex-1 items-center gap-2 px-3">
+            <SidebarTrigger />
+            <Separator orientation="vertical" className="h-4" />
+            {/* <Breadcrumb>
                 <BreadcrumbList>
                   <BreadcrumbItem>
                     <BreadcrumbPage className="line-clamp-1">
@@ -65,62 +61,60 @@ export default function DefaultLayout() {
                   </BreadcrumbItem>
                 </BreadcrumbList>
               </Breadcrumb> */}
-              <Breadcrumbs />
-              <Separator orientation="vertical" className="mr-2 h-4" />
-            </div>
+            <Breadcrumbs />
+            <Separator orientation="vertical" className="mr-2 h-4" />
+          </div>
 
-            <div className="flex items-center gap-2 px-2">
-              <TooltipProvider>
-                <DropdownMenu modal={false}>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <DropdownMenuTrigger asChild>
-                        <Button size={"icon"} variant={"ghost"}>
-                          <Plus />
-                        </Button>
-                      </DropdownMenuTrigger>
-                    </TooltipTrigger>
-                    <TooltipContent>Create</TooltipContent>
-                  </Tooltip>
-                  <DropdownMenuContent>
-                    <DropdownMenuLabel>Create new</DropdownMenuLabel>
-                    <DropdownMenuSeparator />
-                    {createItems.map((item) => (
-                      <DropdownMenuItem key={item.url}>
-                        {item.icon}
-                        {item.title}
-                      </DropdownMenuItem>
-                    ))}
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </TooltipProvider>
-
-              <TooltipProvider>
+          <div className="flex items-center gap-2 px-2">
+            <TooltipProvider>
+              <DropdownMenu modal={false}>
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <Button
-                      size={"icon"}
-                      variant={"ghost"}
-                      onClick={() => setIsOpen(!isOpen)}
-                      className="hidden 2xl:flex"
-                    >
-                      {isOpen ? <ChevronRight /> : <ChevronLeft />}
-                    </Button>
+                    <DropdownMenuTrigger asChild>
+                      <Button size={"icon"} variant={"ghost"}>
+                        <Plus />
+                      </Button>
+                    </DropdownMenuTrigger>
                   </TooltipTrigger>
-                  <TooltipContent>
-                    {isOpen ? "Hide sidebar" : "Show sidebar"}
-                  </TooltipContent>
+                  <TooltipContent>Create</TooltipContent>
                 </Tooltip>
-              </TooltipProvider>
-            </div>
-          </header>
-          <div className="flex flex-1 flex-col gap-4 p-4 max-w-full">
-            <Outlet />
+                <DropdownMenuContent>
+                  <DropdownMenuLabel>Create new</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  {createItems.map((item) => (
+                    <DropdownMenuItem key={item.url}>
+                      {item.icon}
+                      {item.title}
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </TooltipProvider>
+
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    size={"icon"}
+                    variant={"ghost"}
+                    onClick={() => setIsOpen(!isOpen)}
+                    className="hidden 2xl:flex"
+                  >
+                    {isOpen ? <ChevronRight /> : <ChevronLeft />}
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  {isOpen ? "Hide sidebar" : "Show sidebar"}
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           </div>
-        </SidebarInset>
-        <SidebarRight hidden={!isOpen} className="hidden 2xl:flex" />
-      </SidebarProvider>
-      <Toaster theme={theme} />
-    </>
+        </header>
+        <div className="flex flex-1 flex-col gap-4 p-4 max-w-full">
+          <Outlet />
+        </div>
+      </SidebarInset>
+      <SidebarRight hidden={!isOpen} className="hidden 2xl:flex" />
+    </SidebarProvider>
   );
 }
