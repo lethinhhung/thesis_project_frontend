@@ -28,10 +28,12 @@ import {
 import { NavControls } from "./nav-controls";
 import { useNavigate } from "react-router-dom";
 import { User as UserInterface } from "@/interfaces/user";
+import { useAuth } from "./auth-context";
 
 export function NavUser({ user }: { user: UserInterface }) {
   const { isMobile } = useSidebar();
   const navigate = useNavigate();
+  const { logout } = useAuth();
   return (
     <SidebarMenu>
       <SidebarMenuItem>
@@ -99,7 +101,7 @@ export function NavUser({ user }: { user: UserInterface }) {
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={logout}>
               <LogOut />
               Log out
             </DropdownMenuItem>

@@ -10,4 +10,8 @@ const loginAPI = (username: string, password: string) => {
   return axios.post(URL_API, { username, password });
 };
 
-export { registerAPI, loginAPI };
+const logoutAPI = () => {
+  const URL_API = "/api/auth/logout";
+  return axios.post(URL_API, {}, { withCredentials: true });
+};
+export { registerAPI, loginAPI, logoutAPI };

@@ -5,9 +5,8 @@ import {
   useEffect,
   ReactNode,
 } from "react";
-import axios from "@/utils/axios.custiomize";
 import { useNavigate } from "react-router-dom";
-import { loginAPI } from "@/utils/auth.api";
+import { loginAPI, logoutAPI } from "@/utils/auth.api";
 import { getProfileAPI } from "@/utils/users.api";
 import { toast } from "sonner";
 
@@ -44,7 +43,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     try {
       // Gọi API để kiểm tra token và lấy thông tin user
       const response = await getProfileAPI();
-      console.log("Profile response:", response);
       if (response.status === 200) {
         const userData = response.data.data;
         setUser(userData);
@@ -62,6 +60,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   useEffect(() => {
+    // Không kiểm tra ki ở login, register, /
+    const path = window.location.pathname;
+    if (path === "/login" || path === "/register" || path === "/") {
+      setLoading(false);
+      return;
+    }
+
     const initAuth = async () => {
       setLoading(true);
 
@@ -97,7 +102,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         navigate("/home");
       } else {
         const response = await loginAPI(username, password);
-        console.log(response);
         if (response) {
           if (response.status == 401 || response.status == 404) {
             if (response.data.error.code == "INVALID_CREDENTIALS") {
@@ -131,7 +135,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const logout = async () => {
     try {
-      await axios.post("/auth/logout");
+      await logoutAPI();
     } catch (error) {
       console.error("Logout API call failed:", error);
     } finally {
