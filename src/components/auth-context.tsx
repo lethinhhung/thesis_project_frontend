@@ -35,11 +35,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   // Kiểm tra token hợp lệ và lấy thông tin user
   const checkAuth = async (): Promise<boolean> => {
-    const accessToken = localStorage.getItem("access_token");
-    if (!accessToken) {
-      setUser(null);
-      return false;
-    }
+    // const accessToken = localStorage.getItem("access_token");
+    // if (!accessToken) {
+    //   setUser(null);
+    //   return false;
+    // }
 
     try {
       // Gọi API để kiểm tra token và lấy thông tin user
@@ -136,7 +136,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       console.error("Logout API call failed:", error);
     } finally {
       // Luôn xóa dữ liệu local ngay cả khi API thất bại
-      localStorage.removeItem("accessToken");
+      localStorage.removeItem("access_token");
       localStorage.removeItem("user");
       setUser(null);
       navigate("/login");

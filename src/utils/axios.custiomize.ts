@@ -42,26 +42,26 @@ instance.interceptors.response.use(
 
       try {
         // Gọi API refresh token (cookie được gửi tự động)
-        const response = await instance.post("/auth/refresh-token");
+        const response = await instance.post("/api/auth/refresh-token");
 
         if (response.data?.success) {
           // Lưu access token mới
           const { accessToken } = response.data.data;
-          localStorage.setItem("accessToken", accessToken);
+          localStorage.setItem("access_token", accessToken);
 
           // Thêm token mới vào header và thử lại request ban đầu
           originalRequest.headers.Authorization = `Bearer ${accessToken}`;
           return axios(originalRequest);
         } else {
           // Nếu refresh token cũng hết hạn, đăng xuất người dùng
-          localStorage.removeItem("accessToken");
+          localStorage.removeItem("access_token");
           localStorage.removeItem("user");
           // window.location.href = "/login";
           return Promise.reject(error);
         }
       } catch (refreshError) {
         // Nếu refresh token cũng hết hạn, đăng xuất người dùng
-        localStorage.removeItem("accessToken");
+        localStorage.removeItem("access_token");
         localStorage.removeItem("user");
         // window.location.href = "/login";
         return Promise.reject(refreshError);
