@@ -18,7 +18,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { toast } from "sonner";
-import { loginAPI } from "@/utils/auth.api";
+import { useAuth } from "@/components/auth-context";
 
 export function LoginForm({
   className,
@@ -27,6 +27,7 @@ export function LoginForm({
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [svgFill, setSvgFill] = useState("white");
+  const { login } = useAuth();
 
   useEffect(() => {
     if (document.documentElement.classList.contains("dark")) {
@@ -62,33 +63,13 @@ export function LoginForm({
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
       const { username, password } = values;
-      const response = await loginAPI(username, password);
-      console.log(response);
-      if (response) {
-        if (response.status == 401 || response.status == 404) {
-          if (response.data.error.code == "INVALID_CREDENTIALS") {
-            toast.error("Invalid credentials", {
-              description: "Please check your username and password",
-            });
-          } else if (response.status == 404) {
-            toast.error("User not found", {
-              description: "Please check your username and password",
-            });
-          }
-        } else if (response.status == 200) {
-          toast.success("Login successful", {
-            description: "Welcome back!",
-          });
-          localStorage.setItem("access_token", response.data.access_token);
-          navigate("/home");
-        } else {
-          toast.error("Login failed", {
-            description: "Please try again later",
-          });
-        }
-      }
+      // Trực tiếp sử dụng login từ useAuth thay vì gọi API riêng
+      await login(username, password);
     } catch (error: unknown) {
       console.error("Login failed", error);
+      toast.error("Login failed", {
+        description: "Please check your credentials and try again",
+      });
     }
   }
 

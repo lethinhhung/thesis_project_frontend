@@ -24,6 +24,7 @@ import { NavControls } from "./nav-controls";
 import { NavCourses } from "./nav-courses";
 import { NavPinned } from "./nav-pinned";
 import { useLocation } from "react-router-dom";
+import { User } from "@/interfaces/user";
 
 // This is sample data.
 const data = {
@@ -249,15 +250,16 @@ const data = {
 };
 
 export function SidebarLeft({
+  user,
   ...props
-}: React.ComponentProps<typeof Sidebar>) {
+}: React.ComponentProps<typeof Sidebar> & { user: User }) {
   const { isMobile, open } = useSidebar();
   const location = useLocation();
   const isChatPage = location.pathname.startsWith("/chat");
   return (
     <Sidebar collapsible="icon" className="border-r-0 z-40" {...props}>
       <SidebarHeader className="md:gap-0">
-        <NavUser user={data.user} />
+        <NavUser user={user} />
         {!isMobile && <NavControls isSidebarOpen={open} />}
         <NavMain items={data.navMain} />
       </SidebarHeader>

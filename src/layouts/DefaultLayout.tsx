@@ -33,6 +33,8 @@ import {
 } from "@/components/ui/tooltip";
 import Breadcrumbs from "@/components/breadcrumbs";
 import { useState } from "react";
+import { useAuth } from "@/components/auth-context";
+import { User } from "@/interfaces/user";
 
 const createItems = [
   { title: "Course", url: "/course", icon: <Briefcase /> },
@@ -43,9 +45,15 @@ const createItems = [
 
 export default function DefaultLayout() {
   const [isOpen, setIsOpen] = useState(false);
+  const altUser: User = {
+    username: "",
+    email: "",
+    role: "",
+  };
+  const { user, loading } = useAuth();
   return (
     <SidebarProvider>
-      <SidebarLeft />
+      <SidebarLeft user={user} />
       <SidebarInset>
         <header className="z-30 sticky top-0 flex h-14 shrink-0 items-center gap-2 border-b border-dashed bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
           {/* <header className="sticky top-0 flex h-14 shrink-0 items-center gap-2 bg-background"> */}
