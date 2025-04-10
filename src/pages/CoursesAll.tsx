@@ -1,6 +1,5 @@
 import { CourseCard } from "@/components/course-card";
 import { LessonCardLarge } from "@/components/lesson-card-large";
-import SearchBarWithTags from "@/components/search-bar-with-tags";
 import { Button } from "@/components/ui/button";
 import { Lesson } from "@/interfaces/lesson";
 import { ArrowRight } from "lucide-react";

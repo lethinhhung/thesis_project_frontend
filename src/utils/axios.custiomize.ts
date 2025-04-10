@@ -46,11 +46,13 @@ instance.interceptors.response.use(
 
         if (response.data?.success) {
           // Lưu access token mới
+
           const { accessToken } = response.data.data;
           localStorage.setItem("access_token", accessToken);
 
           // Thêm token mới vào header và thử lại request ban đầu
           originalRequest.headers.Authorization = `Bearer ${accessToken}`;
+          console.log("Retrying request with new access token");
           return axios(originalRequest);
         } else {
           // Nếu refresh token cũng hết hạn, đăng xuất người dùng

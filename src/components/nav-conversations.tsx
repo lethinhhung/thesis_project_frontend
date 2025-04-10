@@ -1,4 +1,4 @@
-import { MessageCircleMore, MoreHorizontal } from "lucide-react";
+import { MoreHorizontal } from "lucide-react";
 import {
   SidebarGroup,
   SidebarGroupContent,

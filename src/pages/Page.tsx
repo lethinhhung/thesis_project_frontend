@@ -1,4 +1,4 @@
-import Editor from "@/components/editor";
+// import Editor from "@/components/editor";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -16,11 +16,11 @@ import {
   MoreHorizontal,
   Sparkles,
 } from "lucide-react";
-import { useState } from "react";
+// import { useState } from "react";
 import { toast } from "sonner";
 
 function Page() {
-  const [isChatOpen, setIsChatOpen] = useState(false);
+  // const [isChatOpen, setIsChatOpen] = useState(false);
   const copyText = () => {
     const text = document?.getElementById("summary")?.innerText;
     navigator.clipboard
@@ -124,14 +124,14 @@ function Page() {
           setIsPlainBackground={setIsPlainBackground}
         /> */}
 
-        <Editor isChatOpen={isChatOpen} setIsChatOpen={setIsChatOpen} />
+        {/* <Editor isChatOpen={isChatOpen} setIsChatOpen={setIsChatOpen} /> */}
       </div>
-      <div
+      {/* <div
         hidden={!isChatOpen}
         className="hidden 2xl:flex sticky dark:border-dashed h-[calc(100svh-92px)] w-full min-w-100 flex-1 top-16"
       >
         chat
-      </div>
+      </div> */}
     </div>
   );
 }

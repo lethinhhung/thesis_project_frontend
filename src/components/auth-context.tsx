@@ -9,12 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { loginAPI, logoutAPI } from "@/utils/auth.api";
 import { getProfileAPI } from "@/utils/users.api";
 import { toast } from "sonner";
-
-interface User {
-  id: string;
-  username: string;
-  email: string;
-}
+import { User } from "@/interfaces/user";
 
 interface AuthContextType {
   user: User | null;
@@ -90,12 +85,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       const response = await loginAPI(username, password);
 
       if (response.data?.success) {
-        const { id, username, email, accessToken } = response.data.data;
+        const { username, email, role, accessToken } = response.data.data;
 
         // Lưu access token và thông tin user
         localStorage.setItem("access_token", accessToken);
 
-        const userData = { id, username, email };
+        const userData: User = { username, email, role };
         localStorage.setItem("user", JSON.stringify(userData));
 
         setUser(userData);

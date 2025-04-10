@@ -252,7 +252,7 @@ const data = {
 export function SidebarLeft({
   user,
   ...props
-}: React.ComponentProps<typeof Sidebar> & { user: User }) {
+}: React.ComponentProps<typeof Sidebar> & { user: User | null }) {
   const { isMobile, open } = useSidebar();
   const location = useLocation();
   const isChatPage = location.pathname.startsWith("/chat");

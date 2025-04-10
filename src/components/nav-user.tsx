@@ -30,7 +30,7 @@ import { useNavigate } from "react-router-dom";
 import { User as UserInterface } from "@/interfaces/user";
 import { useAuth } from "./auth-context";
 
-export function NavUser({ user }: { user: UserInterface }) {
+export function NavUser({ user }: { user: UserInterface | null }) {
   const { isMobile } = useSidebar();
   const navigate = useNavigate();
   const { logout } = useAuth();
@@ -44,12 +44,12 @@ export function NavUser({ user }: { user: UserInterface }) {
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
               <Avatar className="h-8 w-8 rounded-lg">
-                <AvatarImage src={user.email} alt={user.username} />
+                <AvatarImage src={user?.email} alt={user?.username} />
                 <AvatarFallback className="rounded-lg">KT</AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
-                <span className="truncate font-semibold">{user.username}</span>
-                <span className="truncate text-xs">{user.email}</span>
+                <span className="truncate font-semibold">{user?.username}</span>
+                <span className="truncate text-xs">{user?.email}</span>
               </div>
               <ChevronsUpDown className="ml-auto size-4" />
             </SidebarMenuButton>
@@ -63,14 +63,14 @@ export function NavUser({ user }: { user: UserInterface }) {
             <DropdownMenuLabel className="p-0 font-normal ">
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                 <Avatar className="h-8 w-8 rounded-lg">
-                  <AvatarImage src={user.email} alt={user.username} />
+                  <AvatarImage src={user?.email} alt={user?.username} />
                   <AvatarFallback className="rounded-lg">KT</AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-semibold">
-                    {user.username}
+                    {user?.username}
                   </span>
-                  <span className="truncate text-xs">{user.email}</span>
+                  <span className="truncate text-xs">{user?.email}</span>
                 </div>
               </div>
 

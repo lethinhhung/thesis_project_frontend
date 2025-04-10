@@ -1,10 +1,4 @@
 import { CourseCard } from "@/components/course-card";
-import { LessonCardLarge } from "@/components/lesson-card-large";
-import SearchBarWithTags from "@/components/search-bar-with-tags";
-import { Button } from "@/components/ui/button";
-import { Lesson } from "@/interfaces/lesson";
-import { ArrowRight } from "lucide-react";
-import { useNavigate } from "react-router-dom";
 
 const courses = [
   {
@@ -84,30 +78,6 @@ const courses = [
     status: false,
     date: "2025-03-01",
     emoji: "🌐",
-  },
-];
-
-const lessons: Lesson[] = [
-  {
-    id: "lesson-001",
-    title: "Introduction to JavaScript",
-    description:
-      "Learn the basics of JavaScript, including syntax, variables, and data types.",
-    date: "2025-03-10",
-  },
-  {
-    id: "lesson-002",
-    title: "React Components and Props",
-    description:
-      "Understand how to build reusable components and pass data using props in React.",
-    date: "2025-03-12",
-  },
-  {
-    id: "lesson-003",
-    title: "Data Structures: Arrays and Linked Lists",
-    description:
-      "Explore the fundamentals of arrays and linked lists, their operations, and use cases.",
-    date: "2025-03-15",
   },
 ];
 

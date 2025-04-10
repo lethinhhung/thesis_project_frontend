@@ -1,6 +1,4 @@
 import { Outlet } from "react-router-dom";
-import { SidebarLeft } from "@/components/sidebar-left";
-import { SidebarRight } from "@/components/sidebar-right";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -17,7 +15,6 @@ import {
 export default function ChatLayout() {
   return (
     <SidebarProvider>
-      <SidebarLeft />
       <SidebarInset className="flex-1 max-w-full h-svh overflow-hidden min-w-0">
         <header className="z-50 sticky top-0 flex h-14 shrink-0 items-center gap-2 border-b border-dashed bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
           {/* <header className="sticky top-0 flex h-14 shrink-0 items-center gap-2 bg-background"> */}
@@ -39,7 +36,6 @@ export default function ChatLayout() {
           <Outlet />
         </div>
       </SidebarInset>
-      <SidebarRight />
     </SidebarProvider>
   );
 }

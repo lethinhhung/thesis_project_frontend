@@ -34,7 +34,6 @@ import {
 import Breadcrumbs from "@/components/breadcrumbs";
 import { useState } from "react";
 import { useAuth } from "@/components/auth-context";
-import { User } from "@/interfaces/user";
 
 const createItems = [
   { title: "Course", url: "/course", icon: <Briefcase /> },
@@ -45,12 +44,7 @@ const createItems = [
 
 export default function DefaultLayout() {
   const [isOpen, setIsOpen] = useState(false);
-  const altUser: User = {
-    username: "",
-    email: "",
-    role: "",
-  };
-  const { user, loading } = useAuth();
+  const { user } = useAuth();
   return (
     <SidebarProvider>
       <SidebarLeft user={user} />
