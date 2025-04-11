@@ -23,6 +23,10 @@ html::-webkit-scrollbar-track {
   background: var(--scrollbar-track);
 }
 
+body {
+  overflow-x: hidden;
+}
+
 /* BlockNote editor */
 @media (width < 48rem) {
   .bn-editor {

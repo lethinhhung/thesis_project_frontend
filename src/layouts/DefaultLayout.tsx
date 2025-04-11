@@ -34,6 +34,7 @@ import {
 import Breadcrumbs from "@/components/breadcrumbs";
 import { useState } from "react";
 import { useAuth } from "@/components/auth-context";
+import { AnimatePresence, motion } from "framer-motion";
 
 const createItems = [
   { title: "Course", url: "/course", icon: <Briefcase /> },
@@ -48,6 +49,7 @@ export default function DefaultLayout() {
   return (
     <SidebarProvider>
       <SidebarLeft user={user} />
+
       <SidebarInset>
         <header className="z-30 sticky top-0 flex h-14 shrink-0 items-center gap-2 border-b border-dashed bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
           {/* <header className="sticky top-0 flex h-14 shrink-0 items-center gap-2 bg-background"> */}
@@ -116,7 +118,19 @@ export default function DefaultLayout() {
           <Outlet />
         </div>
       </SidebarInset>
-      <SidebarRight hidden={!isOpen} className="hidden 2xl:flex" />
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ width: 0, opacity: 1 }}
+            animate={{ width: 256, opacity: 1 }}
+            exit={{ width: 0, opacity: 1 }}
+            transition={{ duration: 0.3 }}
+            className="hidden sticky top-0 h-svh border-l 2xl:flex"
+          >
+            <SidebarRight />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </SidebarProvider>
   );
 }

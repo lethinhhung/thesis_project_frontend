@@ -1,5 +1,5 @@
 import { useDelayedHidden } from "@/hooks/use-delay-hidden";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 interface SlideInFromRightProps {
   hidden: boolean;
@@ -12,22 +12,20 @@ const SlideInFromRight: React.FC<SlideInFromRightProps> = ({
   children,
   className = "",
 }) => {
-  const isFullyHidden = useDelayedHidden(hidden, 80);
-
-  if (isFullyHidden && hidden) {
-    return null; // Không render sidebar khi nó đã hoàn toàn ẩn
-  }
-
   return (
-    <motion.div
-      initial={{ opacity: 0, x: 50 }}
-      animate={{ opacity: hidden ? 0 : 1, x: hidden ? 50 : 0 }}
-      transition={{ duration: 0.3, ease: "easeOut" }}
-      hidden={isFullyHidden}
-      className={className}
-    >
-      {children}
-    </motion.div>
+    <AnimatePresence>
+      {!hidden && (
+        <motion.div
+          initial={{ width: 0, opacity: 0 }}
+          animate={{ width: 256, opacity: 1 }}
+          exit={{ width: 0, opacity: 0 }}
+          transition={{ duration: 0.3 }}
+          className={className}
+        >
+          {children}
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
 
