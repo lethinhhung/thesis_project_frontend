@@ -1,4 +1,4 @@
-import axios from "./axios.custiomize";
+import axios from "./axios.customize";
 
 const getProfileAPI = () => {
   const URL_API = "/api/users/profile";

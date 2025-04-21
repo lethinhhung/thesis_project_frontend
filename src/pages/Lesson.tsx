@@ -18,7 +18,6 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
-import SlideInFromRight from "@/components/slide-in-from-right";
 import ChatBox from "@/components/chat-box";
 import { AnimatePresence, motion } from "framer-motion";
 

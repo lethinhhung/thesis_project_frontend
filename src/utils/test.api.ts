@@ -1,5 +1,5 @@
 import { Message } from "@/interfaces/message";
-import axios from "./axios.custiomize";
+import axios from "./axios.customize";
 
 const getModelsList = () => {
   const URL_API = "/v1/models";
